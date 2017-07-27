@@ -7,16 +7,28 @@ class App extends Component {
 
 	componentDidMount() {
 		this.props.fetchAnimals();
-		
 	}
 
 	renderAnimals() {
 		return _.map(this.props.animals, animal => {
+
+			
+			let arr = JSON.parse(animal.tabobr);
+			//Change byte array to Base64String
+			function bytArrayToBase64( arr ) {
+					var binary = '';
+					var bytes = new Uint8Array( arr );
+					var len = bytes.byteLength;
+					for (var i = 0; i < len; i++) {
+							binary += String.fromCharCode( bytes[ i ] );
+					}
+					return window.btoa( binary );
+			}
 			return (
-				<h2>{ animal.data }</h2>
+				<img className="img-responsive"src={`data:image/png;base64,${bytArrayToBase64(arr)}`} />
 			)
 		})
-	}
+	} 
 
   render() {
 		if(!this.props.animals) {
