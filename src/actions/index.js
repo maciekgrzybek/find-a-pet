@@ -11,16 +11,16 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-
 export default database;
 
-export function fetchAnimals() {
+export function fetchAnimals(animals) {
 
-	const animals = database.ref('/').once('value', (snapshot) => { snapshot.val()})
-	console.log(animals)
-
-	return {
-		type: FETCH_ANIMALS,
-		payload: animals
+	return dispatch => {
+		database.ref('/zwierzak').on('value', snapshot => {
+			dispatch({
+				type: FETCH_ANIMALS,
+				payload: snapshot.val()
+			})
+		})
 	}
 }
