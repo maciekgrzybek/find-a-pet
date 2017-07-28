@@ -1,66 +1,30 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchAnimals } from '../actions/index';
-import _ from 'lodash'
+import Navigation from '../components/Navigation';
+import Home from '../components/Home';
+import Contact from '../components/Contact';
+import NotFound from '../components/NotFound'
+import { Route, Switch } from 'react-router-dom';
+
+
 
 class App extends Component {
 
-	componentDidMount() {
-		this.props.fetchAnimals();
-	}
-
-	renderAnimals() {
-		return _.map(this.props.animals, animal => {
-
-			
-			let arr = JSON.parse(animal.tabobr);
-			//Change byte array to Base64String
-			function bytArrayToBase64( arr ) {
-					var binary = '';
-					var bytes = new Uint8Array( arr );
-					var len = bytes.byteLength;
-					for (var i = 0; i < len; i++) {
-							binary += String.fromCharCode( bytes[ i ] );
-					}
-					return window.btoa( binary );
-			}
-			return (
-				<img className="img-responsive"src={`data:image/png;base64,${bytArrayToBase64(arr)}`} />
-			)
-		})
-	} 
-
   render() {
-		if(!this.props.animals) {
-			return (
-				<div>Loading...</div>
-			)
-		}
-		console.log(this.props.animals)
     return (
       <div className="app">
+					<Navigation />
 				<div className="container">
-					<div className="row">
-						<div className="col-md-4">
-							<h1>yo yo</h1>
-						</div>
-						<div className="col-md-8">
-							{ this.renderAnimals() }
-						</div>
-					</div>
+					<Switch>
+						<Route path="/kontakt" component={ Contact }/>
+						<Route exact path="/" component={ Home } />
+					</Switch>
 				</div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-	return {
-		animals: state.animals
-	}
-}
 
 
 
-
-export default connect(mapStateToProps,{ fetchAnimals })(App);
+export default (App);
