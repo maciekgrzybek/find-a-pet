@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
+import MainHero from './MainHero';
 import MainMap from '../containers/MainMap';
 
 class Home extends Component {
 
 	render() {
 		return (
-			<div className="row">
-				<div className="col-md-12" style={{width: '100%', height: '400px'}}>
-					<MainMap />
+			<div>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-12">
+							<MainHero />
+						</div>
+					</div>
 				</div>
-			</div>	
+				<div className="container">
+					<div className="row">
+						<div className="col-md-12 map">
+							<MainMap />
+						</div>
+					</div>
+				</div>
+			</div>
 		);
 	}
 }

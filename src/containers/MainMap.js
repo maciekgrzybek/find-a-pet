@@ -31,6 +31,7 @@ class MainMap extends Component {
 		return _.map(this.props.animals, animal => {
 			return (
 				<Marker
+					key={ animal.lat }
 					url={ animal.sturl }
 					lat={ animal.lat }
 					lng={ animal.lon } />

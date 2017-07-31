@@ -1,0 +1,16 @@
+.map {
+	height: 600px;
+}
+.marker {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: -50px;
+	top: -50px;
+	transition: .3s;
+	border-radius: 50px;
+	overflow: hidden;
+	&__image {
+		width: 100%;
+	}
+}

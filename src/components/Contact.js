@@ -4,7 +4,13 @@ class Contact extends Component {
 
 	render() {
 		return (
-			<div> Contact For sadm </div>
+			<div className="container">
+				<div className="row">
+					<div className="col-md-12">
+						Kontakt
+					</div>
+				</div>
+			</div>
 		);
 	}
 }

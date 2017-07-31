@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Marker = ({ url }) => {
+const Marker = (props) => {
+	const markerStyleHover= {
+		width: 200
+	}
+	const style = props.$hover ? markerStyleHover : null;
 
 	return (
-		<div>
-			<img style={{height:20}} src={ url } alt=""/>
+		<div className="marker" style={ style }>
+			<img className="marker__image" src={ props.url } alt=""/>
 		</div>
 	);
 }
