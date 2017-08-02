@@ -51,7 +51,7 @@ class MainMap extends Component {
 					defaultZoom={this.props.zoom}
 					options={createMapOptions} >
 					{ this._renderAnimalMarkers() }
-				</GoogleMapReact> 
+				</GoogleMapReact>
 		);
 	}
 }

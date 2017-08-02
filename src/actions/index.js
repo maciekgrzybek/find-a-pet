@@ -1,4 +1,4 @@
-import { FETCH_ANIMALS } from '../constants/actionTypes';
+import { FETCH_ANIMALS, ADD_ANIMAL } from '../constants/actionTypes';
 import firebase from 'firebase';
 
 // Firebase query config
@@ -16,11 +16,24 @@ export default database;
 export function fetchAnimals(animals) {
 
 	return dispatch => {
-		database.ref('/zwierzak').on('value', snapshot => {
+		database.ref(`/zwierzak`).on('value', snapshot => {
 			dispatch({
 				type: FETCH_ANIMALS,
 				payload: snapshot.val()
 			})
 		})
 	}
+}
+
+export function addAnimal(values) {
+
+	return dispatch => {
+		database.ref('/zwierzak/asdasd12asd').set(values)
+		.then(() => {
+			dispatch({
+				type: ADD_ANIMAL
+			})
+		})
+	}
+	
 }
