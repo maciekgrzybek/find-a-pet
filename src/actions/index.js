@@ -27,8 +27,10 @@ export function fetchAnimals(animals) {
 
 export function addAnimal(values) {
 
+	var newAnimalKey = database.ref().child('zwierzak').push().key;
+
 	return dispatch => {
-		database.ref('/zwierzak/asdasd12asd').set(values)
+		database.ref('/zwierzak/' + newAnimalKey).update(values)
 		.then(() => {
 			dispatch({
 				type: ADD_ANIMAL

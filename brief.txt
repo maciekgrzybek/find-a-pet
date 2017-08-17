@@ -1,0 +1,7 @@
+Dane przy dodawaniu:
+	- lokalizacja
+	- data
+	- email
+	- nr telefonu
+	- status
+	- fota
