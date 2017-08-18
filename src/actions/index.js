@@ -1,18 +1,24 @@
-import { FETCH_ANIMALS, ADD_ANIMAL } from '../constants/actionTypes';
+import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE } from '../constants/actionTypes';
 import firebase from 'firebase';
 
-// Firebase query config
 
+//
+// Firebase query config
+//
 const firebaseConfig = {
 	apiKey: 'AIzaSyAnj-ob4fBAc5z6lmNEjGhQIgM8iyUqQ7w',
 	authDomain: 'znajdz-zwierzaka.firebaseio.com',
-	databaseURL: 'https://znajdz-zwierzaka.firebaseio.com/'
+	databaseURL: 'https://znajdz-zwierzaka.firebaseio.com/',
+	storageBucket: 'gs://znajdz-zwierzaka.appspot.com'
 }
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
+export const storage = firebase.storage();
 
-export default database;
 
+//
+// Action Creators 
+//
 export function fetchAnimals(animals) {
 
 	return dispatch => {
@@ -28,7 +34,7 @@ export function fetchAnimals(animals) {
 export function addAnimal(values) {
 
 	var newAnimalKey = database.ref().child('zwierzak').push().key;
-
+	
 	return dispatch => {
 		database.ref('/zwierzak/' + newAnimalKey).update(values)
 		.then(() => {
@@ -37,5 +43,19 @@ export function addAnimal(values) {
 			})
 		})
 	}
-	
+}
+
+export function uploadImage(file, callback) {
+
+	console.log(file);
+	const imageRef = storage.ref().child(file[0].name)
+	return dispatch => {
+		imageRef.put(file[0])
+		.then(() => {
+			dispatch({
+				type: UPLOAD_IMAGE
+			})
+		})
+		.then(() => callback())
+	}
 }

@@ -10,6 +10,6 @@ const rootReducer = combineReducers({
 	form: formReducer
 });
 
-const store = createStore(rootReducer,{},applyMiddleware(thunk,logger));
+const store = createStore(rootReducer,{},applyMiddleware(thunk));
 
 export default store;
