@@ -1,19 +1,6 @@
 import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE } from '../constants/actionTypes';
-import firebase from 'firebase';
+import { database, storage } from '../constants/firebase';
 
-
-//
-// Firebase query config
-//
-const firebaseConfig = {
-	apiKey: 'AIzaSyAnj-ob4fBAc5z6lmNEjGhQIgM8iyUqQ7w',
-	authDomain: 'znajdz-zwierzaka.firebaseio.com',
-	databaseURL: 'https://znajdz-zwierzaka.firebaseio.com/',
-	storageBucket: 'gs://znajdz-zwierzaka.appspot.com'
-}
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-export const storage = firebase.storage();
 
 
 //

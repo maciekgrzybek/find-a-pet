@@ -5,7 +5,7 @@ import { addAnimal, uploadImage } from '../actions/index';
 import { Link } from 'react-router-dom';
 import AddingMap from '../components/AddingMap';
 import Dropzone from 'react-dropzone';
-import { storage } from '../actions/index';
+import { storage } from '../constants/firebase';
 
 class Add extends Component {
 
@@ -42,7 +42,7 @@ class Add extends Component {
 	onSubmit(values) {
 		// this.props.addAnimal(values);
 		this.props.uploadImage(this.state.file, () => { 
-			var gsReference = storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${this.state.file[0].name}`)
+			storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${this.state.file[0].name}`)
 				.getDownloadURL()
 				.then((url) => {this.props.addAnimal(Object.assign({}, values, {'url':url}))});
 		})
