@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 import { addAnimal, uploadImage } from '../actions/index';
 import { Link } from 'react-router-dom';
@@ -12,9 +12,12 @@ class Add extends Component {
 	constructor() {
 		super();
 		this.state = { 
-			file: null
+			file: null,
+			lat: '',
+			lng:''
 		}
 		this.onDrop = this.onDrop.bind(this);
+		this.addCoordinates = this.addCoordinates.bind(this);
 
 	}
 
@@ -32,7 +35,7 @@ class Add extends Component {
 					className="form-control"
 					{ ...field.input }
 					type={ field.type }
-					value={ field.content }
+					
 					/>
 					{ touched ? error : '' }
 			</div>
@@ -47,14 +50,30 @@ class Add extends Component {
 				.then((url) => {this.props.addAnimal(Object.assign({}, values, {'url':url}))});
 		})
 	}
+
 	onDrop(file) {
     this.setState({ file });
 	}
+
+	addCoordinates(e) {
+		this.setState({
+			lat: e.lat,
+			lng: e.lng
+		}, () => {
+			this.props.change('lat', this.state.lat);
+			this.props.change('lng', this.state.lng);
+		})
+		
+	}
+
 	render() {
 		const { handleSubmit } = this.props;
 		return (
 			<div className="container">
 				<div className="row">
+				<div className="col-md-12 map">
+						<AddingMap handleClick={this.addCoordinates} />
+					</div>
 					<div className="col-md-8">
 						<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
 								<Field
@@ -77,6 +96,19 @@ class Add extends Component {
 									label="Telefon"
 									type="tel"
 									component={ this.renderField } />
+								<Field
+									name="lat"
+									label="Lokalizacja"
+									type="hidden"
+									value={this.state.lat}
+									normalize= { value => value }
+									component={ this.renderField } />
+								<Field
+									name="lng"
+									label="Lokalizacja"
+									type="hidden"
+									value={this.state.lng}
+									component={ this.renderField } />
 
 								<Dropzone onDrop={this.onDrop}>
 										<p>Try dropping some files here, or click to select files to upload.</p>
@@ -86,10 +118,7 @@ class Add extends Component {
 								<Link to="/" className="btn btn-danger">Cofnij</Link>	
 						</form>
 					</div>
-					<div className="col-md-12 map">
-						
-						<AddingMap />
-					</div>
+
 				</div>
 			</div>
 		);
@@ -100,9 +129,9 @@ function validate(values) {
 
 	const errors = {};
 
-	if(!values.city) {
-		errors.city = "Podaj miasto";
-	}
+	// if(!values.lat) {
+	// 	errors.lat = "Podaj lokalizację";
+	// }
 
 	return errors;
 

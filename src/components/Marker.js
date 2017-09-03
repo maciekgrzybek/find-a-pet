@@ -5,7 +5,6 @@ const Marker = (props) => {
 		width: 200
 	}
 	const style = props.$hover ? markerStyleHover : null;
-
 	return (
 		<div className="marker" style={ style }>
 			<img className="marker__image" src={ props.url } alt=""/>

@@ -32,9 +32,9 @@ class MainMap extends Component {
 			return (
 				<Marker
 					key={ animal.lat }
-					url={ animal.sturl }
+					url={ animal.url }
 					lat={ animal.lat }
-					lng={ animal.lon } />
+					lng={ animal.lng } />
 			)
 		})
 	} 
