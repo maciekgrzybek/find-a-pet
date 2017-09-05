@@ -18,7 +18,7 @@ export function fetchAnimals(animals) {
 	}
 }
 
-export function addAnimal(values) {
+export function addAnimal(values, callback) {
 
 	var newAnimalKey = database.ref().child('zwierzak').push().key;
 	
@@ -29,12 +29,12 @@ export function addAnimal(values) {
 				type: ADD_ANIMAL
 			})
 		})
+		.then(() => callback())
 	}
 }
 
 export function uploadImage(file, callback) {
 
-	console.log(file);
 	const imageRef = storage.ref().child(file[0].name)
 	return dispatch => {
 		imageRef.put(file[0])

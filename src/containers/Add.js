@@ -17,8 +17,7 @@ class Add extends Component {
 			lng:''
 		}
 		this.onDrop = this.onDrop.bind(this);
-		this.addCoordinates = this.addCoordinates.bind(this);
-
+		this.setCoordinates = this.setCoordinates.bind(this);
 	}
 
 
@@ -43,19 +42,27 @@ class Add extends Component {
 	}
 
 	onSubmit(values) {
-		// this.props.addAnimal(values);
-		this.props.uploadImage(this.state.file, () => { 
-			storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${this.state.file[0].name}`)
-				.getDownloadURL()
-				.then((url) => {this.props.addAnimal(Object.assign({}, values, {'url':url}))});
-		})
+		if(this.state.file) {
+			this.props.uploadImage(this.state.file, () => { 
+				storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${this.state.file[0].name}`)
+					.getDownloadURL()
+					.then((url) => {this.props.addAnimal(Object.assign({}, values, {'url':url}), () => {
+						this.props.history.push('/dzieki');
+					})});
+			})
+		} else {
+			this.props.addAnimal(values, () => {
+				this.props.history.push('/dzieki');
+			});
+		}
+
 	}
 
 	onDrop(file) {
     this.setState({ file });
 	}
 
-	addCoordinates(e) {
+	setCoordinates(e){
 		this.setState({
 			lat: e.lat,
 			lng: e.lng
@@ -63,8 +70,9 @@ class Add extends Component {
 			this.props.change('lat', this.state.lat);
 			this.props.change('lng', this.state.lng);
 		})
-		
 	}
+
+
 
 	render() {
 		const { handleSubmit } = this.props;
@@ -72,7 +80,10 @@ class Add extends Component {
 			<div className="container">
 				<div className="row">
 				<div className="col-md-12 map">
-						<AddingMap handleClick={this.addCoordinates} />
+						<AddingMap 
+							handleClick={this.setCoordinates}
+							lat={this.state.lat}
+							lng={this.state.lng} />
 					</div>
 					<div className="col-md-8">
 						<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
@@ -129,9 +140,9 @@ function validate(values) {
 
 	const errors = {};
 
-	// if(!values.lat) {
-	// 	errors.lat = "Podaj lokalizację";
-	// }
+	if(!values.lat) {
+		errors.lat = "Podaj lokalizację";
+	}
 
 	return errors;
 
