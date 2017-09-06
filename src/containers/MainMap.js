@@ -27,11 +27,10 @@ class MainMap extends Component {
 	}
 
 	_renderAnimalMarkers() {
-		
-		return _.map(this.props.animals, animal => {
+		return _.map(this.props.animals, (animal, key) => {
 			return (
 				<Marker
-					key={ animal.lat }
+					key={ key }
 					url={ animal.url }
 					lat={ animal.lat }
 					lng={ animal.lng } />

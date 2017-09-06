@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, change } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { addAnimal, uploadImage } from '../actions/index';
 import { Link } from 'react-router-dom';
@@ -20,25 +20,42 @@ class Add extends Component {
 		this.setCoordinates = this.setCoordinates.bind(this);
 	}
 
-
 	
 	renderField(field) {
 
 		const { meta: { touched, error } } = field;
-
-		const className = `form-group ${ touched && error ? 'has-error' : '' }`
-		return (
-			<div className={ className }>
-				<label htmlFor={ field.name }>{ field.label }</label>
-				<input
-					className="form-control"
-					{ ...field.input }
-					type={ field.type }
-					
-					/>
-					{ touched ? error : '' }
-			</div>
-		)
+		
+		if(field.type === 'radio') {
+			const className = `form-check ${ touched && error ? 'has-error' : '' }`;
+			return (
+				<div className={ className }>
+					<label className="form-check-label">
+						<input
+							className="form-check-input"
+							type={ field.type }
+							name={ field.name }
+							checked
+							{ ...field.input } />
+							{ field.label }
+							{ touched ? error : '' }
+					</label>
+				</div>
+			)
+		} else {
+			const className = `form-group ${ touched && error ? 'has-error' : '' }`
+			return (
+				<div className={ className }>
+					<label htmlFor={ field.name }>{ field.label }</label>
+					<input
+						className="form-control"
+						{ ...field.input }
+						type={ field.type }
+						
+						/>
+						{ touched ? error : '' }
+				</div>
+			)
+		}
 	}
 
 	onSubmit(values) {
@@ -59,7 +76,7 @@ class Add extends Component {
 	}
 
 	onDrop(file) {
-    this.setState({ file });
+		this.setState({ file });
 	}
 
 	setCoordinates(e){
@@ -75,9 +92,22 @@ class Add extends Component {
 
 
 	render() {
+
 		const { handleSubmit } = this.props;
+
+		const dropStyle = {
+			'width': 200,
+			'height': 200,
+			'border': '2px solid red',
+			'active': {
+				'border': '3px solid blue'
+			}
+		}
+
+		const bodyClass = this.state.loading ? 'loading' : 'not-loading';
+
 		return (
-			<div className="container">
+			<div className={`container ${bodyClass}`}>
 				<div className="row">
 				<div className="col-md-12 map">
 						<AddingMap 
@@ -87,11 +117,6 @@ class Add extends Component {
 					</div>
 					<div className="col-md-8">
 						<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-								<Field
-									name="city"
-									label="Miasto"
-									type="text"
-									component={ this.renderField } />
 								<Field
 									name="date"
 									label="Data"
@@ -107,22 +132,38 @@ class Add extends Component {
 									label="Telefon"
 									type="tel"
 									component={ this.renderField } />
+								<div>
+									<Field
+										name="type"
+										label="Znaleziony"
+										type="radio"
+										value="found"
+										component={ this.renderField } />
+									<Field
+										name="type"
+										label="Zgubiony"
+										type="radio"
+										value="lost"
+										component={ this.renderField } />
+								</div>
 								<Field
 									name="lat"
-									label="Lokalizacja"
 									type="hidden"
 									value={this.state.lat}
 									normalize= { value => value }
 									component={ this.renderField } />
 								<Field
 									name="lng"
-									label="Lokalizacja"
 									type="hidden"
 									value={this.state.lng}
 									component={ this.renderField } />
 
-								<Dropzone onDrop={this.onDrop}>
-										<p>Try dropping some files here, or click to select files to upload.</p>
+								<Dropzone
+									onDrop={this.onDrop}
+									style={ dropStyle }
+									multiple={ false }
+									activeStyle={ dropStyle.active }>
+										<p>Fote dawaj tu</p>
 								</Dropzone>
 								
 								<button type="submit" className="btn btn-primary">Dodaj </button>
