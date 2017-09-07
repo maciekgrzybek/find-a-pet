@@ -17,6 +17,17 @@ export function fetchAnimals(animals) {
 		})
 	}
 }
+// export function fetchAnimals() {
+
+// 	return dispatch => {
+// 		database.ref(`/zwierzak`).orderByChild('url').startAt('https').on('value', snapshot => {
+// 			dispatch({
+// 				type: FETCH_ANIMALS,
+// 				payload: snapshot.val()
+// 			})
+// 		})
+// 	}
+// }
 
 export function addAnimal(values, callback) {
 

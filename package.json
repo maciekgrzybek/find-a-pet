@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^4.1.5",
     "google-map-react": "^0.24.0",
+    "immutability-helper": "^2.3.1",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",

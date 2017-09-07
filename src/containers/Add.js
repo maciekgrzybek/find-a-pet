@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import AddingMap from '../components/AddingMap';
 import Dropzone from 'react-dropzone';
 import { storage } from '../constants/firebase';
+import _ from 'lodash';
+import update from 'immutability-helper';
 
 class Add extends Component {
 
@@ -13,13 +15,20 @@ class Add extends Component {
 		super();
 		this.state = { 
 			file: null,
-			lat: '',
-			lng:''
+			location: {
+				lat: null,
+				lng: null,
+				city: null,
+				street: null
+			}
 		}
 		this.onDrop = this.onDrop.bind(this);
 		this.setCoordinates = this.setCoordinates.bind(this);
 	}
 
+	componentDidMount() {
+		
+	}
 	
 	renderField(field) {
 
@@ -63,7 +72,7 @@ class Add extends Component {
 			this.props.uploadImage(this.state.file, () => { 
 				storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${this.state.file[0].name}`)
 					.getDownloadURL()
-					.then((url) => {this.props.addAnimal(Object.assign({}, values, {'url':url}), () => {
+					.then((url) => {this.props.addAnimal(Object.assign({}, values, {'url':url}, {'location': this.state.location}), () => {
 						this.props.history.push('/dzieki');
 					})});
 			})
@@ -79,23 +88,42 @@ class Add extends Component {
 		this.setState({ file });
 	}
 
+	geoCode(e) {
+		const geocoder = new window.google.maps.Geocoder();
+		geocoder.geocode({
+			'latLng': {
+				'lat': e.lat,
+				'lng': e.lng
+			}
+		}, (results, status) => {
+				if(status === 'OK') {
+					console.log(results[0])
+					_.map(results[0]['address_components'], (record) => {
+						const { location } = this.state;
+						if(record.types[0] === 'route') {
+							this.setState({
+								location: update(location,{street: {$set: record['long_name']}})
+							})
+						} else if (record.types[0] === 'locality') {
+							this.setState({
+								location: update(location,{city: {$set: record['long_name']}})
+							})
+						}
+
+					})
+				}
+		});
+	}
+
 	setCoordinates(e){
-		
-		// var geocoder = new window.google.maps.Geocoder();
-		// 	geocoder.geocode({
-		// 		'latLng': {
-		// 			'lat': e.lat,
-		// 			'lng': e.lng
-		// 		}
-		// 	}, function(results, status) {
-		// 			console.log(results[0])
-		// 	});
+		this.geoCode(e);
 		this.setState({
-			lat: e.lat,
-			lng: e.lng
+			location: {
+				lat: e.lat,
+				lng: e.lng
+			}
 		}, () => {
-			this.props.change('lat', this.state.lat);
-			this.props.change('lng', this.state.lng);
+			this.props.change('location', this.state.location);
 		})
 	}
 
@@ -114,16 +142,15 @@ class Add extends Component {
 			}
 		}
 
-		const bodyClass = this.state.loading ? 'loading' : 'not-loading';
 
 		return (
-			<div className={`container ${bodyClass}`}>
+			<div className='container'>
 				<div className="row">
 				<div className="col-md-12 map">
 						<AddingMap 
 							handleClick={this.setCoordinates}
-							lat={this.state.lat}
-							lng={this.state.lng} />
+							lat={this.state.location.lat}
+							lng={this.state.location.lng} />
 					</div>
 					<div className="col-md-8">
 						<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
@@ -157,15 +184,10 @@ class Add extends Component {
 										component={ this.renderField } />
 								</div>
 								<Field
-									name="lat"
+									name="location"
 									type="hidden"
-									value={this.state.lat}
-									normalize= { value => value }
-									component={ this.renderField } />
-								<Field
-									name="lng"
-									type="hidden"
-									value={this.state.lng}
+									label="Lokalizacja"
+
 									component={ this.renderField } />
 
 								<Dropzone
@@ -191,8 +213,8 @@ function validate(values) {
 
 	const errors = {};
 
-	if(!values.lat) {
-		errors.lat = "Podaj lokalizację";
+	if(!values.location) {
+		errors.location = "Podaj lokalizację";
 	}
 
 	return errors;

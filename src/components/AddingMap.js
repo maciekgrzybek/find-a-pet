@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import AddMarker from './AddMarker';
+import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
 
 
 
@@ -10,10 +11,10 @@ class AddingMap extends Component {
 
 	static defaultProps = {
 		center: {
-			lat: 45,
-			lng: 120
+			lat: 54,
+			lng: 32
 		},
-		zoom: 11,
+		zoom: 6,
 		lat: 0,
 		lng: 0
 	};
@@ -22,6 +23,10 @@ class AddingMap extends Component {
 	render() {
 		return (
 				 <GoogleMapReact
+					bootstrapURLKeys={{
+						key: GOOGLE_MAPS_API_KEY,
+						language: GOOGLE_MAPS_LANG
+					}}				 
 					defaultCenter={this.props.center}
 					defaultZoom={this.props.zoom}
 					onClick={(e) => this.props.handleClick(e)}>

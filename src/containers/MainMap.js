@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import Marker from '../components/Marker';
 import { fetchAnimals } from '../actions/index';
 import _ from 'lodash';
+import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
 
 function createMapOptions(maps) {
 	return {
@@ -33,8 +34,8 @@ class MainMap extends Component {
 					key={ key }
 					id = { key }
 					url={ animal.url }
-					lat={ animal.lat }
-					lng={ animal.lng }/>
+					lat={ animal.location.lat }
+					lng={ animal.location.lng }/>
 			)
 		})
 	} 
@@ -47,6 +48,10 @@ class MainMap extends Component {
 		}
 		return (
 	 					 <GoogleMapReact
+							bootstrapURLKeys={{
+								key: GOOGLE_MAPS_API_KEY,
+								language: GOOGLE_MAPS_LANG
+							}}								
 	 	 					defaultCenter={this.props.center}
 	 	 					defaultZoom={this.props.zoom}
 	 	 					options={createMapOptions} >
