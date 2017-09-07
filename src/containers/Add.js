@@ -80,6 +80,16 @@ class Add extends Component {
 	}
 
 	setCoordinates(e){
+		
+		// var geocoder = new window.google.maps.Geocoder();
+		// 	geocoder.geocode({
+		// 		'latLng': {
+		// 			'lat': e.lat,
+		// 			'lng': e.lng
+		// 		}
+		// 	}, function(results, status) {
+		// 			console.log(results[0])
+		// 	});
 		this.setState({
 			lat: e.lat,
 			lng: e.lng

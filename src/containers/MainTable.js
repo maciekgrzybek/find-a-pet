@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAnimals } from '../actions/index';
+import { fetchAnimals, hoverAnimal } from '../actions/index';
 import _ from 'lodash';
 
-function createMapOptions(maps) {
-	return {
-		scrollwheel:false
-	}
-}
 
 
 class MainTable extends Component {
@@ -22,8 +17,8 @@ class MainTable extends Component {
 			return (
 				//TODO: Make table component
 				<li
-					onMouseEnter={() => console.log(key)}>
-					{ animal.url }<br/>{key}</li>
+					onMouseEnter={() => this.props.hoverAnimal(key)}>
+					{key}</li>
 			)
 		})
 	} 
@@ -36,6 +31,7 @@ class MainTable extends Component {
 		}
 		return (
 				<div>
+					{ this.props.hover }
 					{ this._renderAnimalTable() }
 				</div>
 		);
@@ -44,8 +40,9 @@ class MainTable extends Component {
 
 function mapStateToProps(state) {
 	return {
-		animals: state.animals
+		animals: state.animals,
+		hover: state.hover
 	}
 }
 
-export default connect(mapStateToProps, { fetchAnimals })(MainTable);
+export default connect(mapStateToProps, { fetchAnimals, hoverAnimal })(MainTable);

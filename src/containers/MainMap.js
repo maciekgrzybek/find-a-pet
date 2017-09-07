@@ -16,10 +16,10 @@ class MainMap extends Component {
 
 	static defaultProps = {
 		center: {
-			lat: 45,
-			lng: 9
+			lat: 53,
+			lng: 23
 		},
-		zoom: 11
+		zoom: 6
 	};
 
 	componentDidMount() {
@@ -31,9 +31,10 @@ class MainMap extends Component {
 			return (
 				<Marker
 					key={ key }
+					id = { key }
 					url={ animal.url }
 					lat={ animal.lat }
-					lng={ animal.lng } />
+					lng={ animal.lng }/>
 			)
 		})
 	} 
@@ -45,12 +46,12 @@ class MainMap extends Component {
 			)
 		}
 		return (
-				 <GoogleMapReact
-					defaultCenter={this.props.center}
-					defaultZoom={this.props.zoom}
-					options={createMapOptions} >
-					{ this._renderAnimalMarkers() }
-				</GoogleMapReact>
+	 					 <GoogleMapReact
+	 	 					defaultCenter={this.props.center}
+	 	 					defaultZoom={this.props.zoom}
+	 	 					options={createMapOptions} >
+	 	 					{ this._renderAnimalMarkers() }
+	 	 				</GoogleMapReact>
 		);
 	}
 }
