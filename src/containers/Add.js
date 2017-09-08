@@ -23,13 +23,10 @@ class Add extends Component {
 			}
 		}
 		this.onDrop = this.onDrop.bind(this);
-		this.setCoordinates = this.setCoordinates.bind(this);
+		this.setLocation = this.setLocation.bind(this);
 	}
 
-	componentDidMount() {
-		
-	}
-	
+
 	renderField(field) {
 
 		const { meta: { touched, error } } = field;
@@ -77,7 +74,7 @@ class Add extends Component {
 					})});
 			})
 		} else {
-			this.props.addAnimal(values, () => {
+			this.props.addAnimal(Object.assign({}, values, {'location': this.state.location}), () => {
 				this.props.history.push('/dzieki');
 			});
 		}
@@ -116,17 +113,20 @@ class Add extends Component {
 	}
 
 	setCoordinates(e){
-		this.geoCode(e);
 		this.setState({
 			location: {
 				lat: e.lat,
 				lng: e.lng
 			}
 		}, () => {
-			this.props.change('location', this.state.location);
+			this.props.change('location', true);
 		})
 	}
 
+	setLocation(e) {
+		this.geoCode(e);
+		this.setCoordinates(e);
+	}
 
 
 	render() {
@@ -148,7 +148,7 @@ class Add extends Component {
 				<div className="row">
 				<div className="col-md-12 map">
 						<AddingMap 
-							handleClick={this.setCoordinates}
+							handleClick={this.setLocation}
 							lat={this.state.location.lat}
 							lng={this.state.location.lng} />
 					</div>
@@ -187,7 +187,6 @@ class Add extends Component {
 									name="location"
 									type="hidden"
 									label="Lokalizacja"
-
 									component={ this.renderField } />
 
 								<Dropzone
@@ -197,6 +196,7 @@ class Add extends Component {
 									activeStyle={ dropStyle.active }>
 										<p>Fote dawaj tu</p>
 								</Dropzone>
+ 
 								
 								<button type="submit" className="btn btn-primary">Dodaj </button>
 								<Link to="/" className="btn btn-danger">Cofnij</Link>	
