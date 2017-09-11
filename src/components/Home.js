@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MainHero from './MainHero';
 import MainMap from '../containers/MainMap';
 import MainTable from '../containers/MainTable';
+import SearchBar from '../containers/SearchBar';
 
 class Home extends Component {
 
@@ -21,6 +22,7 @@ class Home extends Component {
 							<MainMap />
 						</div>
 						<div className="col-md-4 main-table">
+							<SearchBar />
 							<MainTable />
 						</div>
 					</div>
