@@ -17,7 +17,8 @@ class MainTable extends Component {
 			return (
 				//TODO: Make table component
 				<li
-					onMouseEnter={() => this.props.hoverAnimal(key)}>
+					onMouseEnter={() => this.props.hoverAnimal(key)}
+					onMouseLeave={() => this.props.hoverAnimal(null)}>
 					{key}</li>
 			)
 		})
