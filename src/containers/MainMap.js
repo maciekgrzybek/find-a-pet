@@ -28,19 +28,15 @@ class MainMap extends Component {
 		this.props.fetchAnimals();
 	}
 	
-	kurwa() {
-		var triangleCoords = [
-			{lat: 25.774, lng: -80.19},
-			{lat: 18.466, lng: -66.118},
-			{lat: 32.321, lng: -64.757}
-		];
+	kurwa(bounds) {
 
-		var bermudaTriangle = new window.google.maps.Polygon({paths: triangleCoords});
+		const mapBounds =  _.values(bounds);
+
+		var bermudaTriangle = new window.google.maps.Polygon({paths: mapBounds});
 		var curPosition = new window.google.maps.LatLng(12.9629277, 77.7178972);
-		setTimeout(function(){
+		if(window.google.maps.geometry) {
 			console.log(window.google.maps.geometry.poly.containsLocation(curPosition, bermudaTriangle))
-		},150)
-		
+		}		
 	}
 
 	_renderAnimalMarkers() {
@@ -73,7 +69,7 @@ class MainMap extends Component {
 	 	 					defaultZoom={this.props.zoom}
 	 	 					options={createMapOptions}
 							onChange={({bounds}) => {
-								this.kurwa()
+								this.kurwa(bounds);
 							}} >
 	 	 					{ this._renderAnimalMarkers() }
 	 	 				</GoogleMapReact>
