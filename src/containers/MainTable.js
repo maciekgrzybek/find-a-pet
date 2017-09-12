@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAnimals, hoverAnimal } from '../actions/index';
+import { hoverAnimal } from '../actions/index';
 import _ from 'lodash';
 
 
 
 class MainTable extends Component {
-
-
-	componentDidMount() {
-		this.props.fetchAnimals();
-	}
 
 	_renderAnimalTable() {
 		return _.map(this.props.animals, (animal, key) => {
@@ -32,7 +27,7 @@ class MainTable extends Component {
 		}
 		return (
 				<div>
-					{ this.props.hover }
+
 					{ this._renderAnimalTable() }
 				</div>
 		);
@@ -46,4 +41,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { fetchAnimals, hoverAnimal })(MainTable);
+export default connect(mapStateToProps, { hoverAnimal })(MainTable);

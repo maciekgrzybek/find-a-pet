@@ -5,14 +5,12 @@ import thunk from 'redux-thunk';
 import animalsReducer from './reducers/animalsReducer';
 import hoverReducer from './reducers/hoverReducer';
 import mapBoundsReducer from './reducers/mapBoundsReducer';
-import searchReducer from './reducers/searchReducer';
 
 
 const rootReducer = combineReducers({
 	animals: animalsReducer,
 	hover: hoverReducer,
 	mapBounds: mapBoundsReducer,
-	search: searchReducer,
 	form: formReducer
 });
 

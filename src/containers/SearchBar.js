@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 
 class SearchBar extends Component {
 	
-	_handleTyping(value) {
-		this.props.fetchAnimals(value)
-	}
 	render() {
 		return (
 			<div>
@@ -15,7 +12,7 @@ class SearchBar extends Component {
 						className="form-control mr-sm-2"
 						type="text"
 						placeholder="Miasto..."
-						onChange={(e) => this._handleTyping(e.target.value)}/>
+						onChange={(e) => this.props.fetchAnimals(e.target.value)}/>
 					<button className="btn btn-outline-success" type="submit">Szukaj</button>
 	    	</form>
 			</div>

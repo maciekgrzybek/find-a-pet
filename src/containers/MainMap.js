@@ -29,12 +29,12 @@ class MainMap extends Component {
 	};
 
 	componentDidMount() {
-		this.props.fetchAnimals(this.props.searchCity);
+		this.props.fetchAnimals(this.props.searchCity, this.props.mapBounds);
 	}
 	
 	// kurwa(bounds) {
 
-	// 	const mapBounds =  _.values(bounds);
+	// 	const mapBounds =  [];
 
 	// 	console.log(mapBounds)
 	// 	var bermudaTriangle = new window.google.maps.Polygon({paths: mapBounds});

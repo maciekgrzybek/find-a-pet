@@ -1,5 +1,6 @@
-import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SEARCH_CITY } from '../constants/actionTypes';
+import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS } from '../constants/actionTypes';
 import { database, storage } from '../constants/firebase';
+import _ from 'lodash';
 
 
 
@@ -20,16 +21,23 @@ import { database, storage } from '../constants/firebase';
 // 		})
 // 	}
 // }
-export function fetchAnimals(city = '') {
-	console.log(city.toLowerCase())
+export function fetchAnimals(city = '', bounds) {
+	
+	const searchTerm = city.toLowerCase()
+	
 	return dispatch => {
-		database.ref(`/zwierzak`).orderByChild('/location/city').endAt(city.toLowerCase()).on('value', snapshot => {
+		database.ref(`/zwierzak`).orderByChild('/location/city').startAt(searchTerm).endAt(searchTerm + "\uf8ff").on('value', snapshot => {
+			// var res = _.pickBy(snapshot.val(),(value,key) => {
+			// 	return value.location.city === 'warszawa'
+			// })
+			// console.log(res)
 			dispatch({
 				type: FETCH_ANIMALS,
 				payload: snapshot.val()
 			})
 		})
 	}
+	
 }
 
 //-----------------------
@@ -71,17 +79,10 @@ export function hoverAnimal(key) {
 	}
 }
 
-
+//-----------------------
 export function setMapBounds(bounds) {
 	return {
 		type: SET_MAP_BOUNDS,
 		payload: bounds
-	}
-}
-
-export function searchCity(city) {
-	return {
-		type: SEARCH_CITY,
-		payload: city
 	}
 }
