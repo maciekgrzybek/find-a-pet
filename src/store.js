@@ -4,14 +4,22 @@ import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
 import animalsReducer from './reducers/animalsReducer';
 import hoverReducer from './reducers/hoverReducer';
+import mapBoundsReducer from './reducers/mapBoundsReducer';
+import searchReducer from './reducers/searchReducer';
 
 
 const rootReducer = combineReducers({
 	animals: animalsReducer,
 	hover: hoverReducer,
+	mapBounds: mapBoundsReducer,
+	search: searchReducer,
 	form: formReducer
 });
 
-const store = createStore(rootReducer,{},applyMiddleware(thunk));
+const store = createStore(
+	rootReducer,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+	applyMiddleware(thunk)
+);
 
 export default store;

@@ -18,8 +18,8 @@ class Add extends Component {
 			location: {
 				lat: null,
 				lng: null,
-				city: null,
-				street: null
+				city: '',
+				street: ''
 			}
 		}
 		this.onDrop = this.onDrop.bind(this);
@@ -99,11 +99,11 @@ class Add extends Component {
 						const { location } = this.state;
 						if(record.types[0] === 'route') {
 							this.setState({
-								location: update(location,{street: {$set: record['long_name']}})
+								location: update(location,{street: {$set: (record['long_name']).toLowerCase()}})
 							})
 						} else if (record.types[0] === 'locality') {
 							this.setState({
-								location: update(location,{city: {$set: record['long_name']}})
+								location: update(location,{city: {$set: (record['long_name']).toLowerCase()}})
 							})
 						}
 
@@ -113,11 +113,12 @@ class Add extends Component {
 	}
 
 	setCoordinates(e){
+		const { location } = this.state;
 		this.setState({
-			location: {
-				lat: e.lat,
-				lng: e.lng
-			}
+			location: update(location,{ 
+				lat: {$set: e.lat},
+				lng: {$set: e.lng}
+			}) 
 		}, () => {
 			this.props.change('location', true);
 		})

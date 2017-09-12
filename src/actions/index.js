@@ -1,26 +1,18 @@
-import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL } from '../constants/actionTypes';
+import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SEARCH_CITY } from '../constants/actionTypes';
 import { database, storage } from '../constants/firebase';
 
 
 
-//
+//-----------------------
 // Action Creators 
-//
-export function fetchAnimals(animals) {
+//-----------------------
 
-	return dispatch => {
-		database.ref(`/zwierzak`).on('value', snapshot => {
-			dispatch({
-				type: FETCH_ANIMALS,
-				payload: snapshot.val()
-			})
-		})
-	}
-}
-// export function fetchAnimals() {
+
+//-----------------------
+// export function fetchAnimals(animals) {
 
 // 	return dispatch => {
-// 		database.ref(`/zwierzak`).orderByChild('url').startAt('https').on('value', snapshot => {
+// 		database.ref(`/zwierzak`).on('value', snapshot => {
 // 			dispatch({
 // 				type: FETCH_ANIMALS,
 // 				payload: snapshot.val()
@@ -28,7 +20,19 @@ export function fetchAnimals(animals) {
 // 		})
 // 	}
 // }
+export function fetchAnimals(city = '') {
+	console.log(city.toLowerCase())
+	return dispatch => {
+		database.ref(`/zwierzak`).orderByChild('/location/city').endAt(city.toLowerCase()).on('value', snapshot => {
+			dispatch({
+				type: FETCH_ANIMALS,
+				payload: snapshot.val()
+			})
+		})
+	}
+}
 
+//-----------------------
 export function addAnimal(values, callback) {
 
 	var newAnimalKey = database.ref().child('zwierzak').push().key;
@@ -36,7 +40,7 @@ export function addAnimal(values, callback) {
 	return dispatch => {
 		database.ref('/zwierzak/' + newAnimalKey).update(values)
 		.then(() => {
-			dispatch({
+			dispatch({ 
 				type: ADD_ANIMAL
 			})
 		})
@@ -44,6 +48,7 @@ export function addAnimal(values, callback) {
 	}
 }
 
+//-----------------------
 export function uploadImage(file, callback) {
 
 	const imageRef = storage.ref().child(file[0].name)
@@ -58,9 +63,25 @@ export function uploadImage(file, callback) {
 	}
 }
 
+//-----------------------
 export function hoverAnimal(key) {
 	return {
 		type: HOVER_ANIMAL,
 		payload: key
+	}
+}
+
+
+export function setMapBounds(bounds) {
+	return {
+		type: SET_MAP_BOUNDS,
+		payload: bounds
+	}
+}
+
+export function searchCity(city) {
+	return {
+		type: SEARCH_CITY,
+		payload: city
 	}
 }

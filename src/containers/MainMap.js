@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import Marker from '../components/Marker';
-import { fetchAnimals } from '../actions/index';
+import { fetchAnimals, setMapBounds } from '../actions/index';
 import _ from 'lodash';
 import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
 
@@ -15,28 +15,37 @@ function createMapOptions(maps) {
 
 class MainMap extends Component {
 
+	constructor(){
+		super();
 
+		this._calculateMapBounds = this._calculateMapBounds.bind(this);
+	}
 	static defaultProps = {
 		center: {
 			lat: 53,
 			lng: 23
 		},
-		zoom: 6
+		zoom: 13
 	};
 
 	componentDidMount() {
-		this.props.fetchAnimals();
+		this.props.fetchAnimals(this.props.searchCity);
 	}
 	
-	kurwa(bounds) {
+	// kurwa(bounds) {
 
+	// 	const mapBounds =  _.values(bounds);
+
+	// 	console.log(mapBounds)
+	// 	var bermudaTriangle = new window.google.maps.Polygon({paths: mapBounds});
+	// 	var curPosition = new window.google.maps.LatLng(12.9629277, 77.7178972);
+	// 	if(window.google.maps.geometry) {
+	// 		console.log(window.google.maps.geometry.poly.containsLocation(curPosition, bermudaTriangle))
+	// 	}		
+	// }
+	_calculateMapBounds(bounds) {
 		const mapBounds =  _.values(bounds);
-
-		var bermudaTriangle = new window.google.maps.Polygon({paths: mapBounds});
-		var curPosition = new window.google.maps.LatLng(12.9629277, 77.7178972);
-		if(window.google.maps.geometry) {
-			console.log(window.google.maps.geometry.poly.containsLocation(curPosition, bermudaTriangle))
-		}		
+		this.props.setMapBounds(mapBounds);
 	}
 
 	_renderAnimalMarkers() {
@@ -69,7 +78,7 @@ class MainMap extends Component {
 	 	 					defaultZoom={this.props.zoom}
 	 	 					options={createMapOptions}
 							onChange={({bounds}) => {
-								this.kurwa(bounds);
+								this._calculateMapBounds(bounds);
 							}} >
 	 	 					{ this._renderAnimalMarkers() }
 	 	 				</GoogleMapReact>
@@ -79,8 +88,10 @@ class MainMap extends Component {
 
 function mapStateToProps(state) {
 	return {
-		animals: state.animals
+		animals: state.animals,
+		mapBounds: state.mapBounds,
+		searchCity: state.search
 	}
 }
 
-export default connect(mapStateToProps, { fetchAnimals })(MainMap);
+export default connect(mapStateToProps, { fetchAnimals, setMapBounds })(MainMap);
