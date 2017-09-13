@@ -11,12 +11,11 @@ import _ from 'lodash';
 
 
 //-----------------------
-export function fetchAnimals(city = '') {
+export function fetchAnimals(city = '', bounds) {
 	
 	const searchTerm = city.toLowerCase()
 	return dispatch => {
 		database.ref(`/zwierzak`).orderByChild('/location/city').startAt(searchTerm).endAt(searchTerm + "\uf8ff").on('value', snapshot => {
-
 			dispatch({
 				type: FETCH_ANIMALS,
 				payload: snapshot.val()
@@ -27,23 +26,6 @@ export function fetchAnimals(city = '') {
 }
 
 
-//-----------------------
-export function animalsInMapBounds(animals, bounds) {
-	
-			let res = _.pickBy(animals,(value,key) => {
-				let { lat, lng } = value.location;
-				let mapArea = new window.google.maps.Polygon({paths: bounds});
-				let curPosition = new window.google.maps.LatLng(lat, lng);
-				if(window.google.maps.geometry) {
-					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
-				}	
-			})
-			console.log(res)
-			return {
-				type: 'siemano',
-				payload: res
-			}
-	}
 //-----------------------
 export function addAnimal(values, callback) {
 
@@ -85,8 +67,15 @@ export function hoverAnimal(key) {
 
 //-----------------------
 export function setMapBounds(bounds) {
+
+		const mapBounds =[]
+		mapBounds[0] = bounds.nw;
+		mapBounds[1] = bounds.ne;
+		mapBounds[2] = bounds.se;
+		mapBounds[3] = bounds.sw;
+
 	return {
 		type: SET_MAP_BOUNDS,
-		payload: bounds
+		payload: mapBounds
 	}
 }
