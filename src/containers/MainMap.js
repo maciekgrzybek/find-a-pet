@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import Marker from '../components/Marker';
-import { fetchAnimals, setMapBounds } from '../actions/index';
+import { fetchAnimals, setMapBounds, animalsInMapBounds } from '../actions/index';
 import _ from 'lodash';
 import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
 
@@ -29,22 +29,15 @@ class MainMap extends Component {
 	};
 
 	componentDidMount() {
-		this.props.fetchAnimals(this.props.searchCity, this.props.mapBounds);
+		this.props.fetchAnimals(this.props.searchCity);
 	}
-	
-	// kurwa(bounds) {
 
-	// 	const mapBounds =  [];
-
-	// 	console.log(mapBounds)
-	// 	var bermudaTriangle = new window.google.maps.Polygon({paths: mapBounds});
-	// 	var curPosition = new window.google.maps.LatLng(12.9629277, 77.7178972);
-	// 	if(window.google.maps.geometry) {
-	// 		console.log(window.google.maps.geometry.poly.containsLocation(curPosition, bermudaTriangle))
-	// 	}		
-	// }
 	_calculateMapBounds(bounds) {
-		const mapBounds =  _.values(bounds);
+		const mapBounds =[]
+		mapBounds[0] = bounds.nw;
+		mapBounds[1] = bounds.ne;
+		mapBounds[2] = bounds.se;
+		mapBounds[3] = bounds.sw;
 		this.props.setMapBounds(mapBounds);
 	}
 
@@ -77,8 +70,10 @@ class MainMap extends Component {
 	 	 					defaultCenter={this.props.center}
 	 	 					defaultZoom={this.props.zoom}
 	 	 					options={createMapOptions}
+							on
 							onChange={({bounds}) => {
 								this._calculateMapBounds(bounds);
+								this.props.animalsInMapBounds(this.props.animals, this.props.mapBounds)
 							}} >
 	 	 					{ this._renderAnimalMarkers() }
 	 	 				</GoogleMapReact>
@@ -94,4 +89,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { fetchAnimals, setMapBounds })(MainMap);
+export default connect(mapStateToProps, { fetchAnimals, setMapBounds, animalsInMapBounds })(MainMap);

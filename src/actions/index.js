@@ -9,28 +9,14 @@ import _ from 'lodash';
 //-----------------------
 
 
-//-----------------------
-// export function fetchAnimals(animals) {
 
-// 	return dispatch => {
-// 		database.ref(`/zwierzak`).on('value', snapshot => {
-// 			dispatch({
-// 				type: FETCH_ANIMALS,
-// 				payload: snapshot.val()
-// 			})
-// 		})
-// 	}
-// }
-export function fetchAnimals(city = '', bounds) {
+//-----------------------
+export function fetchAnimals(city = '') {
 	
 	const searchTerm = city.toLowerCase()
-	
 	return dispatch => {
 		database.ref(`/zwierzak`).orderByChild('/location/city').startAt(searchTerm).endAt(searchTerm + "\uf8ff").on('value', snapshot => {
-			// var res = _.pickBy(snapshot.val(),(value,key) => {
-			// 	return value.location.city === 'warszawa'
-			// })
-			// console.log(res)
+
 			dispatch({
 				type: FETCH_ANIMALS,
 				payload: snapshot.val()
@@ -40,6 +26,24 @@ export function fetchAnimals(city = '', bounds) {
 	
 }
 
+
+//-----------------------
+export function animalsInMapBounds(animals, bounds) {
+	
+			let res = _.pickBy(animals,(value,key) => {
+				let { lat, lng } = value.location;
+				let mapArea = new window.google.maps.Polygon({paths: bounds});
+				let curPosition = new window.google.maps.LatLng(lat, lng);
+				if(window.google.maps.geometry) {
+					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
+				}	
+			})
+			console.log(res)
+			return {
+				type: 'siemano',
+				payload: res
+			}
+	}
 //-----------------------
 export function addAnimal(values, callback) {
 
