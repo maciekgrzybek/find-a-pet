@@ -20,7 +20,7 @@ class MainMap extends Component {
 			lat: 53,
 			lng: 23
 		},
-		zoom: 13
+		zoom: 9
 	};
 
 	componentDidMount() {
