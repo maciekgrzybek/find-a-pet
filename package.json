@@ -30,5 +30,5 @@
     "build": "react-scripts-with-sass build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+	}
 }

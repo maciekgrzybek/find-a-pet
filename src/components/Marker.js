@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hoverAnimal } from '../actions/index';
+import Icon from './Icon';
+
+
 
 class Marker extends Component {
 
 	render() {
 		const markerStyleHover= {
-			width: 200
+			top: '-55px'
 		}
 		const style = this.props.$hover || this.props.id === this.props.hover ? markerStyleHover : null;
 
@@ -16,7 +19,7 @@ class Marker extends Component {
 				style={ style }
 				onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 				onMouseLeave={() => this.props.hoverAnimal(null)}>
-					<img className="marker__image" src={ this.props.url } alt=""/>
+					<Icon />
 			</div>
 		);
 	}
@@ -29,3 +32,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { hoverAnimal })(Marker);
+//<img className="marker__image" src={ this.props.url } alt=""/>

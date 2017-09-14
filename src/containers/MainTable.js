@@ -48,7 +48,7 @@ class MainTable extends Component {
 		}
 		return (
 				<div>
-					<ul>
+					<ul className="list-group">
 							{ this._renderAnimalTable() }
 					</ul>
 				</div>

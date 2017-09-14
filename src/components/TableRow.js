@@ -8,6 +8,7 @@ class TableRow extends Component {
 
 
 	render() {
+
 		const tableRowStyleHover= {
 			color: 'red',
 			background: 'yellow'
@@ -17,12 +18,18 @@ class TableRow extends Component {
 		}
 
 		const style = this.props.id === this.props.hover ? tableRowStyleHover : tableRowStyle;
+		const { animal } = this.props;
 		return (
 			<li
+				className="list-group-item"
 				style={ style }
 				onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 				onMouseLeave={() => this.props.hoverAnimal(null)}>
-					{this.props.id} - kej
+					<img
+						className="table__image"
+						src={animal.url} />
+					<h3>{animal.location.city}</h3>
+					<p>{ animal.type }</p>
 			</li>
 		)
 	}

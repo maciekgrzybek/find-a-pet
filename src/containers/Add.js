@@ -214,8 +214,11 @@ function validate(values) {
 
 	const errors = {};
 
+	if(!values.type) {
+		errors.type = "Zaznacz jedna z opcji"
+	}
 	if(!values.location) {
-		errors.location = "Podaj lokalizację";
+		errors.location = "Wybierz punkt na mapie";
 	}
 
 	return errors;

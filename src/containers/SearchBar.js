@@ -13,7 +13,7 @@ class SearchBar extends Component {
 						type="text"
 						placeholder="Miasto..."
 						onChange={(e) => this.props.fetchAnimals(e.target.value)}/>
-					<button className="btn btn-outline-success" type="submit">Szukaj</button>
+					{/* <button className="btn btn-outline-success" type="submit">Szukaj</button> */}
 	    	</form>
 			</div>
 		);

@@ -1,13 +1,11 @@
 import React from 'react';
+import Icon from './Icon';
 
-const AddMarker = (props) => {
-	const style= {
-		width: 50,
-		height: 50,
-		background: 'red'
-	};
+const AddMarker = () => {
+
 	return (
-		<div  style={ style }>
+		<div className="marker">
+			<Icon />
 		</div>
 	);
 }

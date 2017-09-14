@@ -8,7 +8,8 @@ import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
 
 function createMapOptions(maps) {
 	return {
-		scrollwheel:false
+		scrollwheel:false,
+		fullscreenControl: false
 	}
 }
 
@@ -21,6 +22,7 @@ class MainMap extends Component {
 			lng: 23
 		},
 		zoom: 9
+		
 	};
 
 	componentDidMount() {
