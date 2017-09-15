@@ -21,7 +21,7 @@ class TableRow extends Component {
 		const { animal } = this.props;
 		return (
 			<li
-				className="list-group-item"
+				className="test"
 				style={ this.props.style }
 				onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 				onMouseLeave={() => this.props.hoverAnimal(null)}>

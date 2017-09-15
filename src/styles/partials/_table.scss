@@ -6,3 +6,21 @@
 // .list-group {
 // 	transition: .5s;
 // }
+
+.test {
+	background: gold;
+	max-height: 100px;
+}
+li {
+	transition: transform .3s;
+}
+.switch-wrapper {
+  position: relative;
+}
+
+.switch-wrapper > div {
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}

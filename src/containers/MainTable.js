@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { hoverAnimal } from '../actions/index';
 import TableRow from '../components/TableRow';
 import _ from 'lodash';
-import { TransitionMotion,Motion, spring } from 'react-motion';
+import { TransitionMotion,Motion, spring, presets } from 'react-motion';
 
 
 
@@ -18,8 +18,7 @@ class MainTable extends Component {
 		}
 	}
 	willLeave() {
-    // triggered when c's gone. Keeping c until its width/height reach 0.
-    return {height: spring(0, {stiffness: 100, damping: 100})};
+    return {x: spring(0),y: spring(100), height: spring(0), opacity: spring(0, {stiffness:120, damping:17})};
   }
 	_renderAnimalTable() {
 
@@ -43,16 +42,18 @@ class MainTable extends Component {
 							data: animal,
 							key: key,
 							style: {
-								height: 300
+								height: 150,
+								opacity: 1,
+								x: 1
 							}
 						}
 					})}
 					>
 						{interpolatedStyles =>
 							// first render: a, b, c. Second: still a, b, c! Only last one's a, b.
-							<ul className="list-group">
+							<ul >
 								{interpolatedStyles.map(config => {
-									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style}}/> 
+									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style,transform: `scale(${config.style.x})`}}/> 
 								})}
 							</ul>
 						}
@@ -72,14 +73,7 @@ class MainTable extends Component {
 		}
 		return (
 				<div>
-					<Motion defaultStyle={{x:0}} style={{x: spring(10, {stiffness:50, damping:1})}}>
-						{({x}) => <div style={{
-                WebkitTransform: `translate3d(${x}px, 0, 0)`,
-                transform: `translate3d(${x}px, 0, 0)`,
-								background: `rgba(${x},255,${x},1)`
-              }}>{x}</div> }
-					</Motion>
-							{ this._renderAnimalTable() }
+					{ this._renderAnimalTable() }
 				</div>
 		);
 	}
