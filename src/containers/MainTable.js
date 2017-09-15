@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { hoverAnimal } from '../actions/index';
 import TableRow from '../components/TableRow';
 import _ from 'lodash';
+import { Motion, spring } from 'react-motion';
+
 
 
 
@@ -48,6 +50,14 @@ class MainTable extends Component {
 		}
 		return (
 				<div>
+					<Motion defaultStyle={{x:0}} style={{x: spring(10, {stiffness:50, damping:1})}}>
+						{({x}) => <div style={{
+                WebkitTransform: `translate3d(${x}px, 0, 0)`,
+                transform: `translate3d(${x}px, 0, 0)`,
+								background: `rgba(${x},255,${x},1)`
+              }}>{x}</div> }
+					</Motion>
+
 					<ul className="list-group">
 							{ this._renderAnimalTable() }
 					</ul>
