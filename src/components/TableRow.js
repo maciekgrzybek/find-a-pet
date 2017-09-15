@@ -9,20 +9,20 @@ class TableRow extends Component {
 
 	render() {
 
-		const tableRowStyleHover= {
-			color: 'red',
-			background: 'yellow'
-		}
-		const tableRowStyle= {
-			color: 'green'
-		}
+		// const tableRowStyleHover= {
+		// 	color: 'red',
+		// 	background: 'yellow'
+		// }
+		// const tableRowStyle= {
+		// 	color: 'green'
+		// }
 
-		const style = this.props.id === this.props.hover ? tableRowStyleHover : tableRowStyle;
+		// const style = this.props.id === this.props.hover ? tableRowStyleHover : tableRowStyle;
 		const { animal } = this.props;
 		return (
 			<li
 				className="list-group-item"
-				style={ style }
+				style={ this.props.style }
 				onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 				onMouseLeave={() => this.props.hoverAnimal(null)}>
 					<img

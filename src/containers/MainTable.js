@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { hoverAnimal } from '../actions/index';
 import TableRow from '../components/TableRow';
 import _ from 'lodash';
-import { Motion, spring } from 'react-motion';
+import { TransitionMotion,Motion, spring } from 'react-motion';
 
 
 
@@ -17,7 +17,10 @@ class MainTable extends Component {
 			mapLoad: false
 		}
 	}
-	
+	willLeave() {
+    // triggered when c's gone. Keeping c until its width/height reach 0.
+    return {height: spring(0, {stiffness: 100, damping: 100})};
+  }
 	_renderAnimalTable() {
 
 		// Filter animals - by map bounds
@@ -29,15 +32,34 @@ class MainTable extends Component {
 				return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
 			}
 		})
-		return _.map(animalsFiltered, (animal, key) => {
+		// return _.map(animalsFiltered, (animal, key) => {
+
+
 			return (
-				
-				<TableRow
-					animal={animal}
-					id={key}
-					key={key}/>
+				<TransitionMotion
+					willLeave={this.willLeave}
+					styles={ _.map(animalsFiltered,(animal, key) => {
+						return {
+							data: animal,
+							key: key,
+							style: {
+								height: 300
+							}
+						}
+					})}
+					>
+						{interpolatedStyles =>
+							// first render: a, b, c. Second: still a, b, c! Only last one's a, b.
+							<ul className="list-group">
+								{interpolatedStyles.map(config => {
+									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style}}/> 
+								})}
+							</ul>
+						}
+					</TransitionMotion>				
+
 			)
-		})
+		// })
 	}  
 	
 	render() {
@@ -57,10 +79,7 @@ class MainTable extends Component {
 								background: `rgba(${x},255,${x},1)`
               }}>{x}</div> }
 					</Motion>
-
-					<ul className="list-group">
 							{ this._renderAnimalTable() }
-					</ul>
 				</div>
 		);
 	}
