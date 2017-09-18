@@ -17,8 +17,8 @@ class Marker extends Component {
 			<div
 				className="marker"
 				style={ style }
-				onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
-				onMouseLeave={() => this.props.hoverAnimal(null)}>
+				onMouseEnter={() => this.props.$hover ? this.props.hoverAnimal(this.props.id) : null}
+				onMouseLeave={() => this.props.$hover ? this.props.hoverAnimal(null) : null}>
 					<Icon />
 			</div>
 		);
@@ -32,4 +32,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { hoverAnimal })(Marker);
-//<img className="marker__image" src={ this.props.url } alt=""/>

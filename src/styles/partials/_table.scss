@@ -1,6 +1,6 @@
 .table {
 	&__image {
-		max-width: 30px;
+		max-width: 80px;
 	}
 }
 // .list-group {
@@ -11,9 +11,10 @@
 	background: gold;
 	max-height: 100px;
 }
-li {
-	transition: transform .3s;
-}
+// li {
+// 	transition: all .3s;
+
+// }
 .switch-wrapper {
   position: relative;
 }

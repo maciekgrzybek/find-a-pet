@@ -1,6 +1,5 @@
 import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS } from '../constants/actionTypes';
 import { database, storage } from '../constants/firebase';
-import _ from 'lodash';
 
 
 
