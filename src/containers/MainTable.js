@@ -12,6 +12,12 @@ class MainTable extends Component {
 
 
 
+	willEnter() {
+    return {
+			height: 0,
+			opacity: 1
+		}
+	}
 	willLeave() {
     return {
 			height: spring(0),
@@ -39,11 +45,12 @@ class MainTable extends Component {
 							data: animal,
 							key: key,
 							style: {
-								height: 150,
-								opacity: 1
+								height: spring(150),
+								opacity: spring(1)
 							}
 						}
 					})}
+					willEnter={this.willEnter}
 					willLeave={this.willLeave}>
 						{styles =>
 							<ul >
