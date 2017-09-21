@@ -6,41 +6,15 @@ import ThankYou from '../components/ThankYou';
 import Add from './Add';
 import NotFound from '../components/NotFound'
 import { Route } from 'react-router-dom';
+<<<<<<< HEAD
 import  { AnimatedSwitch, spring } from 'react-router-transition/lib/react-router-transition';
+=======
+import { mapStyles, pageTransition } from '../constants/pageTransition'
+import  { AnimatedSwitch } from 'react-router-transition/lib/react-router-transition';
+>>>>>>> b8d82a928cd2a38c4bc74762dec6d780d3101324
 
 
-function mapStyles(styles) {
-  return {
-    transform: `translateX(${styles.translate}%)`,
-  };
-}
 
-// wrap the `spring` helper to use a bouncy config
-function bounce(val) {
-  return spring(val, {
-    stiffness: 100,
-    damping: 22,
-  });
-}
-
-// child matches will...
-const bounceTransition = {
-  // start in a transparent, uptranslated state
-  atEnter: {
-
-    translate: -100,
-  },
-  // leave in a transparent, downtranslated state
-  atLeave: {
-
-    translate: bounce(100),
-  },
-  // and rest at an opaque, normally-translated state
-  atActive: {
-
-    translate: bounce(0),
-  },
-};
 class App extends Component {
 
   render() {
@@ -48,9 +22,9 @@ class App extends Component {
       <div className="app">
 					<Navigation />
 					<AnimatedSwitch
-					atEnter={bounceTransition.atEnter}
-					atLeave={bounceTransition.atLeave}
-					atActive={bounceTransition.atActive}
+					atEnter={pageTransition.atEnter}
+					atLeave={pageTransition.atLeave}
+					atActive={pageTransition.atActive}
 					mapStyles={mapStyles}
 					className="switch-wrapper">
 							<Route path="/dzieki" component={ ThankYou }/>

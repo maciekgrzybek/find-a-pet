@@ -3,23 +3,29 @@ import { connect } from 'react-redux';
 import { hoverAnimal } from '../actions/index';
 import TableRow from '../components/TableRow';
 import _ from 'lodash';
-import { TransitionMotion, spring, presets } from 'react-motion';
+import { TransitionMotion, spring } from 'react-motion';
 
 
 
 
 class MainTable extends Component {
 
-	constructor() {
-		super();
 
-		this.state = {
-			mapLoad: false
+
+	willEnter() {
+    return {
+			height: 0,
+			opacity: 1
 		}
 	}
 	willLeave() {
-    return {x: spring(0), height: spring(0), opacity: spring(0, {stiffness:120, damping:17})};
-  }
+    return {
+			height: spring(0),
+			opacity: spring(0, {
+				stiffness:120,
+				damping:17})
+		};
+	}
 	_renderAnimalTable() {
 
 		// Filter animals - by map bounds
@@ -31,28 +37,25 @@ class MainTable extends Component {
 				return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
 			}
 		})
-		// return _.map(animalsFiltered, (animal, key) => {
-
 
 			return (
 				<TransitionMotion
-					willLeave={this.willLeave}
 					styles={ _.map(animalsFiltered,(animal, key) => {
 						return {
 							data: animal,
 							key: key,
 							style: {
-								height: 150,
-								opacity: 1,
-								x: 1
+								height: spring(150),
+								opacity: spring(1)
 							}
 						}
 					})}
-					>
-						{interpolatedStyles =>
+					willEnter={this.willEnter}
+					willLeave={this.willLeave}>
+						{styles =>
 							<ul >
-								{interpolatedStyles.map(config => {
-									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style,transform: `scale(${config.style.x})`}}/> 
+								{styles.map(config => {
+									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style}}/> 
 								})}
 							</ul>
 						}
