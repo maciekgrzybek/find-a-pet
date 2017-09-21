@@ -5,7 +5,7 @@ import Contact from '../components/Contact';
 import ThankYou from '../components/ThankYou';
 import Add from './Add';
 import NotFound from '../components/NotFound'
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import  { AnimatedSwitch, spring } from 'react-router-transition/lib/react-router-transition';
 
 

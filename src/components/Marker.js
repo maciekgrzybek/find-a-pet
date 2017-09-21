@@ -7,6 +7,7 @@ import Icon from './Icon';
 
 class Marker extends Component {
 
+
 	render() {
 		const markerStyleHover= {
 			top: '-55px'

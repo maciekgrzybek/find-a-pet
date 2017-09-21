@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { hoverAnimal } from '../actions/index';
 import TableRow from '../components/TableRow';
 import _ from 'lodash';
-import { TransitionMotion,Motion, spring, presets } from 'react-motion';
+import { TransitionMotion, spring, presets } from 'react-motion';
 
 
 
@@ -18,7 +18,7 @@ class MainTable extends Component {
 		}
 	}
 	willLeave() {
-    return {x: spring(0),y: spring(100), height: spring(0), opacity: spring(0, {stiffness:120, damping:17})};
+    return {x: spring(0), height: spring(0), opacity: spring(0, {stiffness:120, damping:17})};
   }
 	_renderAnimalTable() {
 
@@ -50,7 +50,6 @@ class MainTable extends Component {
 					})}
 					>
 						{interpolatedStyles =>
-							// first render: a, b, c. Second: still a, b, c! Only last one's a, b.
 							<ul >
 								{interpolatedStyles.map(config => {
 									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style,transform: `scale(${config.style.x})`}}/> 
