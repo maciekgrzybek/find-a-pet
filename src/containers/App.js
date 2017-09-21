@@ -6,12 +6,8 @@ import ThankYou from '../components/ThankYou';
 import Add from './Add';
 import NotFound from '../components/NotFound'
 import { Route } from 'react-router-dom';
-<<<<<<< HEAD
-import  { AnimatedSwitch, spring } from 'react-router-transition/lib/react-router-transition';
-=======
 import { mapStyles, pageTransition } from '../constants/pageTransition'
 import  { AnimatedSwitch } from 'react-router-transition/lib/react-router-transition';
->>>>>>> b8d82a928cd2a38c4bc74762dec6d780d3101324
 
 
 
