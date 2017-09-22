@@ -9,22 +9,18 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<div className="container">
-					<div className="row">
-						<div className="col-md-12">
-							<MainHero />
-						</div>
+				<div className="row">
+					<div className="col-xs-12">
+						<MainHero />
 					</div>
 				</div>
-				<div className="container">
-					<div className="row">
-						<div className="col-md-8 map">
-							<MainMap />
-						</div>
-						<div className="col-md-4 main-table">
-							<SearchBar />
-							<MainTable />
-						</div>
+				<div className="row">
+					<div className="col-xs-12 col-sm-8 map">
+						<MainMap />
+					</div>
+					<div className="col-xs-12 col-sm-4 main-table">
+						<SearchBar />
+						<MainTable />
 					</div>
 				</div>
 			</div>

@@ -145,15 +145,15 @@ class Add extends Component {
 
 
 		return (
-			<div className='container'>
+			<div>
 				<div className="row">
-				<div className="col-md-12 map">
+				<div className="col-xs-12 map">
 						<AddingMap 
 							handleClick={this.setLocation}
 							lat={this.state.location.lat}
 							lng={this.state.location.lng} />
 					</div>
-					<div className="col-md-8">
+					<div className="col-xs-12">
 						<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
 								<Field
 									name="date"

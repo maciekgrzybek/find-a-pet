@@ -1,25 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+
 
 const Navigation = () => {
 	return (
-		<Navbar collapseOnSelect>
-			<Navbar.Header>
-				<Navbar.Brand>
+
+			<div className="row top-bar">
+				<div className="col-xs-12 col-sm-6 center-xs start-sm top-bar__logo">
 					<Link to="/">znajdz zwierzaka</Link>
-				</Navbar.Brand>
-				<Navbar.Toggle />
-			</Navbar.Header>
-			<Navbar.Collapse>
-				<Nav pullRight>
-					<LinkContainer exact to="/"><NavItem eventKey={1}>Strona glowna</NavItem></LinkContainer>	
-					<LinkContainer to="/dodaj"><NavItem eventKey={2}>Dodaj ogloszenie</NavItem></LinkContainer>
-					<LinkContainer to="/kontakt"><NavItem eventKey={3}>Kontakt</NavItem></LinkContainer>
-				</Nav>
-			</Navbar.Collapse>
-		</Navbar>
+				</div>
+				<div className="col-xs-12 col-sm-6 center-xs end-sm top-bar__menu">
+					<nav>
+						<ul className="navigation">
+							<li className="navigation__item">
+								<Link exact to="/">Strona glowna</Link>	
+							</li>
+							<li className="navigation__item">
+								<Link to="/dodaj">Dodaj ogloszenie</Link>
+							</li>
+							<li className="navigation__item">
+								<Link to="/kontakt">Kontakt</Link>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
 	);
 }
 
