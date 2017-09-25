@@ -5,7 +5,6 @@ import { addAnimal, uploadImage } from '../actions/index';
 import { Link } from 'react-router-dom';
 import AddingMap from '../components/AddingMap';
 import Dropzone from 'react-dropzone';
-import { storage } from '../constants/firebase';
 import _ from 'lodash';
 import update from 'immutability-helper';
 
@@ -25,20 +24,11 @@ class Add extends Component {
 		}
 		this.onDrop = this.onDrop.bind(this);
 		this.setLocation = this.setLocation.bind(this);
+		this._setAddType = this._setAddType.bind(this);
 	}
 
 	componentDidMount() {
-
-		const { type } = this.props.match.params
-		let addType = null;
-		if(type === 'znaleziony') {
-			addType = 'found';
-		} else if (type === 'zgubiony') {
-			addType = 'lost';
-		} else {
-			addType = 'adopt';
-		}
-		this.setState({addType})
+		this._setAddType()
 	}
 
 	renderField(field) {
@@ -108,6 +98,19 @@ class Add extends Component {
 
 	onDrop(file) {
 		this.setState({ file });
+	}
+
+	_setAddType() {
+		const { type } = this.props.match.params
+		let addType = null;
+		if(type === 'znaleziony') {
+			addType = 'found';
+		} else if (type === 'zgubiony') {
+			addType = 'lost';
+		} else {
+			addType = 'adopt';
+		}
+		this.setState({addType})
 	}
 
 	geoCode(e) {
@@ -228,10 +231,7 @@ class Add extends Component {
 function validate(values) {
 
 	const errors = {};
-
-	if(!values.type) {
-		errors.type = "Zaznacz jedna z opcji"
-	}
+	
 	if(!values.location) {
 		errors.location = "Wybierz punkt na mapie";
 	}

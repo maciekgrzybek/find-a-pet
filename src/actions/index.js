@@ -1,5 +1,5 @@
 import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS } from '../constants/actionTypes';
-import { database, storage } from '../constants/firebase';
+import { database, storage, firebaseConfig } from '../constants/firebase';
 
 
 
@@ -53,7 +53,7 @@ export function uploadImage(file, callback ) {
 			})
 		})
 		.then(() => {
-			storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${file[0].name}`)
+			storage.refFromURL(`${firebaseConfig.storageBucket}/${file[0].name}`)
 			.getDownloadURL()
 			.then((url) => callback(url));
 		})
