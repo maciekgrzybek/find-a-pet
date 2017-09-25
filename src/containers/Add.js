@@ -20,13 +20,26 @@ class Add extends Component {
 				lng: null,
 				city: '',
 				street: ''
-			}
+			},
+			addType: null
 		}
 		this.onDrop = this.onDrop.bind(this);
 		this.setLocation = this.setLocation.bind(this);
 	}
 
+	componentDidMount() {
 
+		const { type } = this.props.match.params
+		let addType = null;
+		if(type === 'znaleziony') {
+			addType = 'found';
+		} else if (type === 'zgubiony') {
+			addType = 'lost';
+		} else {
+			addType = 'adopt';
+		}
+		this.setState({addType})
+	}
 	renderField(field) {
 
 		const { meta: { touched, error } } = field;
@@ -69,12 +82,23 @@ class Add extends Component {
 			this.props.uploadImage(this.state.file, () => { 
 				storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${this.state.file[0].name}`)
 					.getDownloadURL()
-					.then((url) => {this.props.addAnimal(Object.assign({}, values, {'url':url}, {'location': this.state.location}), () => {
+					.then((url) => {this.props.addAnimal(
+						Object.assign(
+							{},
+							values,
+							{'url':url},
+							{'location': this.state.location},
+							{'addType':this.state.addType}), () => {
 						this.props.history.push('/dzieki');
 					})});
 			})
 		} else {
-			this.props.addAnimal(Object.assign({}, values, {'location': this.state.location}), () => {
+			this.props.addAnimal(
+				Object.assign(
+					{}, 
+					values,
+					{'location': this.state.location},
+					{'addType':this.state.addType}), () => {
 				this.props.history.push('/dzieki');
 			});
 		}
@@ -170,20 +194,6 @@ class Add extends Component {
 									label="Telefon"
 									type="tel"
 									component={ this.renderField } />
-								<div>
-									<Field
-										name="type"
-										label="Znaleziony"
-										type="radio"
-										value="found"
-										component={ this.renderField } />
-									<Field
-										name="type"
-										label="Zgubiony"
-										type="radio"
-										value="lost"
-										component={ this.renderField } />
-								</div>
 								<Field
 									name="location"
 									type="hidden"

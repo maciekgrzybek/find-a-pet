@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import Contact from '../components/Contact';
 import ThankYou from '../components/ThankYou';
 import Add from './Add';
+import AddType from '../components/AddType';
 import NotFound from '../components/NotFound'
 import { Route } from 'react-router-dom';
 import { mapStyles, pageTransition } from '../constants/pageTransition'
@@ -23,9 +24,10 @@ class App extends Component {
 					atActive={pageTransition.atActive}
 					mapStyles={mapStyles}
 					className="switch-wrapper">
+							<Route path="/rodzaj-ogloszenia" component={ AddType }/>
 							<Route path="/dzieki" component={ ThankYou }/>
 							<Route path="/kontakt" component={ Contact }/>
-							<Route path="/dodaj" component={ Add }/>
+							<Route path="/dodaj/:type" component={ Add }/>
 							<Route exact path="/" component={ Home } />
 							<Route component={ NotFound } /> 
 					</AnimatedSwitch>
