@@ -40,6 +40,7 @@ class Add extends Component {
 		}
 		this.setState({addType})
 	}
+
 	renderField(field) {
 
 		const { meta: { touched, error } } = field;
@@ -195,11 +196,15 @@ class Add extends Component {
 									type="tel"
 									component={ this.renderField } />
 								<Field
+									name="description"
+									label="Opis"
+									type="textarea"
+									component={ this.renderField } />
+								<Field
 									name="location"
 									type="hidden"
 									label="Lokalizacja"
 									component={ this.renderField } />
-
 								<Dropzone
 									onDrop={this.onDrop}
 									style={ dropStyle }

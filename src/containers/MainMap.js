@@ -31,16 +31,6 @@ class MainMap extends Component {
 
 	_renderAnimalMarkers() {
 
-		// Filter animals - by map bounds
-		// const animalsFiltered = _.pickBy(this.props.animals,(value,key) => {
-		// 	const { lat, lng } = value.location;
-		// 	const mapArea = new window.google.maps.Polygon({paths: this.props.mapBounds});
-		// 	const curPosition = new window.google.maps.LatLng(lat, lng);
-		// 	if(window.google.maps.geometry) {
-		// 		return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
-		// 	}	
-		// })
-		//------
 		return _.map(this.props.animals, (animal, key) => {
 			return (
 				<Marker
