@@ -42,7 +42,7 @@ export function addAnimal(values, callback) {
 }
 
 //-----------------------
-export function uploadImage(file, callback) {
+export function uploadImage(file, callback ) {
 
 	const imageRef = storage.ref().child(file[0].name)
 	return dispatch => {
@@ -52,7 +52,11 @@ export function uploadImage(file, callback) {
 				type: UPLOAD_IMAGE
 			})
 		})
-		.then(() => callback())
+		.then(() => {
+			storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${file[0].name}`)
+			.getDownloadURL()
+			.then((url) => callback(url));
+		})
 	}
 }
 

@@ -80,28 +80,28 @@ class Add extends Component {
 
 	onSubmit(values) {
 		if(this.state.file) {
-			this.props.uploadImage(this.state.file, () => { 
-				storage.refFromURL(`gs://znajdz-zwierzaka.appspot.com/${this.state.file[0].name}`)
-					.getDownloadURL()
-					.then((url) => {this.props.addAnimal(
-						Object.assign(
-							{},
-							values,
-							{'url':url},
-							{'location': this.state.location},
-							{'addType':this.state.addType}), () => {
-						this.props.history.push('/dzieki');
-					})});
+			this.props.uploadImage(this.state.file, (url) => {
+				this.props.addAnimal(
+					Object.assign(
+						{},
+						values,
+						{'url':url},
+						{'location': this.state.location},
+						{'addType':this.state.addType}), () => {
+							this.props.history.push('/dzieki');
+						}
+				)
 			})
 		} else {
 			this.props.addAnimal(
 				Object.assign(
-					{}, 
+					{},
 					values,
 					{'location': this.state.location},
 					{'addType':this.state.addType}), () => {
-				this.props.history.push('/dzieki');
-			});
+						this.props.history.push('/dzieki');
+					}
+			);
 		}
 
 	}
