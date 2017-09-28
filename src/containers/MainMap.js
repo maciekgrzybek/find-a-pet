@@ -71,7 +71,6 @@ class MainMap extends Component {
 	 	 					defaultZoom={this.props.zoom}
 	 	 					options={createMapOptions}
 							onChange={({bounds}) => {
-								console.log(bounds)
 								this.props.setMapBounds(bounds);
 							}} >
 	 	 					{ this._renderAnimalMarkers() }

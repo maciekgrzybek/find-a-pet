@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hoverAnimal } from '../actions/index';
+import { hoverAnimal, selectAnimal } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 
 
@@ -17,20 +18,26 @@ class TableRow extends Component {
 		// 	color: 'green'
 		// }
 
-		// const style = this.props.id === this.props.hover ? tableRowStyleHover : tableRowStyle;
+		
 		const { animal } = this.props;
+		const rowHoverClass = this.props.id === this.props.hover ? 'table__row--hover': '';
+		const rowTypeClass = animal.addType === 'found' ? 'table__row--found' : animal.addType === 'lost' ?  'table__row--lost' : animal.addType === 'adopt' ? 'table__row--adopt' : '';
 		return (
-			<li
-				className="test"
-				style={ this.props.style }
-				onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
-				onMouseLeave={() => this.props.hoverAnimal(null)}>
-					<img
-						className="table__image"
-						src={animal.url} />
-					<h3>{animal.location.city}</h3>
-					<p>{ animal.type }</p>
-			</li>
+
+			<Link to={`zwierzak/${animal.addType}/${this.props.id}`}>
+				<li
+					className={ `table__row ${rowTypeClass} ${rowHoverClass}` }
+					style={ this.props.style }
+					onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
+					onMouseLeave={() => this.props.hoverAnimal(null)}
+					onClick={() => this.props.selectAnimal(this.props.id)}>
+						<img
+							className="table__image"
+							src={animal.url} />
+						<h3>{animal.location.city}</h3>
+						<p>{ animal.type }</p>
+				</li>
+			</Link>
 		)
 	}
 }
@@ -41,4 +48,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { hoverAnimal })(TableRow);
+export default connect(mapStateToProps, { hoverAnimal, selectAnimal })(TableRow);

@@ -1,4 +1,4 @@
-import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS } from '../constants/actionTypes';
+import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL } from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
 
 
@@ -64,6 +64,14 @@ export function uploadImage(file, callback ) {
 export function hoverAnimal(key) {
 	return {
 		type: HOVER_ANIMAL,
+		payload: key
+	}
+}
+
+// ----------------------
+export function selectAnimal(key){
+	return {
+		type: SELECT_ANIMAL,
 		payload: key
 	}
 }

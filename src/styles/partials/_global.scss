@@ -13,18 +13,16 @@ $breakpoints: (
 // Mixins 
 // ---------
 @mixin link($link, $visit, $hover, $active){
-	a {
-		color: $link;
-		text-decoration: none;
-		&:visited {
-			color:$visit;
-		}
-		&:hover {
-			color: $hover;
-		}
-		&:active {
-			color: $active;
-		}
+	color: $link;
+	text-decoration: none;
+	&:visited {
+		color:$visit;
+	}
+	&:hover {
+		color: $hover;
+	}
+	&:active {
+		color: $active;
 	}
 }
 @mixin breakpoint($breakpoint) {
@@ -39,4 +37,18 @@ $breakpoints: (
 body {
 	font-family: 'Cabin', sans-serif;
 }
-@include link($black,$black,$primary-color,$primary-color)
+a {
+	@include link($black,$black,$primary-color,$primary-color);
+}
+
+// Global classes
+// ---------
+.switch-wrapper {
+  position: relative;
+}
+.switch-wrapper > div {
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}

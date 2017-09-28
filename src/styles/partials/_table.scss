@@ -2,26 +2,21 @@
 	&__image {
 		max-width: 80px;
 	}
+	&__row {
+		background: gold;
+		max-height: 100px;
+		&--hover {
+			background: red;
+		}
+		&--lost {
+			background: lightgreen;
+		}
+		&--found {
+			background: plum;
+		}
+		&--adopt {
+			background: sandybrown;
+		}
+	}
 }
-// .list-group {
-// 	transition: .5s;
-// }
 
-.test {
-	background: gold;
-	max-height: 100px;
-}
-// li {
-// 	transition: all .3s;
-
-// }
-.switch-wrapper {
-  position: relative;
-}
-
-.switch-wrapper > div {
-	position: absolute;
-	margin: 0 auto;
-	left: 0;
-	right: 0;
-}

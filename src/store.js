@@ -4,12 +4,14 @@ import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
 import animalsReducer from './reducers/animalsReducer';
 import hoverReducer from './reducers/hoverReducer';
+import selectReducer from './reducers/selectReducer';
 import mapBoundsReducer from './reducers/mapBoundsReducer';
 
 
 const rootReducer = combineReducers({
 	animals: animalsReducer,
 	hover: hoverReducer,
+	select: selectReducer,
 	mapBounds: mapBoundsReducer,
 	form: formReducer
 });

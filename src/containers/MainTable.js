@@ -33,9 +33,9 @@ class MainTable extends Component {
 			const { lat, lng } = value.location;
 			const mapArea = new window.google.maps.Polygon({paths: this.props.mapBounds});
 			const curPosition = new window.google.maps.LatLng(lat, lng);
-			if(window.google.maps.geometry) {
+			// if(window.google.maps.geometry) {
 				return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
-			}
+			// }
 		})
 
 			return (

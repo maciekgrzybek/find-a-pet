@@ -184,6 +184,11 @@ class Add extends Component {
 					<div className="col-xs-12">
 						<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
 								<Field
+									name="location"
+									type="hidden"
+									label="Lokalizacja"
+									component={ this.renderField } />
+								<Field
 									name="date"
 									label="Data"
 									type="date"
@@ -191,7 +196,7 @@ class Add extends Component {
 								<Field
 									name="email"
 									label="Email"
-									type="email"
+									type="text"
 									component={ this.renderField } />
 								<Field
 									name="phone"
@@ -203,11 +208,7 @@ class Add extends Component {
 									label="Opis"
 									type="textarea"
 									component={ this.renderField } />
-								<Field
-									name="location"
-									type="hidden"
-									label="Lokalizacja"
-									component={ this.renderField } />
+
 								<Dropzone
 									onDrop={this.onDrop}
 									style={ dropStyle }
@@ -231,11 +232,16 @@ class Add extends Component {
 function validate(values) {
 
 	const errors = {};
-	
+
 	if(!values.location) {
 		errors.location = "Wybierz punkt na mapie";
 	}
-
+	if(!values.email) {
+		errors.email = "Wybierz punkt na mapie";
+	}
+	if(!(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.email))){
+		errors.email = "Podaj prawidlowy email"
+	}
 	return errors;
 
 }
