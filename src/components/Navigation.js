@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const Navigation = () => {
 	return (
 
-			<div className="row top-bar middle-xs">
-				<div className="col-xs-12 col-sm-6 top-bar__logo">
+			<div className="grid top-bar middle-xs">
+				<div className="col_xs-12_sm-6_md-4_lg-2 top-bar__logo">
 					<Link to="/">znajdz zwierzaka</Link>
 				</div>
-				<div className="col-xs-12 col-sm-6 top-bar__menu">
+				<div className="col_xs-12_sm-6_md-4_lg-2 top-bar__menu">
 
 						<ul className="navigation end-xs">
 							<li className="navigation__item">
