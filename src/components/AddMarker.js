@@ -5,7 +5,7 @@ const AddMarker = () => {
 
 	return (
 		<div className="marker">
-			<Icon />
+			<Icon icon="home" />
 		</div>
 	);
 }

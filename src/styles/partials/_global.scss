@@ -9,6 +9,8 @@ $breakpoints: (
   md: 64em,
   lg: 80em,
 );
+$header-font:'Montserrat', sans-serif;
+$paragraph-font:'Lato', sans-serif;
 
 
 // Mixins 
@@ -35,16 +37,28 @@ $breakpoints: (
 }
 // Tags 
 // ---------
+html {
+	font-size: 12px;
+}
 body {
-	font-family: 'Cabin', sans-serif;
+	font-family: $paragraph-font;
 }
 a {
 	@include link($black,$black,$primary-color,$primary-color);
 }
+h1,h2,h3,h4 {
+	font-family: $header-font;
+}
 
 // Global classes
 // ---------
-.switch-wrapper {
+.app {
+	padding-left: .5rem;
+	padding-right: 0.5rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+.switch-wrapper { 
   position: relative;
 }
 .switch-wrapper > div {

@@ -4,5 +4,15 @@
 	display: flex;
 	&__item {
 		display: flex;
+		font-family: $header-font;
+		font-weight: 600;
+		text-transform: uppercase;
+		font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-basis: 33%;
 	}
 }

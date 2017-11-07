@@ -20,7 +20,7 @@ class Marker extends Component {
 				style={ style }
 				onMouseEnter={() => this.props.$hover ? this.props.hoverAnimal(this.props.id) : null}
 				onMouseLeave={() => this.props.$hover ? this.props.hoverAnimal(null) : null}>
-					<Icon />
+					<Icon icon="home" />
 			</div>
 		);
 	}
