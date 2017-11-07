@@ -89,8 +89,8 @@ class Icon extends Component {
 
 Icon.defaultProps = {
 	icon: 'home',
-	width: 37,
-	height: 37,
+	width: 20,
+	height: 20,
 	fill: 'black'
 }
 

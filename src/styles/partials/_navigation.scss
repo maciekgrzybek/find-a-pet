@@ -7,12 +7,20 @@
 		font-family: $header-font;
 		font-weight: 600;
 		text-transform: uppercase;
-		font-size: 1rem;
+		font-size: .9rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+		justify-content: flex-start;
     align-items: center;
     text-align: center;
-    flex-basis: 33%;
+		flex-basis: 33%;
+		.active {
+			svg {
+				fill: red;
+			}
+		}
+		span {
+			display: none;
+		}
 	}
 }

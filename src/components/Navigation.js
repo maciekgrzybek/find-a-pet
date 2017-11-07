@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Icon from './Icon';
 
 
@@ -7,28 +7,25 @@ const Navigation = () => {
 	return (
 
 			<div className="grid top-bar middle-xs">
-				<div className="col_xs-12_sm-6_md-4_lg-2 top-bar__logo">
-					<Link to="/">
+				<div className="col_xs-4_sm-6_md-4_lg-2 top-bar__logo">
+					<NavLink to="/">
 						<Icon 
 							icon="logo"
-							width={100}
-							height={50} />
-					</Link>
+							width="auto"
+							height={40} />
+					</NavLink>
 				</div>
-				<div className="col_xs-12_sm-6_md-4_lg-2 top-bar__menu">
+				<div className="col_xs-8_sm-6_md-4_lg-2 top-bar__menu">
 
 						<ul className="navigation end-xs">
-							<li className="navigation__item">
-								<Link to="/">Strona główna</Link>
-								<Icon icon="home" />
+							<li className="navigation__item">								
+								<NavLink exact to="/"><Icon icon="home" /><span>Strona główna</span></NavLink>
 							</li>
-							<li className="navigation__item">
-								<Link to="/rodzaj-ogloszenia">Dodaj ogłoszenie</Link>
-								<Icon icon="advert" />
+							<li className="navigation__item">								
+								<NavLink exact to="/rodzaj-ogloszenia"><Icon icon="advert" /><span>Dodaj ogłoszenie</span></NavLink>
 							</li>
-							<li className="navigation__item">
-								<Link to="/kontakt">Kontakt</Link>
-								<Icon icon="contact" />
+							<li className="navigation__item">								
+								<NavLink exact to="/kontakt"><Icon icon="contact" /><span>Kontakt</span></NavLink>
 							</li>
 						</ul>
 
