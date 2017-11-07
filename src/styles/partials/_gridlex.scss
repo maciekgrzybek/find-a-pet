@@ -16,7 +16,7 @@
 // COLS
 [#{$gl-attributeName}~="#{$gl-colName}"],
 [#{$gl-attributeName}*="#{$gl-colName}-"],
-[#{$gl-attributeName}*="#{$gl-colName}_"]{
+[#{$gl-attributeName}*="#{$gl-colName}_"]{ 
   box-sizing: border-box;
   padding: 0 ($gl-gutter/2) $gl-gutter-vertical;
   max-width: 100%;
