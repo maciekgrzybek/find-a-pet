@@ -1,11 +1,10 @@
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
 
 const MainHero = () => {
 	return (
-		<Jumbotron bsClass="hero">		
+		<div className="hero">		
 			<h1>Zgubiles?</h1>
-		</Jumbotron>		
+		</div>		
 	);
 }
 

@@ -7,15 +7,15 @@ const Navigation = () => {
 	return (
 
 			<div className="grid top-bar middle-xs">
-				<div className="col_xs-4_sm-6_md-4_lg-2 top-bar__logo">
+				<div className="col-6_xs-4_sm-6_md-4_lg-2 top-bar__logo">
 					<NavLink to="/">
 						<Icon 
 							icon="logo"
-							width="auto"
-							height={40} />
+							width="100%"
+							height="40px" />
 					</NavLink>
 				</div>
-				<div className="col_xs-8_sm-6_md-4_lg-2 top-bar__menu">
+				<div className="col-6_xs-8_sm-6_md-4_lg-2 top-bar__menu">
 
 						<ul className="navigation end-xs">
 							<li className="navigation__item">								
