@@ -5,10 +5,9 @@ $black: #232425;
 $primary-color: #6aa002;
 $light-grey: #c4c4c4;
 $breakpoints: (
-  xs: 35.5em,
   sm: 48em,
   md: 64em,
-  lg: 80em,
+  lg: 75em,
 );
 $header-font:'Montserrat', sans-serif;
 $paragraph-font:'Lato', sans-serif;
@@ -28,6 +27,11 @@ $paragraph-font:'Lato', sans-serif;
 	&:active {
 		color: $active;
 	}
+}
+@mixin background-image($repeat: no-repeat, $position: center center,  $size: cover ) {
+	background-repeat: $repeat;
+	background-position: $position; 
+	background-size: $size;
 }
 @mixin breakpoint($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
@@ -53,12 +57,12 @@ h1,h2,h3,h4 {
 
 // Global classes
 // ---------
-.app {
-	padding-left: .5rem;
-	padding-right: 0.5rem;
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-}
+// .app {
+// 	padding-left: .5rem;
+// 	padding-right: 0.5rem;
+// 	padding-top: 1rem;
+// 	padding-bottom: 1rem;
+// }
 .switch-wrapper { 
   position: relative;
 }

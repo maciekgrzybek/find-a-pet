@@ -2,7 +2,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: url('../images/znajdz-zwierzaka-hero.jpg')no-repeat center center;
-	background-size: cover;
+	background: url('../images/znajdz-zwierzaka-hero.jpg');
+	@include background-image($position: 'left center');
 	min-height: 500px;
+	@include breakpoint(lg) {
+		@include background-image();
+	}
 }
