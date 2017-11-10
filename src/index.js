@@ -11,7 +11,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Lato:300,400,900:latin-ext','Montserrat:200,400,600,700:latin-ext' ]
+    families: ['Lato:300,400,900:latin-ext','Montserrat:200,400,500,600,700:latin-ext' ]
   },
 })
 

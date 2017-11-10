@@ -9,11 +9,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<div className="row">
-					<div className="col-xs-12">
-						<MainHero />
-					</div>
-				</div>
+				<MainHero />
 				<div className="row">
 					<div className="col-xs-12 col-sm-8 map">
 						<MainMap />

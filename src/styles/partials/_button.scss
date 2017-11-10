@@ -1,0 +1,13 @@
+.button {
+	display: inline-block;
+	border: 1px solid;
+	color: white;
+	font-size: .75rem;
+	padding: 1em 2em;
+	text-transform: uppercase;
+	font-family: $header-font;
+	&--primary {
+		background: $primary-color;
+		border-color: $primary-color; 
+	}
+}

@@ -1,0 +1,17 @@
+.marker {
+	&--found {
+		&__icon {
+			fill: $found-color;
+		}
+	}
+	&--lost {
+		&__icon {
+			fill: $lost-color;
+		}
+	}
+	&--adopt {
+		&__icon {
+			fill: $adopt-color;
+		}
+	}
+}

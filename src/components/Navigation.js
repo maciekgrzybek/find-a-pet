@@ -12,7 +12,7 @@ const Navigation = () => {
 						<NavLink to="/">
 							<Icon 
 								icon="logo"
-								width="100%"
+								width="75px"
 								height="40px" />
 						</NavLink>
 					</div>

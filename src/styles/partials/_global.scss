@@ -1,9 +1,13 @@
 
 // Variables 
 // ---------
-$black: #232425;
-$primary-color: #6aa002;
+$black: #1d1d1d;
+$primary-color: #ffbf00;
+$found-color: #ffbf00;
+$lost-color: #ff8700;
+$adopt-color: #1bb23c;
 $light-grey: #c4c4c4;
+$medium-gray: #787878;
 $breakpoints: (
   sm: 48em,
   md: 64em,
@@ -43,10 +47,12 @@ $paragraph-font:'Lato', sans-serif;
 // Tags 
 // ---------
 html {
-	font-size: 12px;
+	font-size: 16px;
+	line-height: 1.8rem;
 }
 body {
 	font-family: $paragraph-font;
+	color: $black;
 }
 a {
 	@include link($black,$black,$primary-color,$primary-color);
@@ -54,15 +60,21 @@ a {
 h1,h2,h3,h4 {
 	font-family: $header-font;
 }
+h1 {
+	font-size: 2.8rem;
+	font-weight: 500;
+	color: $black;
+	line-height: 1.2em;
+}
+p {
+	color: $medium-gray;
+}
 
 // Global classes
 // ---------
-// .app {
-// 	padding-left: .5rem;
-// 	padding-right: 0.5rem;
-// 	padding-top: 1rem;
-// 	padding-bottom: 1rem;
-// }
+.app {
+	padding-top: 1rem;
+}
 .switch-wrapper { 
   position: relative;
 }

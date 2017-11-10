@@ -16,11 +16,11 @@ class Marker extends Component {
 
 		return (
 			<div
-				className="marker"
+				className={`marker marker--${this.props.addType}`}
 				style={ style }
 				onMouseEnter={() => this.props.$hover ? this.props.hoverAnimal(this.props.id) : null}
 				onMouseLeave={() => this.props.$hover ? this.props.hoverAnimal(null) : null}>
-					<Icon icon="home" />
+					<Icon icon="mapMarker" class={`marker__icon marker--${this.props.addType}__icon`} />
 			</div>
 		);
 	}
