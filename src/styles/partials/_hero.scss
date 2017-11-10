@@ -6,7 +6,7 @@
 	@include background-image($position: left center1);
 	min-height: 500px;
 	position: relative;
-	.row {
+	.container {
 		z-index: 1;
 	}
 	&:before {

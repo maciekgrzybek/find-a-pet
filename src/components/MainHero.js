@@ -3,8 +3,8 @@ import Button from './Button';
 
 const MainHero = () => {
 	return (
-		<div className="container">
-			<div className="hero">		
+		<div className="hero">		
+			<div className="container">
 				<div className="row">
 					<div className="col-xs-12">
 						<h1>Zgubiles swojego pupila?</h1>

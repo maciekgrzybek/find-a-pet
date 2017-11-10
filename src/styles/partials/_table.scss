@@ -5,17 +5,17 @@
 	&__row {
 		background: gold;
 		max-height: 100px;
-		&--hover {
-			background: red;
-		}
 		&--lost {
-			background: lightgreen;
+			background: $lost-color;
 		}
 		&--found {
-			background: plum;
+			background: $found-color;
 		}
 		&--adopt {
-			background: sandybrown;
+			background: $adopt-color;
+		}
+		&--hover {
+			background: red;
 		}
 	}
 }

@@ -21,12 +21,11 @@ class TableRow extends Component {
 		
 		const { animal } = this.props;
 		const rowHoverClass = this.props.id === this.props.hover ? 'table__row--hover': '';
-		const rowTypeClass = animal.addType === 'found' ? 'table__row--found' : animal.addType === 'lost' ?  'table__row--lost' : animal.addType === 'adopt' ? 'table__row--adopt' : '';
-		return (
 
+		return (
 			<Link to={`zwierzak/${animal.addType}/${this.props.id}`}>
 				<li
-					className={ `table__row ${rowTypeClass} ${rowHoverClass}` }
+					className={ `table__row table__row--${animal.addType} ${rowHoverClass}` }
 					style={ this.props.style }
 					onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 					onMouseLeave={() => this.props.hoverAnimal(null)}

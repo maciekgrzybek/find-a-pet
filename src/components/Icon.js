@@ -83,7 +83,7 @@ class Icon extends Component {
 			},
 			mapMarker: () => {
 				return (
-					<svg xmlns="http://www.w3.org/2000/svg" width={this.props.width} height={this.props.height} fill={this.props.fill} className={this.props.class} viewBox="0 0 512 512" x="0px" y="0px">
+					<svg width={this.props.width} height={this.props.height} fill={this.props.fill} className={this.props.class} viewBox="0 0 512 512" x="0px" y="0px">
 						<path d="M256 0C153.755 0 70.573 83.182 70.573 185.426c0 126.888 165.94 313.167 173.004 321.035 6.636 7.392 18.222 7.38 24.846 0 7.065-7.867 173.004-194.146 173.004-321.034C441.425 83.182 358.244 0 256 0zm0 278.72c-51.442 0-93.292-41.852-93.292-93.294S204.558 92.134 256 92.134s93.29 41.85 93.29 93.293S307.44 278.72 256 278.72z"/>
 					</svg>
 				)

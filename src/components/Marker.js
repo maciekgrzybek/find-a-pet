@@ -20,7 +20,11 @@ class Marker extends Component {
 				style={ style }
 				onMouseEnter={() => this.props.$hover ? this.props.hoverAnimal(this.props.id) : null}
 				onMouseLeave={() => this.props.$hover ? this.props.hoverAnimal(null) : null}>
-					<Icon icon="mapMarker" class={`marker__icon marker--${this.props.addType}__icon`} />
+					<Icon 
+						icon="mapMarker" 
+						class={`marker__icon marker--${this.props.addType}__icon`} 
+						width="30px"
+						height="30px"/>
 			</div>
 		);
 	}
