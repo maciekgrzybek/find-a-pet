@@ -11,11 +11,14 @@ class Home extends Component {
 			<div>
 				<MainHero />
 				<div className="row">
+					<div className="col-xs-12">
+						<h3>Mapa zwierzakow</h3>
+					</div>
 					<div className="col-xs-12 col-sm-8 map">
 						<MainMap />
 					</div>
-					<div className="col-xs-12 col-sm-4 main-table">
-						<SearchBar />
+					<div className="col-xs-12 col-sm-4">
+						{/* <SearchBar /> */}
 						<MainTable />
 					</div>
 				</div>

@@ -10,4 +10,16 @@
 		background: $primary-color;
 		border-color: $primary-color; 
 	}
+	&--lost {
+		background: $lost-color;
+		border-color: $lost-color; 
+	}
+	&--found {
+		background: $found-color;
+		border-color: $found-color; 
+	}
+	&--adopt {
+		background: $adopt-color;
+		border-color: $adopt-color; 
+	}
 }

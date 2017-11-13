@@ -1,22 +1,35 @@
 .table {
-	&__image {
-		max-width: 80px;
-	}
-	&__row {
-		background: gold;
-		max-height: 100px;
+	list-style: none;
+	padding-left: 0;
+}
+.table-row {
+		background: white;
+		display: flex;
+		border-left: 8px solid;
+		min-height: 100px;
+		border-bottom: 1px solid rgba(black, 0.05);
+		border-right: 1px solid rgba(black, 0.05);
 		&--lost {
-			background: $lost-color;
+			border-left-color: $lost-color;
 		}
 		&--found {
-			background: $found-color;
+			border-left-color: $found-color;
 		}
 		&--adopt {
-			background: $adopt-color;
+			border-left-color: $adopt-color;
 		}
 		&--hover {
-			background: red;
+			background: white;
 		}
-	}
+		&__image-wrapper {
+			width: 100px;
+			height: 100%;
+			background-position: center center;
+			background-size: cover;
+			background-repeat: no-repeat; 
+		}
+		&__details-wrapper {
+			padding: 15px;
+		}
 }
 

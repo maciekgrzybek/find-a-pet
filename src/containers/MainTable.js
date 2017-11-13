@@ -53,7 +53,7 @@ class MainTable extends Component {
 					willEnter={this.willEnter}
 					willLeave={this.willLeave}>
 						{styles =>
-							<ul >
+							<ul className="table">
 								{styles.map(config => {
 									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style}}/> 
 								})}

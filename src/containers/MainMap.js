@@ -196,10 +196,10 @@ class MainMap extends Component {
 
 	static defaultProps = {
 		center: {
-			lat: 53,
-			lng: 23
+			lat: 52.259813,
+			lng: 19.911042
 		},
-		zoom: 11
+		zoom: 6
 		
 	};
 
