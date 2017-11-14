@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { hoverAnimal } from '../actions/index';
 import TableRow from '../components/TableRow';
 import _ from 'lodash';
-import { TransitionMotion, spring } from 'react-motion';
+import FlipMove from 'react-flip-move';
 
 
 
@@ -12,20 +12,6 @@ class MainTable extends Component {
 
 
 
-	willEnter() {
-    return {
-			height: 0,
-			opacity: 1
-		}
-	}
-	willLeave() {
-    return {
-			height: spring(0),
-			opacity: spring(0, {
-				stiffness:120,
-				damping:17})
-		};
-	}
 	_renderAnimalTable() {
 
 		// Filter animals - by map bounds
@@ -33,36 +19,20 @@ class MainTable extends Component {
 			const { lat, lng } = value.location;
 			const mapArea = new window.google.maps.Polygon({paths: this.props.mapBounds});
 			const curPosition = new window.google.maps.LatLng(lat, lng);
-			// if(window.google.maps.geometry) {
-				return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
-			// }
-		})
-
-			return (
-				<TransitionMotion
-					styles={ _.map(animalsFiltered,(animal, key) => {
-						return {
-							data: animal,
-							key: key,
-							style: {
-								height: spring(150),
-								opacity: spring(1)
-							}
-						}
-					})}
-					willEnter={this.willEnter}
-					willLeave={this.willLeave}>
-						{styles =>
-							<ul className="table">
-								{styles.map(config => {
-									return <TableRow	animal={config.data} id={config.key} key={config.key} style={{...config.style}}/> 
-								})}
-							</ul>
-						}
-					</TransitionMotion>				
-
-			)
-		// })
+			return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
+			
+		});
+		return (
+			<FlipMove    
+				duration={750} easing="ease-out" appearAnimation="accordionVertical" enterAnimation="accordionVertical" leaveAnimation="accordionVertical">
+			{
+				_.map(animalsFiltered,(animal,key) => {
+					return (
+						<TableRow animal={animal} key={key} id={key} />
+					)})
+			}
+			</FlipMove>		
+		)
 	}  
 	
 	render() {
