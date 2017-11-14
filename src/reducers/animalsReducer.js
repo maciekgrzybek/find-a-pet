@@ -1,7 +1,7 @@
-import { FETCH_ANIMALS } from '../constants/actionTypes';
+import { FETCH_ANIMAL, FETCH_ANIMALS } from '../constants/actionTypes';
 import _ from 'lodash';
 
-export default (state = null, action) => {
+export default (state = {}, action) => {
 
 	switch(action.type) {
 		case FETCH_ANIMALS:
@@ -11,6 +11,9 @@ export default (state = null, action) => {
 				}
 			}
 			return ({...state}, action.payload);
+		case FETCH_ANIMAL:
+			action.payload.data.id = action.payload.id;
+			return { ...state,[action.payload.id]: action.payload.data };
 		default:
 			return state;
 	}	

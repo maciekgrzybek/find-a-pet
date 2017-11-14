@@ -1,4 +1,4 @@
-import { FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL } from '../constants/actionTypes';
+import { FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL } from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
 
 
@@ -10,7 +10,7 @@ import { database, storage, firebaseConfig } from '../constants/firebase';
 
 
 //-----------------------
-export function fetchAnimals(city = '', bounds) {
+export function fetchAnimals(city = '') {
 	
 	const searchTerm = city.toLowerCase()
 	return dispatch => {
@@ -23,6 +23,24 @@ export function fetchAnimals(city = '', bounds) {
 	}
 	
 }
+
+//-----------------------
+export function fetchAnimal(id) {
+	
+	return dispatch => {
+		database.ref(`/zwierzak/${id}`).on('value', snapshot => {
+			dispatch({
+				type: FETCH_ANIMAL,
+				payload: {
+					data: snapshot.val(),
+					id
+				}
+			})
+		})
+	}
+	
+}
+
 
 
 //-----------------------
@@ -78,6 +96,8 @@ export function selectAnimal(key){
 
 //-----------------------
 export function setMapBounds(bounds) {
+
+		
 
 		const mapBounds =[]
 		mapBounds[0] = bounds.nw;

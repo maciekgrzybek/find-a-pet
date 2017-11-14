@@ -199,10 +199,13 @@ class MainMap extends Component {
 			lat: 52.259813,
 			lng: 19.911042
 		},
-		zoom: 6
+		zoom: 9
 		
 	};
 
+	// shouldComponentUpdate(nextProps) {
+	// 	if(this.props.match.params !== nextProps.match.params)
+	// }
 	componentDidMount() {
 		this.props.fetchAnimals(this.props.searchCity);
 	}
@@ -223,22 +226,23 @@ class MainMap extends Component {
 	} 
 
 	render() {
-		if(!this.props.animals) {
-			return (
-				<GoogleMapReact
-					bootstrapURLKeys={{
-						key: GOOGLE_MAPS_API_KEY,
-						language: GOOGLE_MAPS_LANG
-					}}								
-					defaultCenter={this.props.center}
-					defaultZoom={this.props.zoom}
-					options={createMapOptions}
-					onChange={({bounds}) => {
-						this.props.setMapBounds(bounds);
-					}} >
-				</GoogleMapReact>
-			)
-		}
+		// if(!this.props.animals) {
+		// 	return (
+		// 		<GoogleMapReact
+		// 			bootstrapURLKeys={{
+		// 				key: GOOGLE_MAPS_API_KEY,
+		// 				language: GOOGLE_MAPS_LANG
+		// 			}}								
+		// 			defaultCenter={this.props.center}
+		// 			defaultZoom={this.props.zoom}
+		// 			options={createMapOptions}
+		// 			onChange={({bounds}) => {
+		// 				console.log(bounds)
+		// 				this.props.setMapBounds(bounds);
+		// 			}} >
+		// 		</GoogleMapReact>
+		// 	)
+		// }
 
 		return (
 						<GoogleMapReact
