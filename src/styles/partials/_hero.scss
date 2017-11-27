@@ -3,11 +3,18 @@
 	justify-content: center;
 	align-items: center;
 	background: url('../images/znajdz-zwierzaka-hero.jpg');
-	@include background-image($position: left center1);
-	min-height: 500px;
+	@include background-image($position: left center);
+	height: 500px;
 	position: relative;
-	.container {
+	margin-bottom: 1.5rem;
+	.grid-container {
 		z-index: 1;
+	}
+	&__title {
+		margin-bottom: 1rem;
+	}
+	&__text {
+		margin-bottom: 1.2rem;
 	}
 	&:before {
 		position: absolute;
@@ -18,7 +25,7 @@
 		background: rgba(white, .75);
 		content: '';
 	}
-	@include breakpoint(lg) {
+	@include breakpoint(large) {
 		@include background-image();
 	}
 }

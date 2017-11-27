@@ -6,9 +6,9 @@ import Icon from './Icon';
 const Navigation = () => {
 	return (
 
-			<div className="container">
-				<div className="row top-bar">
-					<div className="col-xs-4 col-sm-8 col-md-6 col-lg-4 top-bar__logo">
+			<div className="grid-container">
+				<div className="grid-x grid-padding-x top-bar">
+					<div className="small-4 medium-8 cell top-bar__logo">
 						<NavLink to="/">
 							<Icon 
 								icon="logo"
@@ -16,7 +16,7 @@ const Navigation = () => {
 								height="40px" />
 						</NavLink>
 					</div>
-					<div className="col-xs-8 col-sm-8 col-md-6 col-lg-4 top-bar__menu">
+					<div className="small-8 cell align-self-middle top-bar__menu">
 	
 							<ul className="navigation end-xs">
 								<li className="navigation__item">								

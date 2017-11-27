@@ -1,5 +1,9 @@
 .map {
-	height: 600px;
+	height: 450px;
+	&__title {
+		font-weight: 400;
+		margin-bottom: 1rem;
+	}
 }
 .marker {
   position: absolute;

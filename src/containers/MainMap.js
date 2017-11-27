@@ -199,7 +199,7 @@ class MainMap extends Component {
 			lat: 52.259813,
 			lng: 19.911042
 		},
-		zoom: 9
+		zoom: 6
 		
 	};
 
