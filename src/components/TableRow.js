@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { hoverAnimal, selectAnimal } from '../actions/index';
 import { Link } from 'react-router-dom';
 import Button from './Button';
+import Icon from './Icon';
 
 
 
@@ -22,18 +23,42 @@ class TableRow extends Component {
 		return (
 			<Link to={`zwierzak/${animal.addType}/${this.props.id}`}>
 				<li
-					className={ `table-row table-row--${animal.addType} ${rowHoverClass}` }
+					className={ `grid-x table-row table-row--${animal.addType} ${rowHoverClass}` }
 					style={ this.props.style }
 					onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 					onMouseLeave={() => this.props.hoverAnimal(null)}
 					onClick={() => this.props.selectAnimal(this.props.id)}>
-						<div className="table-row__image-wrapper" 
+						<div className="cell table-row__image-wrapper" 
 									style={imageWrapperStyle}>
 						</div>
-						<div className="table-row__details-wrapper" >
+						<div className="auto cell align-self-middle table-row__details-wrapper" >
 							<h4 className="table-row__title">{ type }</h4>
-							<p className="table-row__details">{animal.date}</p>
-							<p className="table-row__details">{animal.location.city}</p>
+							<div className="grid-x">
+								<div className="shrink cell">
+								<Icon 
+									icon="date" 
+									class={`table-row__icon marker__icon marker--${animal.addType}__icon`} 
+									width="15px"
+									height="15px"/>
+								</div>
+								<div className="auto cell align-self-middle">
+									<p className="table-row__details">{animal.date}</p>
+								</div>
+							</div>
+							<div className="grid-x">
+								<div className="shrink cell">
+								<Icon 
+									icon="mapMarker" 
+									class={`table-row__icon marker__icon marker--${animal.addType}__icon`} 
+									width="15px"
+									height="15px"/>
+								</div>
+								<div className="auto cell align-self-middle">
+									<p className="table-row__details">{animal.location.city}</p>
+								</div>
+							</div>
+						</div>
+						<div className="auto cell align-self-middle">
 							<Button color={ animal.addType } label='Wiecej' />
 						</div>
 				</li>

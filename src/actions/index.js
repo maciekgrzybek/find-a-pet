@@ -97,8 +97,6 @@ export function selectAnimal(key){
 //-----------------------
 export function setMapBounds(bounds) {
 
-		
-
 		const mapBounds =[]
 		mapBounds[0] = bounds.nw;
 		mapBounds[1] = bounds.ne;

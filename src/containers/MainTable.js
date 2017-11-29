@@ -48,7 +48,7 @@ class MainTable extends Component {
 			)
 		}
 		return (
-				<div>
+				<div className="main-table">
 					{ this._renderAnimalTable() }
 				</div>
 		);

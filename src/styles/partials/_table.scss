@@ -21,15 +21,27 @@
 		&--hover {
 			background: white;
 		}
+		&__title {
+			font-weight: 500;
+			line-height: 1;
+			margin-bottom: 10px;
+		}
 		&__image-wrapper {
 			width: 100px;
-			height: 100%;
+			height: auto;
 			background-position: center center;
 			background-size: cover;
 			background-repeat: no-repeat; 
 		}
+		&__details {
+			line-height: 1;
+			font-size: 14px;
+			text-transform: capitalize;
+		}
 		&__details-wrapper {
-			padding: 15px;
+			padding: 25px 10px 25px 15px;
+		}
+		&__icon {
+			margin-right: 10px;
 		}
 }
-
