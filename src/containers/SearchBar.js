@@ -1,34 +1,30 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { fetchAnimals } from '../actions/index';
+import { setCenter } from '../actions/index';
 import { connect } from 'react-redux';
 
-// class SearchBar extends Component {
-	
-// 	render() {
-// 		return (
-// 			<div>
-// 				<form className="form-inline">
-// 					<input
-// 						className="form-control mr-sm-2"
-// 						type="text"
-// 						placeholder="Miasto..."
-// 						onChange={(e) => this.props.fetchAnimals(e.target.value)}/>
-// 					{/* <button className="btn btn-outline-success" type="submit">Szukaj</button> */}
-// 	    	</form>
-// 			</div>
-// 		);
-// 	}
-// }
-export default class SearchBox extends React.Component {
+
+class SearchBar extends React.Component {
 
   render() {
-    return <input ref="input" {...this.props} type="text"/>;
+    return <input ref="input"  type="text"/>;
   }
   onPlacesChanged = () => {
-		// TODO : SEARCHING FUNCTIONALITY
+		const { mapSize } = this.props;
 		var places = this.searchBox.getPlaces();
-		console.log(places)
+		
+		// TODO: Coordinates needs to be fixed - works but zoom on wrong place
+
+		const nw = {
+			lat: places[0].geometry.viewport.b.f,
+			lng: places[0].geometry.viewport.f.b
+		};
+		const se = {
+			lat: places[0].geometry.viewport.b.b,
+			lng: places[0].geometry.viewport.f.f
+		};
+		this.props.setCenter(nw, se, mapSize.width, mapSize.height);
+
   }
   componentDidMount() {
     var input = ReactDOM.findDOMNode(this.refs.input);
@@ -40,6 +36,11 @@ export default class SearchBox extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+	return {
+		mapSize: state.mapSize,
+	}
+}
 
 
-// export default connect(null, { fetchAnimals })(SearchBar);
+export default connect(mapStateToProps, { setCenter })(SearchBar);

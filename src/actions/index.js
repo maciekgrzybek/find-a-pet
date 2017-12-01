@@ -1,5 +1,6 @@
-import { FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL } from '../constants/actionTypes';
+import { FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
+import { fitBounds } from 'google-map-react/utils';
 
 
 
@@ -78,6 +79,8 @@ export function uploadImage(file, callback ) {
 	}
 }
 
+
+
 //-----------------------
 export function hoverAnimal(key) {
 	return {
@@ -91,6 +94,38 @@ export function selectAnimal(key){
 	return {
 		type: SELECT_ANIMAL,
 		payload: key
+	}
+}
+
+
+//-----------------------
+export function setMapDimensions(size) {
+	return {
+		type: SET_MAP_DIMENSIONS,
+		payload: size
+	}
+}
+
+//-----------------------
+export function setCenter(nw, se, width, height) {
+
+	const bounds = {
+		nw,
+		se
+	};
+	const size = {
+		width,
+		height
+	};
+
+	const {center, zoom} = fitBounds(bounds, size);
+
+	return {
+		type: SET_CENTER,
+		payload: {
+			center,
+			zoom
+		}
 	}
 }
 

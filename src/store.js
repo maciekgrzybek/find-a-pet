@@ -6,6 +6,8 @@ import animalsReducer from './reducers/animalsReducer';
 import hoverReducer from './reducers/hoverReducer';
 import selectReducer from './reducers/selectReducer';
 import mapBoundsReducer from './reducers/mapBoundsReducer';
+import mapCenterReducer from './reducers/mapCenterReducer';
+import mapSizeReducer from './reducers/mapSizeReducer';
 
 
 const rootReducer = combineReducers({
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
 	hover: hoverReducer,
 	select: selectReducer,
 	mapBounds: mapBoundsReducer,
+	mapCenter: mapCenterReducer,
+	mapSize: mapSizeReducer,
 	form: formReducer
 });
 

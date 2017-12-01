@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import Marker from '../components/Marker';
-import { fetchAnimals, setMapBounds } from '../actions/index';
+import { fetchAnimals, setMapBounds, setMapDimensions } from '../actions/index';
 import _ from 'lodash';
 import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
+
+
 
 function createMapOptions(maps) {
 	return {
@@ -194,8 +196,9 @@ function createMapOptions(maps) {
 
 class MainMap extends Component {
 
+	
 	static defaultProps = {
-		center: {
+		mapCenter: {
 			lat: 52.259813,
 			lng: 19.911042
 		},
@@ -203,9 +206,6 @@ class MainMap extends Component {
 		
 	};
 
-	// shouldComponentUpdate(nextProps) {
-	// 	if(this.props.match.params !== nextProps.match.params)
-	// }
 	componentDidMount() {
 		this.props.fetchAnimals(this.props.searchCity);
 	}
@@ -243,19 +243,26 @@ class MainMap extends Component {
 		// 		</GoogleMapReact>
 		// 	)
 		// }
+		
 
+		
+		
 		return (
 						<GoogleMapReact
 							bootstrapURLKeys={{
 								key: GOOGLE_MAPS_API_KEY,
 								language: GOOGLE_MAPS_LANG
 							}}								
-	 	 					defaultCenter={this.props.center}
+	 	 					defaultCenter={this.props.mapCenter} // TODO: Default props cant be changed
+								center={this.props.mapCenter.center}
+								zoom={this.props.mapCenter.zoom}
 	 	 					defaultZoom={this.props.zoom}
 	 	 					options={createMapOptions}
-							onChange={({bounds}) => {
+							onChange={({bounds, size}) => {
 								this.props.setMapBounds(bounds);
-							}} >
+								this.props.setMapDimensions(size);
+							}} 
+							>
 	 	 					{ this._renderAnimalMarkers() }
 	 	 				</GoogleMapReact>
 		);
@@ -266,8 +273,9 @@ function mapStateToProps(state) {
 	return {
 		animals: state.animals,
 		mapBounds: state.mapBounds,
+		mapCenter: state.mapCenter,
 		searchCity: state.search
 	}
 }
 
-export default connect(mapStateToProps, { fetchAnimals, setMapBounds })(MainMap);
+export default connect(mapStateToProps, { fetchAnimals, setMapBounds, setMapDimensions })(MainMap);
