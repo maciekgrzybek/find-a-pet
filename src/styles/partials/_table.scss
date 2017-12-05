@@ -27,7 +27,6 @@
 			margin-bottom: 10px;
 		}
 		&__image-wrapper {
-			width: 100px;
 			height: auto;
 			background-position: center center;
 			background-size: cover;
@@ -40,6 +39,9 @@
 		}
 		&__details-wrapper {
 			padding: 25px 10px 25px 15px;
+		}
+		&__details-wrapper-inner {
+			margin-bottom: 20px;
 		}
 		&__icon {
 			margin-right: 10px;

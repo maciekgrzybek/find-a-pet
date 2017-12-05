@@ -8,3 +8,4 @@ export const SEARCH_CITY = 'SEARCH_CITY';
 export const SELECT_ANIMAL = 'SELECT_ANIMAL';
 export const SET_CENTER = 'SET_CENTER';
 export const SET_MAP_DIMENSIONS = 'SET_MAP_DIMENSIONS';
+export const ANIMAL_LIST_FILTER = 'ANIMAL_LIST_FILTER';

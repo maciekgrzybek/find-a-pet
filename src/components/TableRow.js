@@ -28,38 +28,45 @@ class TableRow extends Component {
 					onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 					onMouseLeave={() => this.props.hoverAnimal(null)}
 					onClick={() => this.props.selectAnimal(this.props.id)}>
-						<div className="cell table-row__image-wrapper" 
+
+						<div className="small-6 cell table-row__image-wrapper" 
 									style={imageWrapperStyle}>
 						</div>
-						<div className="auto cell align-self-middle table-row__details-wrapper" >
-							<h4 className="table-row__title">{ type }</h4>
+
+						<div className="small-6 cell table-row__details-wrapper">
 							<div className="grid-x">
-								<div className="shrink cell">
-								<Icon 
-									icon="date" 
-									class={`table-row__icon marker__icon marker--${animal.addType}__icon`} 
-									width="15px"
-									height="15px"/>
+
+								<div className="small-12 cell align-self-middle table-row__details-wrapper-inner" >
+									<h4 className="table-row__title">{ type }</h4>
+									<div className="grid-x">
+										<div className="shrink cell">
+										<Icon 
+											icon="date" 
+											class={`table-row__icon marker__icon marker--${animal.addType}__icon`} 
+											width="15px"
+											height="15px"/>
+										</div>
+										<div className="auto cell align-self-middle">
+											<p className="table-row__details">{animal.date}</p>
+										</div>
+									</div>
+									<div className="grid-x">
+										<div className="shrink cell">
+										<Icon 
+											icon="mapMarker" 
+											class={`table-row__icon marker__icon marker--${animal.addType}__icon`} 
+											width="15px"
+											height="15px"/>
+										</div>
+										<div className="auto cell align-self-middle">
+											<p className="table-row__details">{animal.location.city}</p>
+										</div>
+									</div>
 								</div>
-								<div className="auto cell align-self-middle">
-									<p className="table-row__details">{animal.date}</p>
+								<div className="small-12 cell align-self-middle">
+									<Button color={ animal.addType } label='Wiecej' />
 								</div>
 							</div>
-							<div className="grid-x">
-								<div className="shrink cell">
-								<Icon 
-									icon="mapMarker" 
-									class={`table-row__icon marker__icon marker--${animal.addType}__icon`} 
-									width="15px"
-									height="15px"/>
-								</div>
-								<div className="auto cell align-self-middle">
-									<p className="table-row__details">{animal.location.city}</p>
-								</div>
-							</div>
-						</div>
-						<div className="auto cell align-self-middle">
-							<Button color={ animal.addType } label='Wiecej' />
 						</div>
 				</li>
 			</Link>

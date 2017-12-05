@@ -5,206 +5,14 @@ import Marker from '../components/Marker';
 import { fetchAnimals, setMapBounds, setMapDimensions } from '../actions/index';
 import _ from 'lodash';
 import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
+import createMapOptions from '../helpers/MapStyles';
 
 
 
-function createMapOptions(maps) {
-	return {
-		scrollwheel:false,
-		fullscreenControl: false,
-		styles: [
-			{
-					"featureType": "water",
-					"elementType": "geometry",
-					"stylers": [
-							{
-									"color": "#e9e9e9"
-							},
-							{
-									"lightness": 17
-							}
-					]
-			},
-			{
-					"featureType": "landscape",
-					"elementType": "geometry",
-					"stylers": [
-							{
-									"color": "#f5f5f5"
-							},
-							{
-									"lightness": 20
-							}
-					]
-			},
-			{
-					"featureType": "road.highway",
-					"elementType": "geometry.fill",
-					"stylers": [
-							{
-									"color": "#ffffff"
-							},
-							{
-									"lightness": 17
-							}
-					]
-			},
-			{
-					"featureType": "road.highway",
-					"elementType": "geometry.stroke",
-					"stylers": [
-							{
-									"color": "#ffffff"
-							},
-							{
-									"lightness": 29
-							},
-							{
-									"weight": 0.2
-							}
-					]
-			},
-			{
-					"featureType": "road.arterial",
-					"elementType": "geometry",
-					"stylers": [
-							{
-									"color": "#ffffff"
-							},
-							{
-									"lightness": 18
-							}
-					]
-			},
-			{
-					"featureType": "road.local",
-					"elementType": "geometry",
-					"stylers": [
-							{
-									"color": "#ffffff"
-							},
-							{
-									"lightness": 16
-							}
-					]
-			},
-			{
-					"featureType": "poi",
-					"elementType": "geometry",
-					"stylers": [
-							{
-									"color": "#f5f5f5"
-							},
-							{
-									"lightness": 21
-							}
-					]
-			},
-			{
-					"featureType": "poi.park",
-					"elementType": "geometry",
-					"stylers": [
-							{
-									"color": "#dedede"
-							},
-							{
-									"lightness": 21
-							}
-					]
-			},
-			{
-					"elementType": "labels.text.stroke",
-					"stylers": [
-							{
-									"visibility": "on"
-							},
-							{
-									"color": "#ffffff"
-							},
-							{
-									"lightness": 16
-							}
-					]
-			},
-			{
-					"elementType": "labels.text.fill",
-					"stylers": [
-							{
-									"saturation": 36
-							},
-							{
-									"color": "#333333"
-							},
-							{
-									"lightness": 40
-							}
-					]
-			},
-			{
-					"elementType": "labels.icon",
-					"stylers": [
-							{
-									"visibility": "off"
-							}
-					]
-			},
-			{
-					"featureType": "transit",
-					"elementType": "geometry",
-					"stylers": [
-							{
-									"color": "#f2f2f2"
-							},
-							{
-									"lightness": 19
-							}
-					]
-			},
-			{
-					"featureType": "administrative",
-					"elementType": "geometry.fill",
-					"stylers": [
-							{
-									"color": "#fefefe"
-							},
-							{
-									"lightness": 20
-							}
-					]
-			},
-			{
-					"featureType": "administrative",
-					"elementType": "geometry.stroke",
-					"stylers": [
-							{
-									"color": "#fefefe"
-							},
-							{
-									"lightness": 17
-							},
-							{
-									"weight": 1.2
-							}
-					]
-			}
-		]
-
-	
-	}
-}
+createMapOptions(false,false);
 
 
 class MainMap extends Component {
-
-	
-	static defaultProps = {
-		mapCenter: {
-			lat: 52.259813,
-			lng: 19.911042
-		},
-		zoom: 6
-		
-	};
 
 	componentDidMount() {
 		this.props.fetchAnimals(this.props.searchCity);
@@ -253,10 +61,8 @@ class MainMap extends Component {
 								key: GOOGLE_MAPS_API_KEY,
 								language: GOOGLE_MAPS_LANG
 							}}								
-	 	 					defaultCenter={this.props.mapCenter} // TODO: Default props cant be changed
-								center={this.props.mapCenter.center}
-								zoom={this.props.mapCenter.zoom}
-	 	 					defaultZoom={this.props.zoom}
+							center={this.props.mapCenter.center}
+							zoom={this.props.mapCenter.zoom}
 	 	 					options={createMapOptions}
 							onChange={({bounds, size}) => {
 								this.props.setMapBounds(bounds);

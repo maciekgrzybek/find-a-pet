@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAnimal } from '../actions/index';
-import SelectedAnimalSelector from '../selectors/selectedAnimal';
 
 class SelectedAnimal extends Component {
 

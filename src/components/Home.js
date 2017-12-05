@@ -12,9 +12,6 @@ class Home extends Component {
 				<MainHero />
 				<div className="grid-container">
 					<div className="grid-x grid-padding-x">
-						<div className="small-12 cell ">
-							<h2 className="map__title">Mapa zwierzakow</h2>
-						</div>
 						<div className="small-12 cell map">
 							<MainMap />
 						</div>

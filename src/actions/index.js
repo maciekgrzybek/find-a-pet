@@ -1,4 +1,4 @@
-import { FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
+import { ANIMAL_LIST_FILTER, FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
 import { fitBounds } from 'google-map-react/utils';
 
@@ -86,6 +86,14 @@ export function hoverAnimal(key) {
 	return {
 		type: HOVER_ANIMAL,
 		payload: key
+	}
+}
+
+// ----------------------
+export function animalListFilter(type){
+	return {
+		type: ANIMAL_LIST_FILTER,
+		payload: type
 	}
 }
 
