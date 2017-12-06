@@ -1,4 +1,4 @@
-import { ANIMAL_LIST_FILTER, FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SELECT_ANIMAL, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
+import { SHOW_ANIMALS_ON_MAP, ANIMAL_LIST_FILTER, FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
 import { fitBounds } from 'google-map-react/utils';
 
@@ -11,11 +11,10 @@ import { fitBounds } from 'google-map-react/utils';
 
 
 //-----------------------
-export function fetchAnimals(city = '') {
+export function fetchAnimals() {
 	
-	const searchTerm = city.toLowerCase()
 	return dispatch => {
-		database.ref(`/zwierzak`).orderByChild('/location/city').startAt(searchTerm).endAt(searchTerm + "\uf8ff").on('value', snapshot => {
+		database.ref(`/zwierzak`).on('value', snapshot => {
 			dispatch({
 				type: FETCH_ANIMALS,
 				payload: snapshot.val()
@@ -89,6 +88,8 @@ export function hoverAnimal(key) {
 	}
 }
 
+
+
 // ----------------------
 export function animalListFilter(type){
 	return {
@@ -98,12 +99,12 @@ export function animalListFilter(type){
 }
 
 // ----------------------
-export function selectAnimal(key){
-	return {
-		type: SELECT_ANIMAL,
-		payload: key
-	}
-}
+// export function selectAnimal(key){
+// 	return {
+// 		type: SELECT_ANIMAL,
+// 		payload: key
+// 	}
+// }
 
 
 //-----------------------

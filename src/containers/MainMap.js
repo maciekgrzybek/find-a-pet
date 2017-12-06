@@ -15,12 +15,30 @@ createMapOptions(false,false);
 class MainMap extends Component {
 
 	componentDidMount() {
-		this.props.fetchAnimals(this.props.searchCity);
+		this.props.fetchAnimals();
 	}
 
 	_renderAnimalMarkers() {
 
-		return _.map(this.props.animals, (animal, key) => {
+		let animalsFiltered;
+
+		// if(this.props.mapBounds) {
+			 animalsFiltered = _.pickBy(this.props.animals,(value,key) => {
+				const { lat, lng } = value.location;
+				const mapArea = new window.google.maps.Polygon({paths: this.props.mapBounds});
+				const curPosition = new window.google.maps.LatLng(lat, lng);
+				if(this.props.filter) {
+					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea) && value.addType === this.props.filter);
+				} else {
+					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea));
+				}
+				
+			});
+		// } else {
+		// 		animalsFiltered = this.props.animals;
+		// }
+
+		return _.map(animalsFiltered, (animal, key) => {
 			return (
 				<Marker
 					key={ key }
@@ -80,7 +98,7 @@ function mapStateToProps(state) {
 		animals: state.animals,
 		mapBounds: state.mapBounds,
 		mapCenter: state.mapCenter,
-		searchCity: state.search
+		filter: state.animalListFilter
 	}
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hoverAnimal, selectAnimal } from '../actions/index';
+import { hoverAnimal } from '../actions/index';
 import { Link } from 'react-router-dom';
 import Button from './Button';
 import Icon from './Icon';
@@ -27,7 +27,8 @@ class TableRow extends Component {
 					style={ this.props.style }
 					onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
 					onMouseLeave={() => this.props.hoverAnimal(null)}
-					onClick={() => this.props.selectAnimal(this.props.id)}>
+					//onClick={() => this.props.selectAnimal(this.props.id)}
+					>
 
 						<div className="small-6 cell table-row__image-wrapper" 
 									style={imageWrapperStyle}>
@@ -80,4 +81,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { hoverAnimal, selectAnimal })(TableRow);
+export default connect(mapStateToProps, { hoverAnimal })(TableRow);

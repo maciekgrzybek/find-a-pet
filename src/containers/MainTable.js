@@ -14,23 +14,16 @@ class MainTable extends Component {
 
 	_renderAnimalTable() {
 		let animalsFiltered;
-		// Filter animals - by map bounds
-		// if(this.props.mapBounds) {
-		// 	 animalsFiltered = _.pickBy(this.props.animals,(value,key) => {
-		// 		const { lat, lng } = value.location;
-		// 		const mapArea = new window.google.maps.Polygon({paths: this.props.mapBounds});
-		// 		const curPosition = new window.google.maps.LatLng(lat, lng);
-		// 		return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea))
-		// 	});
-		// } else {
-		// 		animalsFiltered = this.props.animals;
-		// }
 		if(this.props.mapBounds) {
 			 animalsFiltered = _.pickBy(this.props.animals,(value,key) => {
 				const { lat, lng } = value.location;
 				const mapArea = new window.google.maps.Polygon({paths: this.props.mapBounds});
 				const curPosition = new window.google.maps.LatLng(lat, lng);
-				return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea) && value.addType === this.props.filter)
+				if(this.props.filter) {
+					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea) && value.addType === this.props.filter);
+				} else {
+					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea));
+				}
 			});
 		} else {
 				animalsFiltered = this.props.animals;
