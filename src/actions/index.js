@@ -1,4 +1,4 @@
-import { SHOW_ANIMALS_ON_MAP, ANIMAL_LIST_FILTER, FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
+import { ANIMAL_LIST_FILTER, FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
 import { fitBounds } from 'google-map-react/utils';
 

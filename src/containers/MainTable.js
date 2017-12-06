@@ -4,6 +4,7 @@ import { hoverAnimal } from '../actions/index';
 import TableRow from '../components/TableRow';
 import _ from 'lodash';
 import FlipMove from 'react-flip-move';
+import animalsSelector from '../selectors/animalsSelector';
 
 
 
@@ -13,26 +14,11 @@ class MainTable extends Component {
 
 
 	_renderAnimalTable() {
-		let animalsFiltered;
-		if(this.props.mapBounds) {
-			 animalsFiltered = _.pickBy(this.props.animals,(value,key) => {
-				const { lat, lng } = value.location;
-				const mapArea = new window.google.maps.Polygon({paths: this.props.mapBounds});
-				const curPosition = new window.google.maps.LatLng(lat, lng);
-				if(this.props.filter) {
-					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea) && value.addType === this.props.filter);
-				} else {
-					return (window.google.maps.geometry.poly.containsLocation(curPosition, mapArea));
-				}
-			});
-		} else {
-				animalsFiltered = this.props.animals;
-		}
 		return (
 			<FlipMove    
 				duration={750} easing="ease-out" appearAnimation="accordionVertical" enterAnimation="accordionVertical" leaveAnimation="accordionVertical">
 			{
-				_.map(animalsFiltered,(animal,key) => {
+				_.map(this.props.animals,(animal,key) => {
 					return (
 						<TableRow animal={animal} key={key} id={key} />
 					)})
@@ -40,15 +26,7 @@ class MainTable extends Component {
 			</FlipMove>		
 		)
 	}  
-	
 	render() {
-		if(!this.props.animals) {
-			return (
-				<div>
-					loding
-			</div>
-			)
-		}
 		return (
 				<div className="main-table">
 					{ this._renderAnimalTable() }
@@ -59,10 +37,8 @@ class MainTable extends Component {
 
 function mapStateToProps(state) {
 	return {
-		animals: state.animals,
+		animals: animalsSelector(state),
 		hover: state.hover,
-		mapBounds: state.mapBounds,
-		filter: state.animalListFilter
 	}
 }
 
