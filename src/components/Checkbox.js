@@ -22,14 +22,21 @@ class checkbox extends Component {
 	render() {
 		const { title, value } = this.props;
 		return (
-			<div>
+			<div className="checkbox">
 				<input 
+					className="checkbox__input"
 					type="checkbox" 
 					id={ title } 
 					value={ value }
 					checked={this.props.title === this.props.filter} 				
 					onChange={ this.handleInputChange } />
-				<label htmlFor={ title } >{ value }</label>
+				<label 
+					htmlFor={ title } 
+					className="checkbox__fake-box"
+					></label>
+				<span
+					className="checkbox__label"
+					>{ value }</span>
 			</div>
 		)
 	}

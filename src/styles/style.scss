@@ -1,12 +1,14 @@
 
 @import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css';
 @import './partials/foundation';
-@import './partials/global';
-
+@import './partials/global-styles';
 @import './partials/button';
 @import './partials/_marker.scss';
 @import './partials/navigation';
 @import './partials/hero';
 @import './partials/map';
 @import './partials/table';
+@import './partials/home';
+@import './partials/checkbox';
+@import './partials/searchbar';
 

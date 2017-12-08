@@ -43,14 +43,16 @@ class SearchBar extends Component {
 
   render() {
     return (
-			<div>
-				<h3>Wyszukaj miasto</h3>
-				<input ref="input"  type="text" placeholder="Miasto..."/>
-				<form>
-					<Checkbox title="lost" value="zgubiony"  />
-					<Checkbox title="found" value="znaleziony"  />
-					<Checkbox title="adopt" value="do adopcji"  />
-				</form>
+			<div className="grid-x grid-padding-x search-bar">
+				<div className="small-12 cell">
+					<h3 className="search-bar__title">Wyszukaj miasto</h3>
+					<input ref="input"  type="text" placeholder="Miasto..." className="search-bar__input"/>
+					<form className="h-flex">
+						<Checkbox title="lost" value="zgubiony"  />
+						<Checkbox title="found" value="znaleziony"  />
+						<Checkbox title="adopt" value="do adopcji"  />
+					</form>
+				</div>
 			</div>
 		)
 	}

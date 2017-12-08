@@ -1,21 +1,25 @@
-
 // Variables 
 // ---------
 $black: #1d1d1d;
-$primary-color: #ffbf00;
+$primary-color: #ff8700;
 $found-color: #ffbf00;
 $lost-color: #ff8700;
 $adopt-color: #1bb23c;
-$light-grey: #c4c4c4;
-$medium-gray: #787878;
+$light-grey: #f5f5f5;
+$medium-grey: #787878;
 $breakpoints: (
   medium: 40em,
   large: 64em,
   xlarge: 75em,
 );
+$swatches: (
+	primary: $primary-color,
+	lost: $lost-color,
+	found: $found-color,
+	adopt: $adopt-color,
+);
 $header-font:'Montserrat', sans-serif;
 $paragraph-font:'Lato', sans-serif;
-
 
 // Mixins 
 // ---------
@@ -43,54 +47,4 @@ $paragraph-font:'Lato', sans-serif;
       @content;
     }
   }
-}
-// Tags 
-// ---------
-html,
-body {
-    overflow-x: hidden;
-    position: relative;
-    height: 100%;
-}
-html {
-	font-size: 16px;
-	line-height: 1.8rem;
-	overflow-x: hidden;
-	white-space: 100%;
-}
-body {
-	font-family: $paragraph-font;
-	color: $black;
-}
-a {
-	@include link($black,$black,$primary-color,$primary-color);
-}
-h1,h2,h3,h4 {
-	font-family: $header-font;
-}
-h1 {
-	font-size: 2.8rem;
-	font-weight: 500;
-	color: $black;
-	line-height: 1.2em;
-}
-p {
-	color: $medium-gray;
-}
-
-// Global classes
-// ---------
-.app {
-	padding-top: 1rem;
-}
-.switch-wrapper { 
-	position: relative;
-	
-}
-.switch-wrapper > div {
-	position: absolute;
-	margin: 0 auto;
-	width: 100%;
-	left: 0;
-	right: 0;
 }

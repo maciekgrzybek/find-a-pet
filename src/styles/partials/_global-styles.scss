@@ -1,0 +1,55 @@
+
+@import './global/var';
+@import './global/helper';
+
+
+// Tags 
+// ---------
+html,
+body {
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+}
+html {
+	font-size: 16px;
+	line-height: 1.8rem;
+	overflow-x: hidden;
+	white-space: 100%;
+}
+body {
+	font-family: $paragraph-font;
+	color: $black;
+}
+a {
+	@include link($black,$black,$primary-color,$primary-color);
+}
+h1,h2,h3,h4 {
+	font-family: $header-font;
+}
+h1 {
+	font-size: 2.8rem;
+	font-weight: 500;
+	color: $black;
+	line-height: 1.2em;
+}
+h3 {
+	font-weight: 400;
+}
+p {
+	color: $medium-grey;
+}
+
+// Global classes
+// ---------
+.switch-wrapper { 
+	position: relative;
+	
+}
+.switch-wrapper > div {
+	position: absolute;
+	margin: 0 auto;
+	width: 100%;
+	left: 0;
+	right: 0;
+}

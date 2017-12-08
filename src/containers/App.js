@@ -15,6 +15,7 @@ import  { AnimatedSwitch } from 'react-router-transition/lib/react-router-transi
 
 class App extends Component {
 
+
   render() {
     return (
       <div className="app">
@@ -41,4 +42,4 @@ class App extends Component {
 
 
 
-export default (App);
+export default App;

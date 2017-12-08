@@ -1,3 +1,33 @@
+.top-bar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+	padding-top: 20px;
+	transition: .3s;
+	// position: relative;
+	&:after {
+		content: '';
+		background: white;
+		box-shadow: -10px 33px 167px -39px rgba(0,0,0,0.75);
+		width: 100vw;
+		position: absolute;
+		height: 100%;
+		top: 0;
+		right: 0;
+		left: 0;
+		transform: translate3d(0,-100%,0);
+		transition: .3s;
+		z-index: -1;
+	}
+	&--scroll {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		&:after {
+			transform: translate3d(0,0,0);
+		}
+	}
+}
 .navigation {
 	padding: 0;
 	list-style: none;
@@ -15,7 +45,7 @@
     text-align: center;
 		flex-basis: 33%;
 		&:not(:last-child) {
-			border-right: 1px solid $light-grey;
+			border-right: 1px solid $medium-grey;
 		}
 		.active {
 			svg {
@@ -26,4 +56,7 @@
 			display: none;
 		}
 	}
+}
+.top-bar {
+	
 }

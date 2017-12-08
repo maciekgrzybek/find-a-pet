@@ -10,14 +10,16 @@ class Home extends Component {
 		return (
 			<div>
 				<MainHero />
-				<div className="grid-container">
-					<div className="grid-x grid-padding-x">
-						<div className="small-12 cell map">
-							<MainMap />
-						</div>
-						<div className="small-12 cell">
-						 	<SearchBar /> 
-							<MainTable />
+				<div className="home-container">
+					<div className="grid-container full">
+						<div className="grid-x grid-margin-x">
+							<div className="small-12 medium-7 cell map">
+								<MainMap />
+							</div>
+							<div className="small-12 medium-5 cell">
+							 	<SearchBar /> 
+								<MainTable />
+							</div>
 						</div>
 					</div>
 				</div>

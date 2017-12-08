@@ -1,0 +1,16 @@
+.search-bar {
+	margin-bottom: 30px;
+	&__title {
+		margin-bottom: .6rem;
+	}
+	&__input {
+		padding: .7rem 1rem;
+		width: 100%;
+		border: 1px solid $light-grey;
+		margin-bottom: .6rem;
+		&:focus {
+			border: 1px solid $primary-color;
+			outline: none;
+		}
+	}
+}

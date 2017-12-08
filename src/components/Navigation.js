@@ -1,14 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import Icon from './Icon';
 
 
-const Navigation = () => {
-	return (
+class Navigation extends Component  {
 
+	constructor(props){
+		super(props);
+		this.state = {
+			navClass: ''
+		}
+
+		this.navScroll = this.navScroll.bind(this);
+	}
+	componentDidMount() {
+		window.document.body.addEventListener('scroll', this.navScroll);
+  }
+	componentWillUnmount() {
+		window.document.body.removeEventListener('scroll', this.navScroll);
+  }
+	navScroll() {
+		const { scrollTop } = window.document.body;
+		if(scrollTop > 40) {
+			this.setState({ navClass: 'top-bar--scroll'})
+		} else {
+			this.setState({ navClass: ''})
+		}
+
+	}
+
+	render() {
+		return (
 			<div className="grid-container">
-				<div className="grid-x grid-padding-x top-bar">
-					<div className="small-4 medium-8 cell top-bar__logo">
+				<div className={`grid-x grid-padding-x top-bar ${this.state.navClass}`} ref="topbar">
+					<div className="small-4 medium-8 cell top-bar__logo" >
 						<NavLink to="/">
 							<Icon 
 								icon="logo"
@@ -34,6 +60,8 @@ const Navigation = () => {
 				</div>
 			</div>
 	);
+	}
+
 }
 
 export default Navigation;
