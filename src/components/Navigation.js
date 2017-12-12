@@ -22,7 +22,7 @@ class Navigation extends Component  {
   }
 	navScroll() {
 		const { scrollTop } = window.document.body;
-		if(scrollTop > 40) {
+		if(scrollTop > 25) {
 			this.setState({ navClass: 'top-bar--scroll'})
 		} else {
 			this.setState({ navClass: ''})
@@ -33,8 +33,8 @@ class Navigation extends Component  {
 	render() {
 		return (
 			<div className="grid-container">
-				<div className={`grid-x grid-padding-x top-bar ${this.state.navClass}`} ref="topbar">
-					<div className="small-4 medium-8 cell top-bar__logo" >
+				<div className={`grid-x grid-padding-x top-bar ${this.state.navClass} align-middle`} ref="topbar">
+					<div className="small-4 medium-shrink cell top-bar__logo" >
 						<NavLink to="/">
 							<Icon 
 								icon="logo"
@@ -42,9 +42,9 @@ class Navigation extends Component  {
 								height="40px" />
 						</NavLink>
 					</div>
-					<div className="small-8 cell align-self-middle top-bar__menu">
+					<div className="small-8 medium-auto cell align-self-middle top-bar__menu">
 	
-							<ul className="navigation end-xs">
+							<ul className="navigation">
 								<li className="navigation__item">								
 									<NavLink exact to="/"><Icon icon="home" /><span>Strona główna</span></NavLink>
 								</li>

@@ -5,6 +5,10 @@
 		font-weight: 400;
 		margin-bottom: 1rem;
 	}
+	@include breakpoint(large) {
+		height: $map-large-height;
+		margin-bottom: 0;
+	}
 }
 .marker {
   position: absolute;

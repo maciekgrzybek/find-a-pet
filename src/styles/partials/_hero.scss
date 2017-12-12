@@ -27,5 +27,13 @@
 	}
 	@include breakpoint(large) {
 		@include background-image();
+		height: 600px;
+		padding-top: 0;
+		&__text {
+			color: white;
+		}
+		&:before {
+			display: none;
+		}
 	}
 }

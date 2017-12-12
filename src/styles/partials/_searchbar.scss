@@ -13,4 +13,10 @@
 			outline: none;
 		}
 	}
+	@include breakpoint(large) {
+		margin-bottom: 0;
+		padding: 25px;
+		padding-bottom: 10px;
+		height: $search-bar-large-height;
+	}
 }

@@ -21,6 +21,9 @@ body {
 	font-family: $paragraph-font;
 	color: $black;
 }
+ul {
+	margin-top: 0;
+}
 a {
 	@include link($black,$black,$primary-color,$primary-color);
 }

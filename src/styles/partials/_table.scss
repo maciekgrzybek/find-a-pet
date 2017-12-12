@@ -1,6 +1,27 @@
-.table {
+.main-table {
 	list-style: none;
 	padding-left: 0;
+	@include breakpoint(medium) {
+		> div {
+			display: flex;
+			flex-wrap: wrap;
+			a {
+				width: 50%;
+				&:hover {
+					color: black;
+				}
+			}
+		}
+	}
+	@include breakpoint(large) {
+		overflow-y: scroll;
+		height: $map-large-height - $search-bar-large-height;
+		> div {
+			a {
+				width: 100%;
+			}
+		}
+	}
 }
 .table-row {
 		background: white;
@@ -9,6 +30,8 @@
 		min-height: 100px;
 		border-bottom: 1px solid rgba(black, 0.05);
 		border-right: 1px solid rgba(black, 0.05);
+		height: 100%;
+		transition: .3s;
 		&--lost {
 			border-left-color: $lost-color;
 		}
@@ -19,12 +42,13 @@
 			border-left-color: $adopt-color;
 		}
 		&--hover {
-			background: white;
+			background: #f5f5f5;
 		}
 		&__title {
 			font-weight: 500;
 			line-height: 1;
 			margin-bottom: 10px;
+			margin-top: 10px;
 		}
 		&__image-wrapper {
 			height: auto;
@@ -36,14 +60,27 @@
 			line-height: 1;
 			font-size: 14px;
 			text-transform: capitalize;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
 		}
 		&__details-wrapper {
-			padding: 25px 10px 25px 15px;
+			padding: 15px 10px 15px 15px;
 		}
 		&__details-wrapper-inner {
 			margin-bottom: 20px;
 		}
 		&__icon {
 			margin-right: 10px;
+		}
+		@include breakpoint(large) {
+			&__title {
+				margin-top: 15px;
+			}
+		}
+		@include breakpoint(large) {
+			&__details-wrapper {
+				padding: 0;
+				padding-left: 15px;
+			}
 		}
 }

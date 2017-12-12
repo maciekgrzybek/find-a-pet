@@ -20,7 +20,8 @@ $swatches: (
 );
 $header-font:'Montserrat', sans-serif;
 $paragraph-font:'Lato', sans-serif;
-
+$map-large-height: 650px;
+$search-bar-large-height: 200px;
 // Mixins 
 // ---------
 @mixin link($link, $visit, $hover, $active){

@@ -1,0 +1,29 @@
+.footer {
+	background: url('../images/znajdz-zwierzaka-footer.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 40px 0 30px;
+	ul {
+		padding-left: 0;
+	}
+	a {
+		color: white;
+		font-size: 13px;
+	}
+	p {
+		font-size: 12px;
+	}
+	.cell {
+		&:not(:last-child) {
+			margin-bottom: 25px;
+		}
+	}
+	@include breakpoint(large) {
+		.cell {
+			&:not(:last-child) {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

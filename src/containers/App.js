@@ -13,7 +13,13 @@ import  { AnimatedSwitch } from 'react-router-transition/lib/react-router-transi
 
 
 
+// if (process.env.NODE_ENV !== 'production') {
+// 	const { reactopt } = require('reactopt');
+// 	reactopt(React);
+// }
+
 class App extends Component {
+
 
 
   render() {
@@ -32,8 +38,9 @@ class App extends Component {
 						<Route path="/dodaj/:type" component={ Add }/>
 						<Route path="/zwierzak/:type/:id" component={ SelectedAnimal }/>
 						<Route exact path="/" component={ Home } />
-						<Route component={ NotFound } /> 
+						<Route component={ NotFound } />
 				</AnimatedSwitch>
+				
       </div>
     );
   }
