@@ -16,7 +16,7 @@ class MainTable extends Component {
 	_renderAnimalTable() {
 		return (
 			<FlipMove    
-				duration={750} easing="ease-out" appearAnimation="fade" enterAnimation="fade" leaveAnimation="fade">
+				duration={750} easing="ease-out" appearAnimation="elevator" enterAnimation="elevator" leaveAnimation="elevator">
 			{
 				_.map(this.props.animals,(animal,key) => {
 					return (

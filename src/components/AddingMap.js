@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import AddMarker from './AddMarker';
 import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LANG } from '../constants/googleMaps';
-
+import createMapOptions from '../helpers/MapStyles';
 
 
 
@@ -29,6 +29,7 @@ class AddingMap extends Component {
 					}}				 
 					defaultCenter={this.props.center}
 					defaultZoom={this.props.zoom}
+					options={createMapOptions}
 					onClick={(e) => this.props.handleClick(e)}>
 						<AddMarker
 							key={ 1 }

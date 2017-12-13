@@ -178,8 +178,6 @@ export default function createMapOptions(scrollwheel, fullscreenControl) {
 							}
 					]
 			}
-		]
-
-	
-	}
+		]	
+	};
 }

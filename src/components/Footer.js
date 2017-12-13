@@ -10,7 +10,7 @@ const Footer = () => {
 	return (
 		<footer className="footer">
 			<div className="grid-container">
-				<div className="grid-x grid-padding-x">
+				<div className="grid-x grid-padding-x align-justify" >
 					<div className="small-6 cell">
 						<NavLink to="/">
 							<Icon 

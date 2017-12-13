@@ -7,6 +7,7 @@ import AddingMap from '../components/AddingMap';
 import Dropzone from 'react-dropzone';
 import _ from 'lodash';
 import update from 'immutability-helper';
+import Footer from '../components/Footer';
 
 class Add extends Component {
 
@@ -122,7 +123,6 @@ class Add extends Component {
 			}
 		}, (results, status) => {
 				if(status === 'OK') {
-					console.log(results[0])
 					_.map(results[0]['address_components'], (record) => {
 						const { location } = this.state;
 						if(record.types[0] === 'route') {
@@ -174,56 +174,60 @@ class Add extends Component {
 
 		return (
 			<div>
-				<div className="row">
-				<div className="col-xs-12 map">
-						<AddingMap 
-							handleClick={this.setLocation}
-							lat={this.state.location.lat}
-							lng={this.state.location.lng} />
+				<div className="add-container">
+					<div className="grid-container full">
+						<div className="grid-x grid-margin-x large-margin-collapse">
+							<div className="small-12 large-7 cell map">
+								<AddingMap 
+									handleClick={this.setLocation}
+									lat={this.state.location.lat}
+									lng={this.state.location.lng} />
+							</div>
+							<div className="small-12 large-5 cell">
+								<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
+										<Field
+											name="location"
+											type="hidden"
+											label="Lokalizacja"
+											component={ this.renderField } />
+										<Field
+											name="date"
+											label="Data"
+											type="date"
+											component={ this.renderField } />
+										<Field
+											name="email"
+											label="Email"
+											type="text"
+											component={ this.renderField } />
+										<Field
+											name="phone"
+											label="Telefon"
+											type="tel"
+											component={ this.renderField } />
+										<Field
+											name="description"
+											label="Opis"
+											type="textarea"
+											component={ this.renderField } />
+		
+										<Dropzone
+											onDrop={this.onDrop}
+											style={ dropStyle }
+											multiple={ false }
+											activeStyle={ dropStyle.active }>
+												<p>Fote dawaj tu</p>
+										</Dropzone>
+		 
+										
+										<button type="submit" className="btn btn-primary">Dodaj </button>
+										<Link to="/" className="btn btn-danger">Cofnij</Link>	
+								</form>
+							</div>
+						</div>
 					</div>
-					<div className="col-xs-12">
-						<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-								<Field
-									name="location"
-									type="hidden"
-									label="Lokalizacja"
-									component={ this.renderField } />
-								<Field
-									name="date"
-									label="Data"
-									type="date"
-									component={ this.renderField } />
-								<Field
-									name="email"
-									label="Email"
-									type="text"
-									component={ this.renderField } />
-								<Field
-									name="phone"
-									label="Telefon"
-									type="tel"
-									component={ this.renderField } />
-								<Field
-									name="description"
-									label="Opis"
-									type="textarea"
-									component={ this.renderField } />
-
-								<Dropzone
-									onDrop={this.onDrop}
-									style={ dropStyle }
-									multiple={ false }
-									activeStyle={ dropStyle.active }>
-										<p>Fote dawaj tu</p>
-								</Dropzone>
- 
-								
-								<button type="submit" className="btn btn-primary">Dodaj </button>
-								<Link to="/" className="btn btn-danger">Cofnij</Link>	
-						</form>
-					</div>
-
 				</div>
+				<Footer />
 			</div>
 		);
 	}
@@ -237,7 +241,7 @@ function validate(values) {
 		errors.location = "Wybierz punkt na mapie";
 	}
 	if(!values.email) {
-		errors.email = "Wybierz punkt na mapie";
+		errors.email = "Podaj adres email";
 	}
 	if(!(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.email))){
 		errors.email = "Podaj prawidlowy email"
