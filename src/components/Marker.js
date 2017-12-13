@@ -10,7 +10,8 @@ class Marker extends Component {
 
 	render() {
 		const markerStyleHover= {
-			top: '-55px'
+			top: '-55px',
+			transform: 'scale(1.6)'
 		}
 		const style = this.props.$hover || this.props.id === this.props.hover ? markerStyleHover : null;
 

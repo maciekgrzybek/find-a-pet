@@ -2,7 +2,7 @@
 export default function createMapOptions(scrollwheel, fullscreenControl) {
 	return {
 		scrollwheel: scrollwheel,
-		fullscreenControl: fullscreenControl,
+		fullscreenControl: false,
 		styles: [
 			{
 					"featureType": "water",

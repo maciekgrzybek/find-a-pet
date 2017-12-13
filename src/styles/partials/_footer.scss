@@ -13,10 +13,18 @@
 	}
 	p {
 		font-size: 12px;
+		margin-top: 5px;
+		margin-bottom: 5px;
 	}
 	.cell {
 		&:not(:last-child) {
 			margin-bottom: 25px;
+		}
+	}
+	@include breakpoint(medium) {
+		&__menu-block {
+			display: flex;
+			justify-content: flex-end;
 		}
 	}
 	@include breakpoint(large) {

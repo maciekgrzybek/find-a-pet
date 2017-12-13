@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import Icon from './Icon';
 
 
@@ -27,7 +26,6 @@ class Navigation extends Component  {
 		} else {
 			this.setState({ navClass: ''})
 		}
-
 	}
 
 	render() {
