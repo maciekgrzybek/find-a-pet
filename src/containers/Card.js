@@ -1,0 +1,73 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { hoverAnimal } from '../actions/index';
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
+import Icon from '../components/Icon';
+
+
+
+class Card extends Component {
+
+
+	render() {
+		
+		const { animal } = this.props;
+		const rowHoverClass = this.props.id === this.props.hover ? 'card--hover': '';
+		const type = animal.addType === 'found' ? 'Znaleziony' : animal.addType === 'lost' ? 'Zagubiony' : 'Do adopcji';
+
+		const imageWrapperStyle = {
+			backgroundImage: `url(${animal.url})`,
+		}
+
+		return (
+			<Link to={`zwierzak/${animal.addType}/${this.props.id}`}>
+				<div
+					className={ `card card--${animal.addType} ${rowHoverClass}` }
+					style={ this.props.style }
+					onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
+					onMouseLeave={() => this.props.hoverAnimal(null)}
+					//onClick={() => this.props.selectAnimal(this.props.id)}
+					>
+
+						<div className="card__image-wrapper" >
+								<img src={animal.url} alt="" className="card__image"/>
+						</div>
+						<div className="card__details-wrapper">
+							<div>
+								<h4 className="card__title">{ type }</h4>
+							</div>
+							<div>
+								<Icon 
+									icon="date" 
+									class={`card__icon marker__icon marker--${animal.addType}__icon`} 
+									width="15px"
+									height="15px"/>
+									<p className="card__details">{animal.date}</p>
+							</div>
+	
+							<div>
+								<Icon 
+									icon="mapMarker" 
+									class={`card__icon marker__icon marker--${animal.addType}__icon`} 
+									width="15px"
+									height="15px"/>
+									<p className="card__details">{animal.location.city}</p>
+							</div>
+							<div>
+								<Button color={ animal.addType } label='Wiecej' />
+							</div>
+						</div>
+				</div>
+			</Link>
+		)
+	}
+}
+
+function mapStateToProps(state) {
+	return {
+		hover: state.hover
+	}
+}
+
+export default connect(mapStateToProps, { hoverAnimal })(Card);

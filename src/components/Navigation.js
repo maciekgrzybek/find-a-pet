@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Icon from './Icon';
+import { connect } from 'react-redux';
+import NavItem from '../containers/NavItem';
+import HamburgerIcon from '../containers/HamburgerIcon';
 
 
 class Navigation extends Component  {
@@ -8,7 +11,7 @@ class Navigation extends Component  {
 	constructor(props){
 		super(props);
 		this.state = {
-			navClass: ''
+			topBarClass: ''
 		}
 
 		this.navScroll = this.navScroll.bind(this);
@@ -22,16 +25,17 @@ class Navigation extends Component  {
 	navScroll() {
 		const { scrollTop } = window.document.body;
 		if(scrollTop > 25) {
-			this.setState({ navClass: 'top-bar--scroll'})
+			this.setState({ topBarClass: 'top-bar--scroll'})
 		} else {
-			this.setState({ navClass: ''})
+			this.setState({ topBarClass: ''})
 		}
 	}
 
 	render() {
+		const navClass = this.props.navigationVisibility ? 'navigation--visible' : '';
 		return (
 			<div className="grid-container">
-				<div className={`grid-x grid-padding-x top-bar ${this.state.navClass} align-middle`} ref="topbar">
+				<div className={`grid-x grid-padding-x top-bar ${this.state.topBarClass} align-middle`} ref="topbar">
 					<div className="small-4 medium-shrink cell top-bar__logo" >
 						<NavLink to="/">
 							<Icon 
@@ -41,17 +45,17 @@ class Navigation extends Component  {
 						</NavLink>
 					</div>
 					<div className="small-8 medium-auto cell align-self-middle top-bar__menu">
-	
-							<ul className="navigation">
-								<li className="navigation__item">								
-									<NavLink exact to="/"><Icon icon="home" /><span>Strona główna</span></NavLink>
-								</li>
-								<li className="navigation__item">								
-									<NavLink exact to="/rodzaj-ogloszenia"><Icon icon="advert" /><span>Dodaj ogłoszenie</span></NavLink>
-								</li>
-								<li className="navigation__item">								
-									<NavLink exact to="/kontakt"><Icon icon="contact" /><span>Kontakt</span></NavLink>
-								</li>
+							<HamburgerIcon/>
+							<ul className={`navigation ${navClass}`}>
+								<NavItem>							
+									<NavLink exact to="/znajdz-zwierzaka">Znajdz zwierzaka</NavLink>
+								</NavItem>
+								<NavItem>							
+									<NavLink exact to="/rodzaj-ogloszenia">Dodaj ogłoszenie </NavLink>
+								</NavItem>
+								<NavItem>							
+									<NavLink exact to="/kontakt">Kontakt</NavLink>
+								</NavItem>
 							</ul>
 	
 					</div>
@@ -62,4 +66,10 @@ class Navigation extends Component  {
 
 }
 
-export default Navigation;
+function mapStateToProps(state) {
+	return {
+		navigationVisibility: state.toggleNavigation
+	}
+}
+
+export default connect(mapStateToProps)(Navigation);

@@ -11,9 +11,12 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Lato:300,400,900:latin-ext','Montserrat:200,400,500,600,700:latin-ext' ]
-  },
-})
+    families: ['Roboto:300,400,900:latin-ext', 'Oswald:200,300,400,500,600,700:latin-ext' ]
+	},
+	// custom: {
+	// 	families: ['bebas_neuebold']
+	// }
+});
 
 
 ReactDOM.render(

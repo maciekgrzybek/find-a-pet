@@ -1,4 +1,15 @@
-import { ANIMAL_LIST_FILTER, FETCH_ANIMAL, FETCH_ANIMALS, ADD_ANIMAL, UPLOAD_IMAGE, HOVER_ANIMAL, SET_MAP_BOUNDS, SET_CENTER, SET_MAP_DIMENSIONS } from '../constants/actionTypes';
+import { 
+	ANIMAL_LIST_FILTER, 
+	FETCH_ANIMAL, 
+	FETCH_ANIMALS, 
+	ADD_ANIMAL, 
+	UPLOAD_IMAGE, 
+	HOVER_ANIMAL, 
+	SET_MAP_BOUNDS, 
+	SET_CENTER, 
+	SET_MAP_DIMENSIONS, 
+	TOGGLE_NAVIGATION
+} from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
 import { fitBounds } from 'google-map-react/utils';
 
@@ -99,12 +110,11 @@ export function animalListFilter(type){
 }
 
 // ----------------------
-// export function selectAnimal(key){
-// 	return {
-// 		type: SELECT_ANIMAL,
-// 		payload: key
-// 	}
-// }
+export function toggleNavigation(){
+	return {
+		type: TOGGLE_NAVIGATION
+	}
+}
 
 
 //-----------------------

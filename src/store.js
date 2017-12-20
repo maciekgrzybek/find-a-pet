@@ -8,6 +8,7 @@ import mapBoundsReducer from './reducers/mapBoundsReducer';
 import mapCenterReducer from './reducers/mapCenterReducer';
 import mapSizeReducer from './reducers/mapSizeReducer';
 import animalsListFilterReducer from './reducers/animalsListFilterReducer';
+import toggleNavigationReducer from './reducers/toggleNavigationReducer';
 
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	mapBounds: mapBoundsReducer,
 	mapCenter: mapCenterReducer,
 	mapSize: mapSizeReducer,
+	toggleNavigation: toggleNavigationReducer,
 	form: formReducer
 });
 

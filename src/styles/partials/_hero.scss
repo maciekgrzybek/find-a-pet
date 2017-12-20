@@ -4,9 +4,8 @@
 	align-items: center;
 	background: url('../images/znajdz-zwierzaka-hero.jpg');
 	@include background-image($position: left center);
-	height: 500px;
+	height: 100vh;
 	position: relative;
-	padding-top: 65px;
 	.grid-container {
 		z-index: 1;
 	}
@@ -16,6 +15,13 @@
 	&__text {
 		margin-bottom: 1.2rem;
 	}
+	&__content {
+		align-content: space-between;
+		height: 100vh;
+	}
+	&__footer {
+		font-size: 12px;
+	}
 	&:before {
 		position: absolute;
 		top: 0;
@@ -23,14 +29,18 @@
 		width: 100%;
 		height: 100%;
 		background: rgba(white, .75);
-		content: '';
+		content: ''; 
 	}
 	@include breakpoint(large) {
 		@include background-image();
-		height: 600px;
 		padding-top: 0;
 		&__text {
-			color: white;
+			// color: white;
+		}
+		&__footer {
+			p {
+				color: white;
+			}
 		}
 		&:before {
 			display: none;
