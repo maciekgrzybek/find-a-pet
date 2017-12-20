@@ -43,6 +43,9 @@ h1 {
 h3 {
 	font-weight: 400;
 }
+h4 {
+	font-size: 2rem;
+}
 p {
 	color: $medium-grey;
 }
@@ -60,11 +63,3 @@ p {
 	left: 0;
 	right: 0;
 }
-
-// Grid overwriite {
-	// .grid-padding-x > .cell {
-	// 	@include breakpoint(medium) {
-	// 		padding-right: 2rem;
-	// 		padding-left: 2rem;
-	// 	}
-	// }

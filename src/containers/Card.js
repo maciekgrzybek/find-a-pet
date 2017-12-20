@@ -30,29 +30,28 @@ class Card extends Component {
 					//onClick={() => this.props.selectAnimal(this.props.id)}
 					>
 
-						<div className="card__image-wrapper" >
-								<img src={animal.url} alt="" className="card__image"/>
+						<div className="card__image-wrapper" style={imageWrapperStyle}>
 						</div>
 						<div className="card__details-wrapper">
 							<div>
 								<h4 className="card__title">{ type }</h4>
 							</div>
-							<div>
+							<div className="card__details-row">
 								<Icon 
 									icon="date" 
 									class={`card__icon marker__icon marker--${animal.addType}__icon`} 
 									width="15px"
 									height="15px"/>
-									<p className="card__details">{animal.date}</p>
+									<p>{animal.date}</p>
 							</div>
 	
-							<div>
+							<div className="card__details-row">
 								<Icon 
 									icon="mapMarker" 
 									class={`card__icon marker__icon marker--${animal.addType}__icon`} 
 									width="15px"
 									height="15px"/>
-									<p className="card__details">{animal.location.city}</p>
+									<p>{animal.location.city}</p>
 							</div>
 							<div>
 								<Button color={ animal.addType } label='Wiecej' />
