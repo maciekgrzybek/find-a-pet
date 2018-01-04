@@ -17,17 +17,17 @@ class Cards extends Component {
 		return (
 			
 				<FlipMove    
-					duration={750} easing="ease-out" appearAnimation="elevator" enterAnimation="elevator" leaveAnimation="elevator">
-					<div className="grid-x grid-padding-x">
+					duration={750} easing="ease-out" appearAnimation="elevator" enterAnimation="elevator" leaveAnimation="elevator" className="grid-x grid-padding-x">
+					{/* <div className="grid-x grid-padding-x"> */}
 						{
 							_.map(this.props.animals,(animal,key) => {
 								return (
-
-										<Card animal={animal} key={key} id={key} />
-
+										<div className="small-12 medium-6 cell" key={animal.id}>
+											<Card animal={animal} />
+										</div>
 								)})
 						}
-						</div>
+						{/* </div> */}
 				</FlipMove>		
 
 		)

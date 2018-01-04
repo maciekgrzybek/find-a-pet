@@ -13,7 +13,7 @@ class Card extends Component {
 	render() {
 		
 		const { animal } = this.props;
-		const rowHoverClass = this.props.id === this.props.hover ? 'card--hover': '';
+		const rowHoverClass = animal.id === this.props.hover ? 'card--hover': '';
 		const type = animal.addType === 'found' ? 'Znaleziony' : animal.addType === 'lost' ? 'Zagubiony' : 'Do adopcji';
 
 		const imageWrapperStyle = {
@@ -21,13 +21,13 @@ class Card extends Component {
 		}
 
 		return (
-			<Link to={`zwierzak/${animal.addType}/${this.props.id}`}>
+			<Link to={`zwierzak/${animal.addType}/${animal.id}`}>
 				<div
 					className={ `card card--${animal.addType} ${rowHoverClass}` }
 					style={ this.props.style }
-					onMouseEnter={() => this.props.hoverAnimal(this.props.id)}
+					onMouseEnter={() => this.props.hoverAnimal(animal.id)}
 					onMouseLeave={() => this.props.hoverAnimal(null)}
-					//onClick={() => this.props.selectAnimal(this.props.id)}
+					//onClick={() => this.props.selectAnimal(animal.id)}
 					>
 
 						<div className="card__image-wrapper" style={imageWrapperStyle}>
