@@ -98,7 +98,92 @@ class Add extends Component {
 	}
 
 	onDrop(file) {
-		this.setState({ file });
+		// this.setState({ file });
+		// console.log(file[0].preview)
+		var imgLoader = new Image();				
+		imgLoader.onload = function(data) {
+			
+			// Desired size
+			var max_width = 600;
+			var max_height = 600;
+			
+			// Get image dimensions
+			var original_width = imgLoader.width;
+			var original_height = imgLoader.height;
+			
+			// Calculate final dimensions
+			if (original_width > original_height) {
+				if (original_width > max_width) {
+					var ratio = max_width / original_width;
+					var new_height = Math.round(original_height * ratio);
+					var new_width = max_width;
+				} else {
+					var new_height = original_height;
+					var new_width = original_width;
+				}
+			} else {
+				if (original_height > max_height) {
+					var ratio = max_height / original_height;
+					var new_width = Math.round(original_width * ratio);
+					var new_height = max_height;
+				} else {
+					var new_height = original_height;
+					var new_width = original_width;
+				}
+			}
+			
+			// Resizing function
+			function resize_step(image, new_width, new_height) {
+				
+				// Create new canvas
+				var canvas = document.createElement('canvas');
+				var ctx = canvas.getContext('2d');
+			
+				// Get incremental image size	
+				var half_width = Math.round(image.width / 2);
+				var half_height = Math.round(image.height / 2);
+
+				if (half_width > new_width) {
+				
+					// Resize image	by 50%		
+					canvas.width = half_width;
+					canvas.height = half_height;
+					ctx.drawImage(image, 0, 0, half_width, half_height);
+								
+					// Resize again
+					return resize_step(canvas, new_width, new_height);
+								
+				} else {
+
+					// Final Resize of Image
+					canvas.width = new_width;
+					canvas.height = new_height;
+					ctx.drawImage(image, 0, 0, new_width, new_height);
+
+					var dataURL = canvas.toDataURL('image/jpg');
+					// Return resized image	
+					return canvas;
+					// return dataURL;
+
+				
+				}
+
+			}
+			
+			// Fire resizing function
+			// var resized_image_data_url = resize_step(imgLoader, new_width, new_height);
+			var resized_image = resize_step(imgLoader, new_width, new_height);
+			
+			// Append to body
+			document.body.appendChild(resized_image);
+			// this.setState({ file });
+
+
+		};
+
+		// Load image	
+		imgLoader.src = file[0].preview;
+
 	}
 
 	_setAddType() {
