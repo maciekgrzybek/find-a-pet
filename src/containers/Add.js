@@ -105,16 +105,23 @@ class Add extends Component {
 		var dataURL;
 
 		imgLoader.onload = function(data) {
-			
 
-			function resizeRatio(image, maxWidth, maxHeight){
 
-				var ratio, newHeight, newWidth;
+			function resizeImage(image, maxWidth, maxHeight){
+
 				var originalWidth = image.width;
 				var originalHeight = image.height;
+				
+				var newDimensions = setSizeWithCrop(originalWidth, originalHeight, maxWidth, maxHeight);
+				var canvas = resizeStep(imgLoader, newDimensions, maxWidth, maxHeight, true);
 
+				return canvas;
+			}
 
-				// Calculate final dimensions
+			function setSizeWithRatio(originalWidth, originalHeight, maxWidth, maxHeight){
+
+				var ratio, newHeight, newWidth;
+
 				if (originalWidth > originalHeight) {
 					if (originalWidth > maxWidth) {
 						ratio = maxWidth / originalWidth;
@@ -134,22 +141,70 @@ class Add extends Component {
 						newWidth = originalWidth;
 					}
 				}
-
-				var canvas = resizeStep(imgLoader, newWidth, newHeight);
-				return canvas;
+				return { 
+					newHeight,
+					newWidth
+				};
 			}
-			
-			// Resizing function
-			function resizeStep(image, newWidth, newHeight) {
+
+			function setSizeWithCrop(originalWidth, originalHeight, maxWidth, maxHeight){
+
+
+				var newHeight, newWidth, calculationRatio;
+
+				var originalRatio = originalWidth / originalHeight;
+				var maxRatio = maxWidth / maxHeight;
+				var moveX = 0;
+				var moveY = 0;
 				
+
+				if (originalWidth > originalHeight) {
+					if(originalRatio >= maxRatio) {
+						calculationRatio = originalHeight / maxHeight
+						newWidth = Math.round(maxWidth * calculationRatio);
+						newHeight = originalHeight;
+						moveX = (originalWidth - newWidth) / 2;
+					} else {
+						calculationRatio = originalWidth / maxWidth;
+						newHeight = Math.round(maxHeight * calculationRatio);
+						newWidth = originalWidth;
+						moveY = (originalHeight - newHeight) / 2;
+					}
+				} else { 
+					calculationRatio = originalWidth / maxWidth;
+					newHeight = Math.round(maxHeight * calculationRatio);
+					newWidth = originalWidth;
+					moveY = (originalHeight - newHeight) / 2;
+				}
+
+				return { 
+					newHeight,
+					newWidth,
+					moveX,
+					moveY
+				};
+			}
+			// Resizing function
+			function resizeStep(image, newDimensions, maxWidth, maxHeight, crop) {
+				
+				
+				const { newWidth, newHeight, moveX, moveY } = newDimensions;
+
 				// Create new canvas
 				var canvas = document.createElement('canvas');
 				var ctx = canvas.getContext('2d');
 			
 				// Final Resize of Image
-				canvas.width = newWidth;
-				canvas.height = newHeight;
-				ctx.drawImage(image, 0, 0, newWidth, newHeight);
+				if(crop){
+					canvas.width = maxWidth; 
+					canvas.height = maxHeight; 
+					ctx.drawImage(image, moveX, moveY, newWidth, newHeight, 0, 0, maxWidth, maxHeight );
+				} else {
+					canvas.width = newWidth;
+					canvas.height = newHeight; 
+					ctx.drawImage(image, 0, 0, newWidth, newHeight);
+				}
+				
 
 				dataURL = canvas.toDataURL('image/jpg');
 				// Return resized image	
@@ -159,15 +214,14 @@ class Add extends Component {
 
 			}
 
-			var resizedImageThumb = resizeRatio(imgLoader, 300, 100);
-			var resizedImageMedium = resizeRatio(imgLoader, 800, 800);
+			var resizedImageThumb = resizeImage(imgLoader, 300, 200);
+			var resizedImageMedium = resizeImage(imgLoader, 800, 800);
 			// Append to body
 			document.body.appendChild(resizedImageThumb);
 			document.body.appendChild(resizedImageMedium);
 
 		};
 
-		// Load image	
 		
 	}
 
