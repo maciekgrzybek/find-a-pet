@@ -107,15 +107,22 @@ class Add extends Component {
 		imgLoader.onload = function(data) {
 
 
-			function resizeImage(image, maxWidth, maxHeight){
+			function resizeImage(image, maxWidth, maxHeight, crop){
 
+				var newDimensions;
+				var canvas;
 				var originalWidth = image.width;
 				var originalHeight = image.height;
 				
-				var newDimensions = setSizeWithCrop(originalWidth, originalHeight, maxWidth, maxHeight);
-				var canvas = resizeStep(imgLoader, newDimensions, maxWidth, maxHeight, true);
+				if(crop) {
+					newDimensions = setSizeWithCrop(originalWidth, originalHeight, maxWidth, maxHeight);
+				} else {
+					newDimensions = setSizeWithRatio(originalWidth, originalHeight, maxWidth, maxHeight);
+				}
+				canvas = resizeStep(imgLoader, newDimensions, maxWidth, maxHeight, crop);
 
 				return canvas;
+
 			}
 
 			function setSizeWithRatio(originalWidth, originalHeight, maxWidth, maxHeight){
@@ -157,20 +164,12 @@ class Add extends Component {
 				var moveX = 0;
 				var moveY = 0;
 				
-
-				if (originalWidth > originalHeight) {
-					if(originalRatio >= maxRatio) {
-						calculationRatio = originalHeight / maxHeight
-						newWidth = Math.round(maxWidth * calculationRatio);
-						newHeight = originalHeight;
-						moveX = (originalWidth - newWidth) / 2;
-					} else {
-						calculationRatio = originalWidth / maxWidth;
-						newHeight = Math.round(maxHeight * calculationRatio);
-						newWidth = originalWidth;
-						moveY = (originalHeight - newHeight) / 2;
-					}
-				} else { 
+				if(originalRatio >= maxRatio) {
+					calculationRatio = originalHeight / maxHeight
+					newWidth = Math.round(maxWidth * calculationRatio);
+					newHeight = originalHeight;
+					moveX = (originalWidth - newWidth) / 2;
+				} else {
 					calculationRatio = originalWidth / maxWidth;
 					newHeight = Math.round(maxHeight * calculationRatio);
 					newWidth = originalWidth;
@@ -214,8 +213,8 @@ class Add extends Component {
 
 			}
 
-			var resizedImageThumb = resizeImage(imgLoader, 300, 200);
-			var resizedImageMedium = resizeImage(imgLoader, 800, 800);
+			var resizedImageThumb = resizeImage(imgLoader, 300, 200, true);
+			var resizedImageMedium = resizeImage(imgLoader, 1200);
 			// Append to body
 			document.body.appendChild(resizedImageThumb);
 			document.body.appendChild(resizedImageMedium);
