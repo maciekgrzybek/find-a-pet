@@ -100,12 +100,11 @@ class Add extends Component {
 
 	onDrop(file) {
 
+		var dataURL;
 		var imgLoader = new Image();			
 		imgLoader.src = file[0].preview;	
-		var dataURL;
 
-		imgLoader.onload = function(data) {
-
+		imgLoader.onload = (data) => {
 
 			function resizeImage(image, maxWidth, maxHeight, crop){
 
@@ -119,8 +118,8 @@ class Add extends Component {
 				} else {
 					newDimensions = setSizeWithRatio(originalWidth, originalHeight, maxWidth, maxHeight);
 				}
-				canvas = resizeStep(imgLoader, newDimensions, maxWidth, maxHeight, crop);
 
+				canvas = resizeStep(imgLoader, newDimensions, maxWidth, maxHeight, crop);
 				return canvas;
 
 			}
@@ -186,14 +185,11 @@ class Add extends Component {
 			// Resizing function
 			function resizeStep(image, newDimensions, maxWidth, maxHeight, crop) {
 				
-				
 				const { newWidth, newHeight, moveX, moveY } = newDimensions;
 
-				// Create new canvas
 				var canvas = document.createElement('canvas');
 				var ctx = canvas.getContext('2d');
 			
-				// Final Resize of Image
 				if(crop){
 					canvas.width = maxWidth; 
 					canvas.height = maxHeight; 
@@ -203,12 +199,9 @@ class Add extends Component {
 					canvas.height = newHeight; 
 					ctx.drawImage(image, 0, 0, newWidth, newHeight);
 				}
-				
 
 				dataURL = canvas.toDataURL('image/jpg');
-				// Return resized image	
-				return canvas;
-				// return dataURL;
+				return dataURL;
 
 
 			}
@@ -216,8 +209,14 @@ class Add extends Component {
 			var resizedImageThumb = resizeImage(imgLoader, 300, 200, true);
 			var resizedImageMedium = resizeImage(imgLoader, 1200);
 			// Append to body
-			document.body.appendChild(resizedImageThumb);
-			document.body.appendChild(resizedImageMedium);
+			// document.body.appendChild(resizedImageThumb);
+
+			this.setState({
+				file: { //TODO: convert to blob or file before uploading
+					thumbnail: resizedImageThumb,
+					medium: resizedImageMedium
+				},
+			})
 
 		};
 
