@@ -73,16 +73,16 @@ export function addAnimal(values, callback) {
 //-----------------------
 export function uploadImage(file, callback ) {
 
-	const imageRef = storage.ref().child(file[0].name)
+	const imageRef = storage.ref().child('elo')
 	return dispatch => {
-		imageRef.put(file[0])
+		imageRef.putString(file, 'data_url')
 		.then(() => {
 			dispatch({
 				type: UPLOAD_IMAGE
 			})
 		})
 		.then(() => {
-			storage.refFromURL(`${firebaseConfig.storageBucket}/${file[0].name}`)
+			storage.refFromURL(`${firebaseConfig.storageBucket}/${'elo'}`)
 			.getDownloadURL()
 			.then((url) => callback(url));
 		})
