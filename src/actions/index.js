@@ -7,7 +7,7 @@ import {
 	HOVER_ANIMAL, 
 	SET_MAP_BOUNDS, 
 	SET_CENTER, 
-	SET_MAP_DIMENSIONS, 
+	SET_MAP_DIMENSIONS,
 	TOGGLE_NAVIGATION
 } from '../constants/actionTypes';
 import { database, storage, firebaseConfig } from '../constants/firebase';
@@ -71,21 +71,27 @@ export function addAnimal(values, callback) {
 }
 
 //-----------------------
-export function uploadImage(file, callback ) {
+export function uploadImage(name, file) {
 
-	const imageRef = storage.ref().child('elo')
+	const token = Math.random().toString(36).substr(2);
+	const imageRef = storage.ref().child(`${token}`);
 	return dispatch => {
-		imageRef.putString(file, 'data_url')
-		.then(() => {
-			dispatch({
-				type: UPLOAD_IMAGE
+			imageRef.putString(file, 'data_url')
+			.then(() => {
+				storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`)
+				.getDownloadURL()
+				.then((url) => {
+					dispatch({
+						type: UPLOAD_IMAGE,
+						payload: {
+							name,
+							url
+						}
+					})
+				})
 			})
-		})
-		.then(() => {
-			storage.refFromURL(`${firebaseConfig.storageBucket}/${'elo'}`)
-			.getDownloadURL()
-			.then((url) => callback(url));
-		})
+
+
 	}
 }
 

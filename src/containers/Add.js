@@ -14,7 +14,7 @@ class Add extends Component {
 	constructor() {
 		super();
 		this.state = { 
-			file: null,
+			files: null,
 			location: {
 				lat: null,
 				lng: null,
@@ -34,8 +34,8 @@ class Add extends Component {
 		this._setAddType()
 	}
 
-	setFile(file) {
-		this.setState({file})
+	setFile(files) {
+		this.setState({files})
 	}
 
 	renderField(field) {
@@ -76,31 +76,34 @@ class Add extends Component {
 	}
 
 	onSubmit(values) {
-
-		if(this.state.file) {
-			this.props.uploadImage(this.state.file, (url) => {
-				this.props.addAnimal(
-					Object.assign(
-						{},
-						values,
-						{'url':url},
-						{'location': this.state.location},
-						{'addType':this.state.addType}), () => {
-							this.props.history.push('/dzieki');
-						}
-				)
-			})
-		} else {
-			this.props.addAnimal(
-				Object.assign(
-					{},
-					values,
-					{'location': this.state.location},
-					{'addType':this.state.addType}), () => {
-						this.props.history.push('/dzieki');
-					}
-			);
+		for(var key in this.state.files) {
+			this.props.uploadImage(key, this.state.files[key]);
 		}
+
+		// if(this.state.file) {
+		// 	this.props.uploadImage(this.state.file, (url) => {
+		// 		this.props.addAnimal(
+		// 			Object.assign(
+		// 				{},
+		// 				values,
+		// 				{'url':url},
+		// 				{'location': this.state.location},
+		// 				{'addType':this.state.addType}), () => {
+		// 					this.props.history.push('/dzieki');
+		// 				}
+		// 		)
+		// 	})
+		// } else {
+		// 	this.props.addAnimal(
+		// 		Object.assign(
+		// 			{},
+		// 			values,
+		// 			{'location': this.state.location},
+		// 			{'addType':this.state.addType}), () => {
+		// 				this.props.history.push('/dzieki');
+		// 			}
+		// 	);
+		// }
 
 	}
 

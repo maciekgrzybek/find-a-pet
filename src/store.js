@@ -9,6 +9,7 @@ import mapCenterReducer from './reducers/mapCenterReducer';
 import mapSizeReducer from './reducers/mapSizeReducer';
 import animalsListFilterReducer from './reducers/animalsListFilterReducer';
 import toggleNavigationReducer from './reducers/toggleNavigationReducer';
+import imagesReducer from './reducers/imagesReducer';
 
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
 	mapCenter: mapCenterReducer,
 	mapSize: mapSizeReducer,
 	toggleNavigation: toggleNavigationReducer,
+	images: imagesReducer,
 	form: formReducer
 });
 

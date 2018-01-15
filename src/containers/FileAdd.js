@@ -116,16 +116,24 @@ class FileAdd extends Component {
 			}
 
 			var resizedImageThumb = resizeImage(imgLoader, 300, 200, true);
-			var resizedImageMedium = resizeImage(imgLoader, 1200);
+			var resizedImageSmall = resizeImage(imgLoader, 640);
+			var resizedImageMedium = resizeImage(imgLoader, 768);
+			var resizedImageLarge = resizeImage(imgLoader, 1200);
 			// Append to body
 			// document.body.appendChild(resizedImageThumb);
+			let images = {
+				'thumbnail': resizedImageThumb,
+				'small': resizedImageSmall,
+				'medium': resizedImageMedium,
+				'large': resizedImageLarge,
+			}
 
-      this.props.onDrop(resizedImageMedium)
-
+      this.props.onDrop(images);
 		};
 
 		
-  }
+	}
+	
   render(){
 
     const dropStyle = {
