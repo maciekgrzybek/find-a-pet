@@ -71,29 +71,53 @@ export function addAnimal(values, callback) {
 }
 
 //-----------------------
-export function uploadImage(name, file) {
+export function uploadImage(files) {
+		
+	var promises =[];
+	for(var key in files) {
 
-	const token = Math.random().toString(36).substr(2);
-	const imageRef = storage.ref().child(`${token}`);
-	return dispatch => {
-			imageRef.putString(file, 'data_url')
+		const token = Math.random().toString(36).substr(2);
+		const imageRef = storage.ref().child(`${token}`);
+		const promise = imageRef.putString(files[key], 'data_url')
 			.then(() => {
-				storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`)
-				.getDownloadURL()
-				.then((url) => {
-					dispatch({
-						type: UPLOAD_IMAGE,
-						payload: {
-							name,
-							url
-						}
-					})
-				})
-			})
-
-
+				return storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`).getDownloadURL();
+			});
+		promises.push(promise);
+		
+	}
+	Promise.all(promises)
+	.then((arr) => {
+		console.log(arr)
+	})
+	
+	return dispatch => {
+		type: UPLOAD_IMAGE		
 	}
 }
+// export function uploadImage(name, file) {
+
+// 	const token = Math.random().toString(36).substr(2);
+// 	const imageRef = storage.ref().child(`${token}`);
+
+// 	return dispatch => {
+// 			imageRef.putString(file, 'data_url')
+// 			.then(() => {
+// 				storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`)
+// 				.getDownloadURL()
+// 				.then((url) => {
+// 					dispatch({
+// 						type: UPLOAD_IMAGE,
+// 						payload: {
+// 							name,
+// 							url
+// 						}
+// 					})
+// 				})
+// 			})
+
+
+// 	}
+// }
 
 
 

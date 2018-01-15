@@ -76,9 +76,12 @@ class Add extends Component {
 	}
 
 	onSubmit(values) {
-		for(var key in this.state.files) {
-			this.props.uploadImage(key, this.state.files[key]);
-		}
+
+		// for(var key in this.state.files) {
+		// 	this.props.uploadImage(key, this.state.files[key]);
+		// }
+
+		this.props.uploadImage(this.state.files);
 
 		// if(this.state.file) {
 		// 	this.props.uploadImage(this.state.file, (url) => {
