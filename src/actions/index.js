@@ -3,14 +3,13 @@ import {
 	FETCH_ANIMAL, 
 	FETCH_ANIMALS, 
 	ADD_ANIMAL, 
-	UPLOAD_IMAGE, 
 	HOVER_ANIMAL, 
 	SET_MAP_BOUNDS, 
 	SET_CENTER, 
 	SET_MAP_DIMENSIONS,
 	TOGGLE_NAVIGATION
 } from '../constants/actionTypes';
-import { database, storage, firebaseConfig } from '../constants/firebase';
+import { database } from '../constants/firebase';
 import { fitBounds } from 'google-map-react/utils';
 
 
@@ -69,56 +68,6 @@ export function addAnimal(values, callback) {
 		.then(() => callback())
 	}
 }
-
-//-----------------------
-export function uploadImage(files) {
-		
-	var promises =[];
-	for(var key in files) {
-
-		const token = Math.random().toString(36).substr(2);
-		const imageRef = storage.ref().child(`${token}`);
-		const promise = imageRef.putString(files[key], 'data_url')
-			.then(() => {
-				return storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`).getDownloadURL();
-			});
-		promises.push(promise);
-		
-	}
-	Promise.all(promises)
-	.then((arr) => {
-		console.log(arr)
-	})
-	
-	return dispatch => {
-		type: UPLOAD_IMAGE		
-	}
-}
-// export function uploadImage(name, file) {
-
-// 	const token = Math.random().toString(36).substr(2);
-// 	const imageRef = storage.ref().child(`${token}`);
-
-// 	return dispatch => {
-// 			imageRef.putString(file, 'data_url')
-// 			.then(() => {
-// 				storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`)
-// 				.getDownloadURL()
-// 				.then((url) => {
-// 					dispatch({
-// 						type: UPLOAD_IMAGE,
-// 						payload: {
-// 							name,
-// 							url
-// 						}
-// 					})
-// 				})
-// 			})
-
-
-// 	}
-// }
-
 
 
 //-----------------------
@@ -181,7 +130,7 @@ export function setCenter(nw, se, width, height) {
 //-----------------------
 export function setMapBounds(bounds) {
 
-		const mapBounds =[]
+		const mapBounds = [];
 		mapBounds[0] = bounds.nw;
 		mapBounds[1] = bounds.ne;
 		mapBounds[2] = bounds.se;

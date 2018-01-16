@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import FileAdd from './FileAdd';
-import { addAnimal, uploadImage } from '../actions/index';
+import { addAnimal } from '../actions/index';
 import { Link } from 'react-router-dom';
 import AddingMap from '../components/AddingMap';
 import _ from 'lodash';
 import update from 'immutability-helper';
 import Footer from '../components/Footer';
+import { storage, firebaseConfig } from '../constants/firebase';
 
 class Add extends Component {
 
@@ -76,42 +77,28 @@ class Add extends Component {
 	}
 
 	onSubmit(values) {
-
-		// for(var key in this.state.files) {
-		// 	this.props.uploadImage(key, this.state.files[key]);
-		// }
-
-		this.props.uploadImage(this.state.files);
-
-		// if(this.state.file) {
-		// 	this.props.uploadImage(this.state.file, (url) => {
-		// 		this.props.addAnimal(
-		// 			Object.assign(
-		// 				{},
-		// 				values,
-		// 				{'url':url},
-		// 				{'location': this.state.location},
-		// 				{'addType':this.state.addType}), () => {
-		// 					this.props.history.push('/dzieki');
-		// 				}
-		// 		)
-		// 	})
-		// } else {
-		// 	this.props.addAnimal(
-		// 		Object.assign(
-		// 			{},
-		// 			values,
-		// 			{'location': this.state.location},
-		// 			{'addType':this.state.addType}), () => {
-		// 				this.props.history.push('/dzieki');
-		// 			}
-		// 	);
-		// }
-
+		
+		this.uploadImage(this.state.files);
 	}
-
-
-
+	uploadImage(files) {
+		
+		var promises =[];
+	
+		for(var key in files) {
+			const token = Math.random().toString(36).substr(2);
+			const imageRef = storage.ref().child(`${token}`);
+			const promise = imageRef.putString(files[key], 'data_url')
+				.then(() => {
+					return storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`).getDownloadURL();
+				});
+			promises.push(promise);
+		}
+		Promise.all(promises)
+		.then((arr) => {
+			console.log(arr)
+		})
+	}
+	
 	_setAddType() {
 		const { type } = this.props.match.params
 		let addType = null;
@@ -253,5 +240,5 @@ export default reduxForm({
 	validate: validate,
 	form: 'AddAnimal'
 })(
-	connect(null, { addAnimal, uploadImage })(Add)
+	connect(null, { addAnimal })(Add)
 );

@@ -1,6 +1,6 @@
 import { SET_MAP_BOUNDS } from '../constants/actionTypes';
 
-export default ( state = null, action) => {
+export default ( state = [], action) => {
 
 	switch (action.type) {
 		case SET_MAP_BOUNDS:

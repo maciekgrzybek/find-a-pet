@@ -36,10 +36,10 @@ class FileAdd extends Component {
 			}
 
 			function setSizeWithRatio(originalWidth, originalHeight, maxWidth, maxHeight){
-
+				// TODO: square images needs fixing
 				var ratio, newHeight, newWidth;
 
-				if (originalWidth > originalHeight) {
+				if (originalWidth >= originalHeight) {
 					if (originalWidth > maxWidth) {
 						ratio = maxWidth / originalWidth;
 						newHeight = Math.round(originalHeight * ratio);
