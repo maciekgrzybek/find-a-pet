@@ -84,12 +84,17 @@ class Add extends Component {
 		
 		var promises =[];
 	
-		for(var key in files) {
+		for(let key in files) {
 			const token = Math.random().toString(36).substr(2);
 			const imageRef = storage.ref().child(`${token}`);
 			const promise = imageRef.putString(files[key], 'data_url')
 				.then(() => {
-					return storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`).getDownloadURL();
+					return storage.refFromURL(`${firebaseConfig.storageBucket}/${token}`).getDownloadURL()
+					.then((url)=> {
+						return {
+							[key]: url
+						}
+					})
 				});
 			promises.push(promise);
 		}
