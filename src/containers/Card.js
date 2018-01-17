@@ -14,16 +14,16 @@ class Card extends Component {
 		
 		const { animal } = this.props;
 		const rowHoverClass = animal.id === this.props.hover ? 'card--hover': '';
-		const type = animal.addType === 'found' ? 'Znaleziony' : animal.addType === 'lost' ? 'Zagubiony' : 'Do adopcji';
+		const type = animal.adType === 'found' ? 'Znaleziony' : animal.adType === 'lost' ? 'Zagubiony' : 'Do adopcji';
 
 		const imageWrapperStyle = {
 			backgroundImage: `url(${animal.url})`,
 		}
 
 		return (
-			<Link to={`zwierzak/${animal.addType}/${animal.id}`}>
+			<Link to={`zwierzak/${animal.adType}/${animal.id}`}>
 				<div
-					className={ `card card--${animal.addType} ${rowHoverClass}` }
+					className={ `card card--${animal.adType} ${rowHoverClass}` }
 					style={ this.props.style }
 					onMouseEnter={() => this.props.hoverAnimal(animal.id)}
 					onMouseLeave={() => this.props.hoverAnimal(null)}
@@ -39,7 +39,7 @@ class Card extends Component {
 							<div className="card__details-row">
 								<Icon 
 									icon="date" 
-									class={`card__icon marker__icon marker--${animal.addType}__icon`} 
+									class={`card__icon marker__icon marker--${animal.adType}__icon`} 
 									width="15px"
 									height="15px"/>
 									<p>{animal.date}</p>
@@ -48,13 +48,13 @@ class Card extends Component {
 							<div className="card__details-row">
 								<Icon 
 									icon="mapMarker" 
-									class={`card__icon marker__icon marker--${animal.addType}__icon`} 
+									class={`card__icon marker__icon marker--${animal.adType}__icon`} 
 									width="15px"
 									height="15px"/>
 									<p>{animal.location.city}</p>
 							</div>
 							<div>
-								<Button color={ animal.addType } label='Wiecej' />
+								<Button color={ animal.adType } label='Wiecej' />
 							</div>
 						</div>
 				</div>

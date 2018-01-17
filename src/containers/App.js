@@ -5,7 +5,7 @@ import Contact from '../components/Contact';
 import ThankYou from '../components/ThankYou';
 import FindAnimal from '../components/FindAnimal';
 import Add from './Add';
-import AddType from '../components/AddType';
+import AdType from '../components/AdType';
 import SelectedAnimal from '../components/SelectedAnimal';
 import NotFound from '../components/NotFound'
 import { Route, Switch } from 'react-router-dom';
@@ -19,7 +19,7 @@ class App extends Component {
 					<div className="main-wrapper">
 						<Switch>
 							<Route path="/znajdz-zwierzaka" component={ FindAnimal }/>
-							<Route path="/rodzaj-ogloszenia" component={ AddType }/>
+							<Route path="/rodzaj-ogloszenia" component={ AdType }/>
 							<Route path="/dzieki" component={ ThankYou }/>
 							<Route path="/kontakt" component={ Contact }/>
 							<Route path="/dodaj/:type" component={ Add }/>

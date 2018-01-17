@@ -22,17 +22,17 @@ class Add extends Component {
 				city: '',
 				street: ''
 			},
-			addType: null
+			adType: null
 		}
 
 		this.setLocation = this.setLocation.bind(this);
 		this.setFile = this.setFile.bind(this);
-		this._setAddType = this._setAddType.bind(this);
+		this._setAdType = this._setAdType.bind(this);
 		this.setState = this.setState.bind(this);
 	}
 
 	componentDidMount() {
-		this._setAddType()
+		this._setAdType()
 	}
 
 	setFile(files) {
@@ -104,17 +104,17 @@ class Add extends Component {
 		})
 	}
 	
-	_setAddType() {
+	_setAdType() {
 		const { type } = this.props.match.params
-		let addType = null;
+		let adType = null;
 		if(type === 'znaleziony') {
-			addType = 'found';
+			adType = 'found';
 		} else if (type === 'zgubiony') {
-			addType = 'lost';
+			adType = 'lost';
 		} else {
-			addType = 'adopt';
+			adType = 'adopt';
 		}
-		this.setState({addType})
+		this.setState({adType})
 	}
 
 	geoCode(e) {

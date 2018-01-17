@@ -1,3 +1,53 @@
 .add-container {
 	margin-top: 75px;
 }
+.ads-type {
+	display: flex;
+	width: 100%;
+	a {
+		width: 100%;
+	}
+	&__choice {
+		height: calc(100vh / 3);
+		width: 100%;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		&--found {
+			background-image: url('../images/znajdz-zwierzaka-found-small.jpg');
+		}
+		&--lost {
+			background-image: url('../images/znajdz-zwierzaka-lost-small.jpg');
+		}
+		&--adopt {
+			background-image: url('../images/znajdz-zwierzaka-adopt-small.jpg');
+		}
+	}
+	@include breakpoint(medium) {
+		&__choice {
+			&--found {
+				background-image: url('../images/znajdz-zwierzaka-found-medium.jpg');
+			}
+			&--lost {
+				background-image: url('../images/znajdz-zwierzaka-lost-medium.jpg');
+			}
+			&--adopt {
+				background-image: url('../images/znajdz-zwierzaka-adopt-medium.jpg');
+			}
+		}
+	}
+	@include breakpoint(large) {
+		&__choice {
+			height: 100vh;
+			&--found {
+				background-image: url('../images/znajdz-zwierzaka-found.jpg');
+			}
+			&--lost {
+				background-image: url('../images/znajdz-zwierzaka-lost.jpg');
+			}
+			&--adopt {
+				background-image: url('../images/znajdz-zwierzaka-adopt.jpg');
+			}
+		}
+	}
+}

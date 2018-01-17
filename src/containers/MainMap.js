@@ -25,7 +25,7 @@ class MainMap extends Component {
 				<Marker
 					key={ key }
 					id = { key }
-					addType = { animal.addType }
+					adType = { animal.adType }
 					url={ animal.url }
 					lat={ animal.location.lat }
 					lng={ animal.location.lng }/>
