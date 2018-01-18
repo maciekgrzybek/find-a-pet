@@ -13,14 +13,49 @@
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
+		display: flex;
+    align-items: center;
+		justify-content: center;
+		position: relative;
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.7);
+			transition: .3s;
+		}
+		p {
+			margin: 0;
+			color: white;
+			z-index: 1;
+			font-family: $header-font;
+		}
 		&--found {
 			background-image: url('../images/znajdz-zwierzaka-found-small.jpg');
+			&:hover {
+				&:after {
+					background: rgba($found-color, 0.3);
+				}
+			}
 		}
 		&--lost {
 			background-image: url('../images/znajdz-zwierzaka-lost-small.jpg');
+			&:hover {
+				&:after {
+					background: rgba($lost-color, 0.3);
+				}
+			}
 		}
 		&--adopt {
 			background-image: url('../images/znajdz-zwierzaka-adopt-small.jpg');
+			&:hover {
+				&:after {
+					background: rgba($adopt-color, 0.3);
+				}
+			}
 		}
 	}
 	@include breakpoint(medium) {
