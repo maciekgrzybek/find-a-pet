@@ -18,6 +18,7 @@ class Navigation extends Component  {
 	}
 	componentDidMount() {
 		window.document.body.addEventListener('scroll', this.navScroll);
+		
   }
 	componentWillUnmount() {
 		window.document.body.removeEventListener('scroll', this.navScroll);
@@ -26,6 +27,7 @@ class Navigation extends Component  {
 		const { scrollTop } = window.document.body;
 		if(scrollTop > 25) {
 			this.setState({ topBarClass: 'top-bar--scroll'})
+			
 		} else {
 			this.setState({ topBarClass: ''})
 		}
@@ -33,6 +35,7 @@ class Navigation extends Component  {
 
 	render() {
 		const navClass = this.props.navigationVisibility ? 'navigation--visible' : '';
+
 		return (
 			<div className="grid-container">
 				<div className={`grid-x grid-padding-x top-bar ${this.state.topBarClass} align-middle`} ref="topbar">
