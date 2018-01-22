@@ -77,10 +77,23 @@ class Add extends Component {
 	}
 
 	onSubmit(values) {
+		if(this.state.files) {
+			this.uploadImage(this.state.files, values);
+		} else {
+			this.props.addAnimal(
+				Object.assign(
+					{},
+					values,
+					{'location': this.state.location},
+					{'adType':this.state.adType}), () => {
+						this.props.history.push('/dzieki');
+					}
+			);
+		}
 		
-		this.uploadImage(this.state.files);
 	}
-	uploadImage(files) {
+
+	uploadImage(files, values) {
 		
 		var promises =[];
 	
@@ -99,8 +112,23 @@ class Add extends Component {
 			promises.push(promise);
 		}
 		Promise.all(promises)
+
 		.then((arr) => {
-			console.log(arr)
+			let urls = {};
+			arr.forEach(function(el, i) {
+				urls[Object.keys(el)] = el[Object.keys(el)];
+			})
+			this.props.addAnimal(
+				Object.assign(
+					{},
+					values,
+					{'url':urls},
+					{'location': this.state.location},
+					{'adType':this.state.adType}), () => {
+						this.props.history.push('/dzieki');
+					}
+			)
+
 		})
 	}
 	
@@ -247,3 +275,4 @@ export default reduxForm({
 })(
 	connect(null, { addAnimal })(Add)
 );
+

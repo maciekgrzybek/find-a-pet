@@ -17,7 +17,7 @@ class Card extends Component {
 		const type = animal.adType === 'found' ? 'Znaleziony' : animal.adType === 'lost' ? 'Zagubiony' : 'Do adopcji';
 
 		const imageWrapperStyle = {
-			backgroundImage: `url(${animal.url})`,
+			backgroundImage: `url(${animal.url.medium})`,
 		}
 
 		return (
