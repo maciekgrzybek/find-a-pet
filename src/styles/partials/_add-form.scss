@@ -1,0 +1,40 @@
+.add-form {
+  max-width: 440px;
+  margin-top: 2rem;
+  padding: 0 15px;
+  &__title {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: .6rem;
+  }
+  &__description {
+    font-size: .8rem;
+    line-height: 1.8em;
+  }
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  label {
+    font-size: .8rem;
+  }
+  .form-control {
+    padding: .7rem 1rem;
+    width: 100%;
+    border: 1px solid $light-grey;
+    margin-bottom: .6rem;
+    &:focus {
+      border: 1px solid $primary-color;
+      outline: none;
+    }
+  }
+  &.has-error {
+    color: $alert-color;
+    font-size: .8rem;
+    .form-control {
+      border-color: $alert-color;
+      margin-bottom: .1rem;
+    }
+  }
+  
+}

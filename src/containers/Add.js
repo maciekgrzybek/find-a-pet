@@ -8,6 +8,7 @@ import AddingMap from '../components/AddingMap';
 import _ from 'lodash';
 import update from 'immutability-helper';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
 import { storage, firebaseConfig } from '../constants/firebase';
 
 class Add extends Component {
@@ -195,19 +196,20 @@ class Add extends Component {
 
 
 
-
 		return (
 			<div>
 				<div className="add-container">
 					<div className="grid-container full">
-						<div className="grid-x grid-margin-x large-margin-collapse">
+						<div className="grid-x grid-margin-x">
 							<div className="small-12 large-7 cell map">
 								<AddingMap 
 									handleClick={this.setLocation}
 									lat={this.state.location.lat}
 									lng={this.state.location.lng} />
 							</div>
-							<div className="small-12 large-5 cell">
+							<div className="small-12 large-5 cell add-form">
+								<h1 className="add-form__title">Dodaj Ogłoszenie</h1>
+								<p className="add-form__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem repellat odit sit dignissimos dolorem ipsa quae incidun.</p>
 								<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
 										<Field
 											name="location"
@@ -236,11 +238,11 @@ class Add extends Component {
 											component={ this.renderField } />
 
 										<FileAdd onDrop={this.setFile} />
-
-		 
 										
-										<button type="submit" className="btn btn-primary">Dodaj </button>
-										<Link to="/" className="btn btn-danger">Cofnij</Link>	
+										<Button color='primary' label='Dodaj' />
+										<Link to="/">
+											<Button color='alert' label='Cofnij' />
+										</Link>	
 								</form>
 							</div>
 						</div>

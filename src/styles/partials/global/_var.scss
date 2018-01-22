@@ -1,12 +1,13 @@
 // Variables 
 // ---------
 $black: #1d1d1d;
-$primary-color: #ff8700;
+$primary-color: #3784e9;
 $found-color: #ffbf00;
 $lost-color: #ff8700;
 $adopt-color: #1bb23c;
 $light-grey: #f5f5f5;
 $medium-grey: #787878;
+$alert-color: rgb(236, 65, 65);
 $breakpoints: (
   medium: 40em,
   large: 64em,
@@ -17,6 +18,7 @@ $swatches: (
 	lost: $lost-color,
 	found: $found-color,
 	adopt: $adopt-color,
+	alert: $alert-color
 );
 $header-font:'bebas_neuebold', sans-serif;
 $paragraph-font:'Roboto', sans-serif;
