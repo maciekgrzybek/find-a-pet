@@ -22,7 +22,7 @@ class Cards extends Component {
 						{
 							_.map(this.props.animals,(animal,key) => {
 								return (
-										<div className="small-12 medium-6 cell" key={animal.id}>
+										<div className="small-12 medium-6 large-4 cell" key={animal.id}>
 											<Card animal={animal} />
 										</div>
 								)})

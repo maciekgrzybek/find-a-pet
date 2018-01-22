@@ -4,6 +4,7 @@ import { hoverAnimal } from '../actions/index';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Icon from '../components/Icon';
+import placeholder from '../images/znajdz-zwierzaka-hero.jpg';
 
 
 
@@ -16,8 +17,10 @@ class Card extends Component {
 		const rowHoverClass = animal.id === this.props.hover ? 'card--hover': '';
 		const type = animal.adType === 'found' ? 'Znaleziony' : animal.adType === 'lost' ? 'Zagubiony' : 'Do adopcji';
 
+		const thumbnailImage = animal.url ? animal.url.medium : placeholder;
+
 		const imageWrapperStyle = {
-			backgroundImage: `url(${animal.url.medium})`,
+			backgroundImage: `url(${thumbnailImage})`,
 		}
 
 		return (
@@ -54,7 +57,7 @@ class Card extends Component {
 									<p>{animal.location.city}</p>
 							</div>
 							<div>
-								<Button color={ animal.adType } label='Wiecej' />
+								<Button color={ animal.adType } label='Więcej' />
 							</div>
 						</div>
 				</div>

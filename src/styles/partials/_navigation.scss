@@ -120,32 +120,11 @@
 		margin-bottom: 2px;
 		transition: .3s cubic-bezier(.34,.01,0,.97);
 		transform-origin: 50% 50%;
-		&:nth-child(2) {
-			width: calc(100% - 4px);
-		}
-		&:nth-child(3) {
-			width: calc(100% - 12px);
-		}
-		&:nth-child(4) {
-			width: calc(100% - 16px);
-		}
-	}
-	&:active {
-		span {
-			&:nth-child(2) {
-				width: calc(100% - 4px);
-			}
-			&:nth-child(3) {
-				width: calc(100% - 12px);
-			}
-			&:nth-child(4) {
-				width: calc(100% - 16px);
-			}
-		}
 	}
 	&:hover {
 		span {
-			width: 100%;
+			width: 90%;
+			opacity: .8;
 		}
 	}
 
