@@ -1,6 +1,7 @@
 
 export default function createMapOptions(scrollwheel, fullscreenControl) {
 	return {
+		gestureHandling: 'greedy',
 		scrollwheel: scrollwheel,
 		fullscreenControl: false,
 		styles: [

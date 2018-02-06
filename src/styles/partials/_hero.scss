@@ -31,6 +31,9 @@
 		background: rgba(white, .75);
 		content: ''; 
 	}
+	&--thank-you {
+		background: url('../images/znajdz-zwierzaka-hero-thank-you.jpg');
+	}
 	@include breakpoint(large) {
 		@include background-image();
 		padding-top: 0;

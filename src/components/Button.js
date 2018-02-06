@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Button = (props) => (
-
-		<button className={`button button--${props.color}`}>
-			{props.label}
-		</button>
-	
+const Button = props => (
+  <button className={`button button--${props.color}`} style={props.style}>
+    {props.label}
+  </button>
 );
 
 export default Button;

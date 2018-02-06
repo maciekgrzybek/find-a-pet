@@ -1,6 +1,7 @@
 .add-form {
   max-width: 440px;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 0 15px;
   &__title {
     font-size: 3rem;
@@ -18,11 +19,20 @@
   label {
     font-size: .8rem;
   }
+  &:first-child {
+    label {
+      display: none;
+    }
+  }
   .form-control {
     padding: .7rem 1rem;
     width: 100%;
     border: 1px solid $light-grey;
     margin-bottom: .6rem;
+    &[type="textarea"] {
+      height: 150px; 
+      margin-bottom: 20px;
+    }
     &:focus {
       border: 1px solid $primary-color;
       outline: none;

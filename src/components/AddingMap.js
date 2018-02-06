@@ -11,12 +11,10 @@ class AddingMap extends Component {
 
 	static defaultProps = {
 		center: {
-			lat: 54,
-			lng: 32
+			lat: 51.5,
+			lng: 20
 		},
-		zoom: 6,
-		lat: 0,
-		lng: 0
+		zoom: 7
 	};
 
 
@@ -32,6 +30,7 @@ class AddingMap extends Component {
 					options={createMapOptions}
 					onClick={(e) => this.props.handleClick(e)}>
 						<AddMarker
+							adType={this.props.adType}
 							key={ 1 }
 							lat={ this.props.lat }
 							lng={ this.props.lng } />
