@@ -48,3 +48,12 @@
   }
   
 }
+.dropzone {
+  p {
+    margin: 0;
+  }
+  &__small-text {
+    font-size: 10px;
+    opacity: .8;
+  }
+}

@@ -1,0 +1,17 @@
+.file-error {
+  position: fixed;
+  background: rgba(white, 0.9);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 1001;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  flex-direction: column;
+  &--loading {
+    display: flex;
+  }
+}

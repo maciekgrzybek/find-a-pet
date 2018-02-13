@@ -10,7 +10,7 @@ import update from "immutability-helper";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 import { storage, firebaseConfig } from "../constants/firebase";
-import LoadingScreen from '../components/LoadingScreen'
+import LoadingScreen from "../components/LoadingScreen";
 
 class Add extends Component {
   constructor() {
@@ -30,7 +30,6 @@ class Add extends Component {
     this.setLocation = this.setLocation.bind(this);
     this.setFile = this.setFile.bind(this);
     this._setAdType = this._setAdType.bind(this);
-    // this.setState = this.setState.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +39,7 @@ class Add extends Component {
   setFile(files) {
     this.setState({ files });
   }
+
 
   renderField(field) {
     const { meta: { touched, error } } = field;
@@ -93,7 +93,7 @@ class Add extends Component {
 
   uploadImage(files, values) {
     var promises = [];
-		this.setState({ loading: true });
+    this.setState({ loading: true });
     for (let key in files) {
       const token = Math.random()
         .toString(36)
@@ -201,7 +201,7 @@ class Add extends Component {
 
     return (
       <div>
-				<LoadingScreen loading={this.state.loading} />
+        <LoadingScreen loading={this.state.loading} />
         <div className="add-container">
           <div className="grid-container full">
             <div className="grid-x grid-margin-x">
@@ -251,7 +251,10 @@ class Add extends Component {
                     component={this.renderField}
                   />
 
-                  <FileAdd onDrop={this.setFile} />
+                  <FileAdd
+                    onDrop={this.setFile}
+                    fileError={this.setFileError}
+                  />
 
                   <Button
                     color="primary"
