@@ -191,7 +191,7 @@ class FileAdd extends Component {
         <Icon icon="upload" />
         <p>Umieść tu zdjęcie</p>
         <p className="dropzone__small-text">*Nie może być większe niż 2mb</p>
-        <p  style={{ color: "red" }}>
+        <p style={{ color: "red" }}>
           {this.state.fileError && `Plik jest za duży`}
         </p>
       </Dropzone>

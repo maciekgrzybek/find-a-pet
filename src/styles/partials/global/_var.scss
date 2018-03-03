@@ -1,4 +1,4 @@
-// Variables 
+// Variables
 // ---------
 $black: #1d1d1d;
 $primary-color: #3784e9;
@@ -11,43 +11,63 @@ $alert-color: rgb(236, 65, 65);
 $breakpoints: (
   medium: 40em,
   large: 64em,
-  xlarge: 75em,
+  xlarge: 75em
 );
 $swatches: (
-	primary: $primary-color,
-	lost: $lost-color,
-	found: $found-color,
-	adopt: $adopt-color,
-	alert: $alert-color
+  primary: $primary-color,
+  lost: $lost-color,
+  found: $found-color,
+  adopt: $adopt-color,
+  alert: $alert-color
 );
-$header-font:'bebas_neuebold', sans-serif;
-$paragraph-font:'Roboto', sans-serif;
+$header-font: "bebas_neuebold", sans-serif;
+$paragraph-font: "Roboto", sans-serif;
 $map-large-height: 650px;
 $search-bar-large-height: 200px;
-// Mixins 
+// Mixins
 // ---------
-@mixin link($link, $visit, $hover, $active){
-	color: $link;
-	text-decoration: none;
-	&:visited {
-		color:$visit;
-	}
-	&:hover {
-		color: $hover;
-	}
-	&:active {
-		color: $active;
-	}
+@mixin link($link, $visit, $hover, $active) {
+  color: $link;
+  text-decoration: none;
+  &:visited {
+    color: $visit;
+  }
+  &:hover {
+    color: $hover;
+  }
+  &:active {
+    color: $active;
+  }
 }
-@mixin background-image($repeat: no-repeat, $position: center center,  $size: cover ) {
-	background-repeat: $repeat;
-	background-position: $position; 
-	background-size: $size;
+@mixin background-image(
+  $repeat: no-repeat,
+  $position: center center,
+  $size: cover
+) {
+  background-repeat: $repeat;
+  background-position: $position;
+  background-size: $size;
 }
 @mixin breakpoint($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media only screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
       @content;
     }
+  }
+}
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }

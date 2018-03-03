@@ -1,0 +1,44 @@
+.selected-container {
+  margin-top: 80px;
+  @include breakpoint(medium) {
+    min-height: 70vh;
+    h1 {
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+}
+.selected-description {
+  @include breakpoint(medium) {
+    margin: 20px;
+    padding-right: 20px;
+  }
+}
+.selected-map {
+  @include aspect-ratio(1, 1);
+  margin-bottom: 15px;
+}
+.selected-image {
+  margin-bottom: 15px;
+}
+.selected-left {
+  order: 2;
+  @include breakpoint(medium) {
+    order: 1;
+  }
+}
+.selected-right {
+  order: 1;
+  @include breakpoint(medium) {
+    order: 2;
+  }
+}
+.selected-icon-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}

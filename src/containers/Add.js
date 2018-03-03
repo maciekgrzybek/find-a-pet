@@ -40,7 +40,6 @@ class Add extends Component {
     this.setState({ files });
   }
 
-
   renderField(field) {
     const { meta: { touched, error } } = field;
 
@@ -224,6 +223,12 @@ class Add extends Component {
                     name="location"
                     type="hidden"
                     label="Lokalizacja"
+                    component={this.renderField}
+                  />
+                  <Field
+                    name="title"
+                    label="Tytul"
+                    type="text"
                     component={this.renderField}
                   />
                   <Field
