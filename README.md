@@ -6,3 +6,4 @@ Stack:
  - firebase
  - google maps api
  
+ [Link to dev version](http://znajdz-zwierzaka.firebaseapp.com/)
